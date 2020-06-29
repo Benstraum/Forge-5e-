@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class Equipment extends Component{
     render(){
-        return<h1>Equipment</h1>
+        return<div className='Equipment'></div>
     }
 
 }

@@ -7,8 +7,7 @@ import Home from '../1Home/Home';
 
 const InfoPage = () => (
   <div>
-      Info Page
-      <Home></Home>
+      <Home/>
   </div>
 );
 

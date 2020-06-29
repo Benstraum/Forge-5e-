@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import specificItemSaga from './specificItemSaga' // uses url to find details on specific item
 import getAllEquipApi from './getAllEquipApi' //gets items from dnd5e api
 import getAllCharacters from './GetAllCharacters' //home page all char get
+import getAllRaces from './racesSaga' // gets list of races
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -20,7 +21,8 @@ export default function* rootSaga() {
     userSaga(),
     specificItemSaga(),
     getAllEquipApi(),
-    getAllCharacters()
+    getAllCharacters(),
+    getAllRaces()
 
   ]);
 }

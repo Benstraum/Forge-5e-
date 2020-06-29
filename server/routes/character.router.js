@@ -7,13 +7,18 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     const queryText = `
-    SELECT character.*, races.name AS race_name FROM character
-    JOIN races
-    ON races.id = character.race_id
+    SELECT * FROM character
     JOIN "user"
     ON "user".id = character.user_id
     WHERE "user".id = $1;`
     pool.query(queryText, [req.user.id])
+        .then(result => res.send(result.rows))
+        .catch(error => console.log('error in character get', error))
+});
+router.get('/races', (req, res) => {
+    const queryText = `
+    SELECT * FROM races`
+    pool.query(queryText)
         .then(result => res.send(result.rows))
         .catch(error => console.log('error in character get', error))
 });
