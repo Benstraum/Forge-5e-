@@ -18,6 +18,15 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
+import Home from '../1Home/Home';
+import Races from '../2Races/Races';
+import Class from '../3Class/Class';
+import Features from '../4Features/Features';
+import Equipment from '../5Equipment/Equipment';
+import Stats from '../6Stats/Stats';
+import Skills from '../7Skills/Skills';
+import ReviewAndName from '../8ReviewAndName/ReviewAndName';
+import CharacterSheet from '../9CharacterSheet/CharacterSheet';
 
 class App extends Component {
   componentDidMount () {
@@ -54,6 +63,51 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/Home"
+              component={Home}
+            />
+            <ProtectedRoute
+              exact
+              path="/Races"
+              component={Races}
+            />
+            <ProtectedRoute
+              exact
+              path="/Classes"
+              component={Class}
+            />
+            <ProtectedRoute
+              exact
+              path="/Features"
+              component={Features}
+            />
+            <ProtectedRoute
+              exact
+              path="/Equipment"
+              component={Equipment}
+            />
+            <ProtectedRoute
+              exact
+              path="/Stats"
+              component={Stats}
+            />
+            <ProtectedRoute
+              exact
+              path="/Skills"
+              component={Skills}
+            />
+            <ProtectedRoute
+              exact
+              path="/Review"
+              component={ReviewAndName}
+            />
+            <ProtectedRoute
+              exact
+              path="/CharacterSheet"
+              component={CharacterSheet}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
