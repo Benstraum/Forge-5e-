@@ -1,39 +1,115 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-class Equipment extends Component{
- 
-    state={
-        choices:{
-            1:'',
-            2:'',
-            3:'',
-            4:''
-        }
+class Equipment extends Component {
+
+    state = {
+        choices: {
+            1: '',
+            2: '',
+            3: '',
+            4: ''
+        },
+        itemToLearn: '',
+        category: '',
+        learnMore: false,
+        desc: {}
     }
-    handleChange = ( dataType) => {
-       this.props.dispatch({type:dataType})
-       console.log(this.props.list)
+    handleChange = (event, type) => {
+        console.log(event.target.value)
+        this.setState({
+            ...this.state,
+            [type]: event.target.value
+        })
     }
-   
-    render(){
-        console.log(this.props.list)
-        return<div className='Equipment'>
-        
-            <button onClick={()=>this.handleChange('GET_SIMPLES')}>simple</button>
-            <button  onClick={()=>this.handleChange('GET_MARTIALS')}>martial</button>
-            <button  onClick={()=>this.handleChange('GET_ARMORS')}>armor</button>
-            <button  onClick={()=>this.handleChange('GET_SHIELDS')}>shield</button>
-            <button  onClick={()=>this.handleChange('GET_PACKS')}>packs</button>
+    toggleLearn = () => {
+        this.state.learnMore ?
+            this.setState({
+                ...this.state,
+                itemToLearn: '',
+                category: 'none',
+                url: '',
+                learnMore: !this.state.learnMore
+            })
+
+            :
+            this.setState({
+                ...this.state,
+                learnMore: !this.state.learnMore
+            })
+
+    }
+    getItemDetails = () => {
+        this.props.dispatch({ type: 'FETCH_ITEMS', payload: this.state.url })
+        this.setState({
+            ...this.state,
+            desc: this.props.item
+        })
+        console.log(this.state.desc)
+    }
+    render() {
+        console.log(this.state.desc)
+        return <div className='Equipment'>
+            <h1>Choose starting Equipment</h1>
+            <div className="conditionalInfo">
+                <button onClick={() => this.toggleLearn()}>{this.state.learnMore ? "Close More info" : "Want to learn about equipment?"}</button>
+                {this.state.learnMore &&
+                    <select value={this.state.category} placeholder="Armor" onChange={(event) => this.handleChange(event, 'category')}>
+                        <option value="GET_ARMORS">Armors</option>
+                        <option value="GET_MARTIALS">martial weapons</option>
+                        <option value="GET_SIMPLES">simple weapons</option>
+                        <option value="GET_PACKS">equipment packs</option>
+                        <option value="GET_SHIELDS">shields</option>
+                    </select>
+                }
+                {this.state.category === "GET_ARMORS" &&
+                    <select value={this.state.itemToLearn.name} placeholder="Armor" onChange={(event) => this.handleChange(event, 'url')}>
+                        <option value=''>Armor choice</option>
+                        {this.props.armors.map((item, i) => (<option key={i} value={item.url}>{item.name}</option>))}
+                    </select>
+                }
+                {this.state.category === 'GET_MARTIALS' &&
+                    <select value={this.state.itemToLearn.name} placeholder="Martial weapons" onChange={(event) => this.handleChange(event, 'url')}>
+                        <option value=''>Martial weapon choice</option>
+                        {this.props.martials.map((item, i) => (<option key={i} value={item.url}>{item.name}</option>))}
+                    </select>
+                }
+
+                {this.state.category === 'GET_SIMPLES' &&
+                    <select value={this.state.itemToLearn.name} placeholder="Simple weapons" onChange={(event) => this.handleChange(event, 'url')}>
+                        <option value=''>Simple weapon choice</option>
+                        {this.props.simples.map((item, i) => (<option key={i} value={item.url}>{item.name}</option>))}
+                    </select>
+                }
+                {this.state.category === 'GET_PACKS' &&
+                    <select value={this.state.itemToLearn.name} placeholder="shields" onChange={(event) => this.handleChange(event, 'url')}>
+                        <option value=''>Equipment pack choice</option>
+                        {this.props.packs.map((item, i) => (<option key={i} value={item.url}>{item.name}</option>))}
+                    </select>
+                }
+                {this.state.category === 'GET_SHIELDS' &&
+                    <button onClick={() => this.setState({
+                        ...this.state,
+                        desc: this.props.shields
+                    })}>{this.props.shields.name}</button>
+                }
+                {this.state.url && <button onClick={() => this.getItemDetails()}>Get the info!</button>}
+            </div>
+
         </div>
     }
 
 }
 
 const mapStateToProps = state => ({
+    list: state.initialApiGet,
     classes: state.classReducer,
-   list:state.initialApiGet,
-   item:state.itemInfo
-  
+    armors: state.initialApiGet.armors,
+    martials: state.initialApiGet.martial,
+    simples: state.initialApiGet.simple,
+    shields: state.initialApiGet.shields,
+    packs: state.initialApiGet.packs,
+    item: state.itemInfo
+
 });
 export default connect(mapStateToProps)(Equipment);

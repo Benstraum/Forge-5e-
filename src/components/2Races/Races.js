@@ -5,9 +5,6 @@ class Races extends Component {
     state = {
         choice: ''
     }
-    componentDidMount() {
-        this.props.dispatch({ type: 'GET_RACES' })
-    }
     handleChange = (event, type) => {
         console.log(event.target.value)
         this.setState({

@@ -1,5 +1,5 @@
 // make cases for martial & simple weapons, armor and shields. make state an object with arrays inside.
-const initialApiGet = (state = { armors: [], shield: {}, martial: [], simple: [], packs: [] }, action) => {
+const initialApiGet = (state = { armors: [], shields: {}, martial: [], simple: [], packs: [] }, action) => {
     switch (action.type) {
         case 'SET_PACKS':
             state.packs = action.payload

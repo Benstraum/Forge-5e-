@@ -29,9 +29,19 @@ import CharacterSheet from '../9CharacterSheet/CharacterSheet';
 
 class App extends Component {
   componentDidMount () {
+   this.getInfo()
+  }
+  getInfo = () => {
     this.props.dispatch({type: 'FETCH_USER'})
     this.props.dispatch({ type: 'GET_CHARACTERS' })
-  }
+    this.props.dispatch({ type: 'GET_SIMPLES' })
+    this.props.dispatch({ type: 'GET_MARTIALS' })
+    this.props.dispatch({ type: 'GET_ARMORS' })
+    this.props.dispatch({ type: 'GET_SHIELDS' })
+    this.props.dispatch({ type: 'GET_PACKS' })
+    this.props.dispatch({ type: 'GET_RACES' })
+    this.props.dispatch({type:'GET_CLASSES'})
+}
 
   render() {
     return (

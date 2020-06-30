@@ -15,8 +15,13 @@ class Class extends Component{
             [type]: event.target.value
         })
     }
-    saveClass(){
+    saveClass=()=>{
         this.props.dispatch({type:'NEW_CHARACTER_CLASS', payload:this.props.classes[this.state.choice]})
+        this.props.dispatch({type:'GET_SIMPLES'})
+        this.props.dispatch({type:'GET_MARTIALS'})
+        this.props.dispatch({type:'GET_ARMORS'})
+        this.props.dispatch({type:'GET_SHIELDS'})
+        this.props.dispatch({type:'GET_PACKS'})
         this.props.history.push('/Equipment')
     }
     render(){
