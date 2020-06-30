@@ -134,7 +134,7 @@ class Equipment extends Component {
                     this.state.four ?
                     <button onClick={() => this.submitChoices()}>Submit and Continue!</button>
                     :
-                    <button disabled>Submit and Continue!</button>}
+                    <button disabled>Choose items to Continue</button>}
             </div>
 
         </div>
