@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     const queryText = `
-    SELECT * FROM character
+    SELECT character.* FROM character
     JOIN "user"
     ON "user".id = character.user_id
     WHERE "user".id = $1;`
