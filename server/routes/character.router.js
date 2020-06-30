@@ -41,7 +41,17 @@ GROUP BY class.id;`
         .then(result => res.send(result.rows))
         .catch(error => console.log('error in character get', error))
 });
-
+router.get('/equipment', (req, res) => {
+    const queryText = `
+    SELECT class.id, class_starting_equipment.choice_1a, class_starting_equipment.choice_1b, class_starting_equipment.choice_2a, class_starting_equipment.choice_2b, class_starting_equipment.choice_3a, class_starting_equipment.choice_3b, class_starting_equipment.choice_4a, class_starting_equipment.choice_4b
+    FROM class_starting_equipment
+    JOIN class
+    ON class.id = class_starting_equipment.id
+    WHERE class.id =$1;`
+    pool.query(queryText, [req.body])
+        .then(result => res.send(result.rows))
+        .catch(error => console.log('error in character get', error))
+});
 /**
  * POST route template
  */
@@ -50,3 +60,4 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
+

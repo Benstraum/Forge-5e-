@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class Equipment extends Component {
-
+componentWillReceiveProps(){
+    console.log(this.props.item)
+}
     state = {
         choices: {
             1: '',
@@ -45,10 +47,8 @@ class Equipment extends Component {
             ...this.state,
             desc: this.props.item
         })
-        console.log(this.state.desc)
     }
     render() {
-        console.log(this.state.desc)
         return <div className='Equipment'>
             <h1>Choose starting Equipment</h1>
             <div className="conditionalInfo">
@@ -94,7 +94,11 @@ class Equipment extends Component {
                     })}>{this.props.shields.name}</button>
                 }
                 {this.state.url && <button onClick={() => this.getItemDetails()}>Get the info!</button>}
+                {this.props.item && JSON.stringify(this.props.item)}
             </div>
+                <div className="choices">
+                
+                </div>
 
         </div>
     }

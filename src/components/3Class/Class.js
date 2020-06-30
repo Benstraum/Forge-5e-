@@ -22,6 +22,7 @@ class Class extends Component{
         this.props.dispatch({type:'GET_ARMORS'})
         this.props.dispatch({type:'GET_SHIELDS'})
         this.props.dispatch({type:'GET_PACKS'})
+        this.props.dispatch({type:'GET_EQUIP_CHOICES', payload:this.props.classes[this.state.choice].id})
         this.props.history.push('/Equipment')
     }
     render(){
