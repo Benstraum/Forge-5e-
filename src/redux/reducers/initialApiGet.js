@@ -1,5 +1,5 @@
 // make cases for martial & simple weapons, armor and shields. make state an object with arrays inside.
-const apiGetReducer = (state = [], action) => {
+const initialApiGet = (state = [], action) => {
     switch (action.type) {
         case 'SET_API':
             return action.payload;
@@ -8,4 +8,4 @@ const apiGetReducer = (state = [], action) => {
     };
 }
 
-    export default apiGetReducer
+    export default initialApiGet

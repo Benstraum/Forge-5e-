@@ -1,5 +1,5 @@
 // make cases for martial & simple weapons, armor and shields. make state an object with arrays inside.
-const getItemReducer = (state=[], action) =>{
+const itemInfo = (state=[], action) =>{
     switch (action.type) {
         case 'SET_EQUIP':
             return action.payload;
@@ -8,4 +8,4 @@ const getItemReducer = (state=[], action) =>{
     };
 }
 
-export default  getItemReducer;
+export default  itemInfo;

@@ -3,7 +3,7 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
 import itemInfo from './itemInfo' // holds individual item details
-import apiGetReducer from './apiGetReducer' // holds all items in a category
+import initialApiGet from './initialApiGet' // holds all items in a category
 import characterReducer from './characterReducer' // holds all users finished characters
 import newCharacterReducer from './newCharacterReducer' //holds information for the new character 
 import racesRouter from './racesRouter' // provides list of all races
@@ -19,8 +19,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
-  itemInfo, // reducer for dnd equip api
-  apiGetReducer,
+  itemInfo, // reducer for individual dnd item api
+  initialApiGet,
   characterReducer,
   newCharacterReducer,
   racesRouter,

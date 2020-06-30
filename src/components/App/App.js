@@ -30,6 +30,7 @@ import CharacterSheet from '../9CharacterSheet/CharacterSheet';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({ type: 'GET_CHARACTERS' })
   }
 
   render() {
