@@ -70,7 +70,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/Classes"
+              path="/Class"
               component={Class}
             />
             <ProtectedRoute

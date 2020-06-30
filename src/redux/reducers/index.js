@@ -5,8 +5,9 @@ import user from './userReducer';
 import itemInfo from './itemInfo' // holds individual item details
 import apiGetReducer from './apiGetReducer' // holds all items in a category
 import characterReducer from './characterReducer' // holds all users finished characters
-import newCharacterReducer from './newCharacterReducer'
-import racesRouter from './racesRouter'
+import newCharacterReducer from './newCharacterReducer' //holds information for the new character 
+import racesRouter from './racesRouter' // provides list of all races
+import classRouter from './classRouter' // provides list of all classes
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   apiGetReducer,
   characterReducer,
   newCharacterReducer,
-  racesRouter
+  racesRouter,
+  classRouter
 });
 
 export default rootReducer;
