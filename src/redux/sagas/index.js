@@ -11,6 +11,7 @@ import getMartials from './getMartials'
 import getPacks from './getPacks'
 import getShields from './getShields'
 import getSimples from './getSimples'
+import getChoices from './equipmentChoice' //class based equipment choices 
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -33,7 +34,8 @@ export default function* rootSaga() {
     getMartials(),
     getPacks(),
     getShields(),
-    getSimples()
+    getSimples(),
+    getChoices()
 
 
 

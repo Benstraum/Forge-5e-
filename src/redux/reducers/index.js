@@ -8,6 +8,7 @@ import characterReducer from './characterReducer' // holds all users finished ch
 import newCharacterReducer from './newCharacterReducer' //holds information for the new character 
 import racesRouter from './racesRouter' // provides list of all races
 import classRouter from './classRouter' // provides list of all classes
+import equipmentChoiceRouter from './equipmentChoiceReducer' // holds equipment choices for class
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   characterReducer,
   newCharacterReducer,
   racesRouter,
-  classRouter
+  classRouter,
+  equipmentChoiceRouter
 });
 
 export default rootReducer;
