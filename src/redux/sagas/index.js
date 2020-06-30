@@ -3,10 +3,14 @@ import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import specificItemSaga from './specificItemSaga' // uses url to find details on specific item
-import getAllEquipApi from './getAllEquipApi' //gets items from dnd5e api
 import getAllCharacters from './GetAllCharacters' //home page all char get
 import getAllRaces from './racesSaga' // gets list of races
 import classSaga from './classSaga' // get all classes
+import getArmors from './getArmors' //gets items from dnd5e api
+import getMartials from './getMartials'
+import getPacks from './getPacks'
+import getShields from './getShields'
+import getSimples from './getSimples'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,10 +25,17 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     specificItemSaga(),
-    getAllEquipApi(),
+    getArmors(),
     getAllCharacters(),
     getAllRaces(),
-    classSaga()
+    classSaga(),
+    getArmors(),
+    getMartials(),
+    getPacks(),
+    getShields(),
+    getSimples()
+
+
 
   ]);
 }
