@@ -9,6 +9,7 @@ import newCharacterReducer from './newCharacterReducer' //holds information for 
 import racesRouter from './racesRouter' // provides list of all races
 import classRouter from './classRouter' // provides list of all classes
 import equipmentChoiceRouter from './equipmentChoiceReducer' // holds equipment choices for class
+import skillDefinition from './skillDefRouter'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   newCharacterReducer,
   racesRouter,
   classRouter,
-  equipmentChoiceRouter
+  equipmentChoiceRouter,
+  skillDefinition
 });
 
 export default rootReducer;
