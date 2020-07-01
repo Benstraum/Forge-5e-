@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 //styling
 import { Container, Divider } from 'semantic-ui-react'
 
@@ -32,6 +31,7 @@ class HomeMapItem extends Component {
             [type]: event.target.value
         })
     }
+    
     render() {
         return <div className='individualChar'>
                     <Container>
@@ -41,7 +41,7 @@ class HomeMapItem extends Component {
                         </>
                         :<h3>{this.props.char.name}</h3>}
                         <p>lv:1 {this.props.char.race} {this.props.char.class}</p>
-
+                        <button onClick={()=>this.props.sendToSheet(this.props.char)}>See Character Sheet!</button>
                         <button onClick={()=>this.toggleEdit()}>edit name</button>
                         <button onClick={() =>this.deleteChar(this.props.char.id)}>delete</button>
                         <Divider fitted />

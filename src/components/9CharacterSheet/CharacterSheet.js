@@ -1,10 +1,36 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 class CharacterSheet extends Component{
+    state={
+        cSheet:  this.props.cSheet
+    }
+    componentDidMount(){
+        this.props.dispatch({type:'RETRIEVE_SHEET'})
+    }
     render(){
-        return<div className='CharacterSheet'></div>
+        console.log(this.props.cSheet)
+        return<div className='CharacterSheet'>
+            <div className="identity">
+
+            </div>
+            <div className="abilityScores">
+
+            </div>
+            <div className="combatStats">
+
+            </div>
+            <div className="skills">
+
+            </div>
+            <div className="equipment">
+                
+            </div>
+        </div>
     }
 
 }
-
-export default CharacterSheet;
+const mapStateToProps = state => ({
+    cSheet: state.characterSheetReducer
+});
+export default connect(mapStateToProps)(CharacterSheet);
