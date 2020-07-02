@@ -16,6 +16,7 @@ import getSkillDef from './skillDefinitionSaga' //gets specific skill definition
 import finishCharacter from './finishCreationSaga' // this will post new character and route them to main page so they can select their character to view
 import deleteSaga from './deleteCharacter' //deletes character from db. can only delete chars they see
 import nameChangeSaga from './nameChangeSaga' //put request to change name saga
+import allSkillsSaga from './allSkillsSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -43,7 +44,8 @@ export default function* rootSaga() {
     getSkillDef(),
     finishCharacter(),
     deleteSaga(),
-    nameChangeSaga()
+    nameChangeSaga(),
+    allSkillsSaga()
     
 
 

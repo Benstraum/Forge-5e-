@@ -78,6 +78,17 @@ router.get('/skill/:id', (req, res) => {
             res.sendStatus(500)
         })
 });
+router.get('/allSkills', (req, res) => {
+    const queryText = `
+    SELECT skills.skill_name, skills.description, skills.stat
+    FROM skills`
+    pool.query(queryText)
+        .then(result => res.send(result.rows))
+        .catch(error => {
+            console.log('error in character get', error)
+            res.sendStatus(500)
+        })
+});
 /**
  * POST route template
  */
@@ -89,7 +100,7 @@ router.post('/create', (req, res) => {
         req.body.race.name,
         req.body.class.class_name,
         req.body.class.hit_dice,
-        // req.body.health,
+        req.body.health,
         req.body.equipment,
         req.body.race.features,
         req.body.class.feature,
@@ -101,8 +112,8 @@ router.post('/create', (req, res) => {
         req.body.stats.wis,
         req.body.stats.cha]
     const queryText = `
-    INSERT INTO character(user_id, name, race, class, hit_dice, equipment, features_race, features_class, skills, str, dex, con, int, wis, cha)
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+    INSERT INTO character(user_id, name, race, class, hit_dice,total_health, equipment, features_race, features_class, skills, str, dex, con, int, wis, cha)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
     ;`
     pool.query(queryText, values)
         .then(result => res.sendStatus(200))

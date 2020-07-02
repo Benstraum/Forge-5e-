@@ -17,8 +17,14 @@ class Stats extends Component {
             [type]: event.target.value
         })
     }
+    findMod=(stat)=>{
+        let mod = Math.floor((stat - 10)/2)
+         return mod
+     }
     submitChoices = () => {
+        let health = this.findMod(this.state.con) + this.props.char.class.hit_dice
         this.props.dispatch({type:'NEW_CHARACTER_STATS',payload: this.state})
+        this.props.dispatch({type:'NEW_CHARACTER_HEALTH', payload:health })
         this.props.history.push('./Skills')
     }
     render() {
