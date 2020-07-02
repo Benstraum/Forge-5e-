@@ -19,6 +19,7 @@ class Races extends Component {
         let x = this.state.choice
         let race = this.props.races
         return <div className='Races'>
+            <br/>
                 <h1>Races from Faerun</h1>
                 <p>learn about your choices, then continue the character building process
                      hitting the continue buttonat the bottom of the screen</p>

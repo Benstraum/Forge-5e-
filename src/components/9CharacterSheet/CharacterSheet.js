@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import ConditionalItemInfo from '../ConditionalItemInfo/ConditionalItemInfo'
 import './CharacterSheet.css'
 
 class CharacterSheet extends Component {
@@ -26,6 +27,12 @@ class CharacterSheet extends Component {
                 ac = (13 + this.findMod(char.dex))
             : console.log('next')
         equip.includes('chain mail') ?
+            this.findMod(char.dex) > 2 ?
+                ac = (14 + 2)
+                :
+                ac = (14 + this.findMod(char.dex))
+            : console.log('next')
+            equip.includes('scale mail') ?
             this.findMod(char.dex) > 2 ?
                 ac = (14 + 2)
                 :
@@ -99,7 +106,7 @@ class CharacterSheet extends Component {
             </div>
             <div className="combatStats">
                 <h5>Health Pool:{char.total_health}</h5>
-                <h5>Armor Class:{this.findArmorClass(char.equipment, char)}</h5>
+            <h5>Armor Class:{this.findArmorClass(char.equipment, char)} {char.equipment.includes('shield') && `| with shield: ${this.findArmorClass(char.equipment, char)+2}` }</h5>
             </div>
             <div className="abilityScores">
                 <h4><u>Ability Scores</u></h4>
@@ -118,13 +125,14 @@ class CharacterSheet extends Component {
             </div>
             <div className="equipment">
                     <h3><u>Equipment</u></h3>
+                    <ConditionalItemInfo />
                    <p> {char.equipment}</p>
             </div>
             <div className="features">
                     <h3><u>Racial Features</u></h3>
                    <p> {char.features_race}</p>
                    <h3><u>Class Features</u></h3>
-                    <p>{char.features_class.replace('{"'+'','').replace('"}','')}</p>
+                    <p>{char.features_class.replace('{"','').replace('"}','')}</p>
             </div>
         </div>
     }

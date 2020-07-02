@@ -42,7 +42,8 @@ class ConditionalItemInfo extends Component {
                 itemToLearn: '',
                 category: 'none',
                 url: '',
-                learnMore: !this.state.learnMore
+                learnMore: !this.state.learnMore,
+                showInfo: false
             })
 
             :
@@ -65,7 +66,6 @@ class ConditionalItemInfo extends Component {
 
 
     render() {
-        let item = this.props.item
         let desc = this.state.desc
  
         console.log('item prop',this.props.item)
