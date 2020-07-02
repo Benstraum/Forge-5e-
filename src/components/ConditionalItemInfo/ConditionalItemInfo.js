@@ -54,14 +54,12 @@ class ConditionalItemInfo extends Component {
     }
     getItemDetails = () => {
         this.props.dispatch({ type: 'FETCH_ITEMS', payload: this.state.url })
-        this.state.category !== 'GET_PACKS' ?
         this.setState({
             ...this.state,
             desc: this.props.item,
             showInfo: true
         })
-        :
-        console.log('is equipment')
+        
         
     }
 
@@ -69,7 +67,8 @@ class ConditionalItemInfo extends Component {
     render() {
         let item = this.props.item
         let desc = this.state.desc
-        console.log(this.props.item)
+ 
+        console.log('item prop',this.props.item)
         return <div className='Equipment'>
             <div className="conditionalInfo">
                 <button onClick={() => this.toggleLearn()}>{this.state.learnMore ? "Close More info" : "Want to learn about equipment?"}</button>
@@ -106,7 +105,7 @@ class ConditionalItemInfo extends Component {
                 </>
                 }
                 {this.state.category === 'GET_PACKS' &&
-                    <select value={this.state.itemToLearn.name} placeholder="shields" onChange={(event) => this.handleChange(event, 'url')}>
+                    <select value={this.state.itemToLearn.name} placeholder="packs" onChange={(event) => this.handleChange(event, 'url')}>
                         <option value=''>Equipment pack choice</option>
                         {this.props.packs.map((item, i) => (<option key={i} value={item.url}>{item.name}</option>))}
                     </select>
@@ -153,6 +152,13 @@ class ConditionalItemInfo extends Component {
                         <li>
                             <b>Cost</b>: {desc.cost.quantity + ' ' + desc.cost.unit}
                         </li>
+                    </ul>
+                }
+                {
+                    this.state.category ==='GET_PACKS' && this.state.showInfo &&
+                    <ul>
+                <li><b>{desc.name}:</b> costs:{desc.cost.quantity+' '+desc.cost.unit}<br/> Includes:</li>
+                   { desc.contents.map((item,i)=>(<li key={i}>{'('+item.quantity+')'}{item.item_url.replace('/api/equipment/', '')}</li>))}
                     </ul>
                 }
             </div>
