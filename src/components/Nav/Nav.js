@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import anvil from './Anvil.png'
 import './Nav.css';
 
-const Nav = (props) => (
+
+
+const Nav = (props) => {
+return (
   <div className="nav">
     <img alt='anvil'src={anvil} />
     <Link to="/home">
@@ -29,7 +32,7 @@ const Nav = (props) => (
       )}
     </div>
   </div>
-);
+)};
 
 // Instead of taking everything from state, we just want the user
 // object to determine if they are logged in

@@ -45,13 +45,13 @@ class HomeMapItem extends Component {
                             <Button onClick={() => this.changeName(this.props.char.id)}>Save</Button>
                         </>
                             : <h3>{this.props.char.name}</h3>}</Item.Header>
-                        <Item.Description><p>{this.props.char.race} {this.props.char.class}</p></Item.Description>
+                        <Item.Description ><p>{this.props.char.race} {this.props.char.class}</p> <Button floated='right' onClick={() => this.props.sendToSheet(this.props.char)}>View Sheet</Button></Item.Description>
                         <Item.Extra>
-                            <Button.Group floated='right' vertical>
-                                <Button floated='right' onClick={() => this.props.sendToSheet(this.props.char)}>View Sheet</Button>
-                                {/* <Button onClick={() => this.toggleEdit()}>edit name</Button>
-                                <Button onClick={() => this.deleteChar(this.props.char.id)}>delete</Button> */}
-                            </Button.Group>
+                            {/* <Button.Group floated='right' vertical>
+                                
+                                // {/* <Button onClick={() => this.toggleEdit()}>edit name</Button>
+                                // <Button onClick={() => this.deleteChar(this.props.char.id)}>delete</Button> */}
+                            {/* </Button.Group> */} 
                         </Item.Extra>
                     </Item.Content>
                 </Item>
