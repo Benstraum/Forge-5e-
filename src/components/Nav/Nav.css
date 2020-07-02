@@ -5,12 +5,25 @@
     color: #f2f2f2;
     padding-left: 10px;
 }
-
+body{
+  margin:0;
+  padding:3px;
+}
 .nav {
+  top:0;
+  padding:0;
+  position:relative;
+  margin:0;
+  width: 100%;
   overflow: hidden;
   background-color: #00acb0;
-}
 
+}
+.nav img{
+  width: 50px;
+  height: auto;
+  vertical-align: middle;
+}
 .nav-link {
   float: left;
   color: #f2f2f2;

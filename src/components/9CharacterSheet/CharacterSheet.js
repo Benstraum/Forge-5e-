@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import './CharacterSheet.css'
 
 class CharacterSheet extends Component {
     state = {
@@ -37,7 +38,7 @@ class CharacterSheet extends Component {
         let char = this.props.cSheet
         switch (skill.stat) {
             case 'str':
-            if(char.skills.includes(skill.skill_name)){
+            if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
                 let mod = this.findMod(char.str)+2
                 return mod
             }else{
@@ -45,7 +46,7 @@ class CharacterSheet extends Component {
                 return mod
             }
             case 'dex':
-                if(char.skills.includes(skill.skill_name)){
+                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
                     let mod = this.findMod(char.dex)+2
                     return mod
                 }else{
@@ -53,7 +54,7 @@ class CharacterSheet extends Component {
                     return mod
                 }
             case 'con':
-                if(char.skills.includes(skill.skill_name)){
+                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
                     let mod = this.findMod(char.con)+2
                     return mod
                 }else{
@@ -61,7 +62,7 @@ class CharacterSheet extends Component {
                     return mod
                 }
             case 'int':
-                if(char.skills.includes(skill.skill_name)){
+                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
                     let mod = this.findMod(char.int)+2
                     return mod
                 }else{
@@ -69,7 +70,7 @@ class CharacterSheet extends Component {
                     return mod
                 }
             case 'wis':
-                if(char.skills.includes(skill.skill_name)){
+                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
                     let mod = this.findMod(char.wis)+2
                     return mod
                 }else{
@@ -77,7 +78,7 @@ class CharacterSheet extends Component {
                     return mod
                 }
             case 'cha':
-                if(char.skills.includes(skill.skill_name)){
+                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
                     let mod = this.findMod(char.cha)+2
                     return mod
                 }else{
@@ -90,7 +91,7 @@ class CharacterSheet extends Component {
     }
     render() {
         let char = this.props.cSheet
-        console.log(this.props.cSheet)
+        console.log(char.features_class)
         return <div className='CharacterSheet'>
             <div className="identity">
                 <h3>{char.name} the {char.race}, {char.class} </h3>
@@ -102,12 +103,12 @@ class CharacterSheet extends Component {
             </div>
             <div className="abilityScores">
                 <h4><u>Ability Scores</u></h4>
-                <p><b>Strength</b>:{char.str} | Strength modifier: {this.findMod(char.str)} </p>
-                <p><b>Dexterity</b>:{char.str} | Dexterity modifier: {this.findMod(char.dex)} </p>
-                <p><b>Constitution</b>:{char.str} | Constitution modifier: {this.findMod(char.con)} </p>
-                <p><b>Intelligence</b>:{char.str} | Intelligence modifier: {this.findMod(char.int)} </p>
-                <p><b>Wisdom</b>:{char.str} | Wisdom modifier: {this.findMod(char.wis)} </p>
-                <p><b>Charisma</b>:{char.str} | Charisma modifier: {this.findMod(char.cha)} </p>
+                <p><b>Strength</b>:{char.str} | modifier: {this.findMod(char.str)} </p>
+                <p><b>Dexterity</b>:{char.dex} | modifier: {this.findMod(char.dex)} </p>
+                <p><b>Constitution</b>:{char.con} | modifier: {this.findMod(char.con)} </p>
+                <p><b>Intelligence</b>:{char.int} | modifier: {this.findMod(char.int)} </p>
+                <p><b>Wisdom</b>:{char.wis} | modifier: {this.findMod(char.wis)} </p>
+                <p><b>Charisma</b>:{char.cha} | modifier: {this.findMod(char.cha)} </p>
             </div>
             <div className="skills">
                 <h3><u>Skills</u></h3>
@@ -116,7 +117,14 @@ class CharacterSheet extends Component {
                 ))}
             </div>
             <div className="equipment">
-
+                    <h3><u>Equipment</u></h3>
+                   <p> {char.equipment}</p>
+            </div>
+            <div className="features">
+                    <h3><u>Racial Features</u></h3>
+                   <p> {char.features_race}</p>
+                   <h3><u>Class Features</u></h3>
+                    <p>{char.features_class.replace('{"'+'','').replace('"}','')}</p>
             </div>
         </div>
     }
