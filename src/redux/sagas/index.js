@@ -9,7 +9,6 @@ import classSaga from './classSaga' // get all classes
 import getArmors from './getArmors' //gets items from dnd5e api
 import getMartials from './getMartials'
 import getPacks from './getPacks'
-import getShields from './getShields'
 import getSimples from './getSimples'
 import getChoices from './equipmentChoice' //class based equipment choices 
 import getSkillDef from './skillDefinitionSaga' //gets specific skill definition
@@ -38,7 +37,6 @@ export default function* rootSaga() {
     getArmors(),
     getMartials(),
     getPacks(),
-    getShields(),
     getSimples(),
     getChoices(),
     getSkillDef(),
