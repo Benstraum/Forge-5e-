@@ -103,17 +103,17 @@ class CharacterSheet extends Component {
             </div>
             <div className="abilityScores">
                 <h4><u>Ability Scores</u></h4>
-                <p><b>Strength</b>:{char.str} | modifier: {this.findMod(char.str)} </p>
-                <p><b>Dexterity</b>:{char.dex} | modifier: {this.findMod(char.dex)} </p>
-                <p><b>Constitution</b>:{char.con} | modifier: {this.findMod(char.con)} </p>
-                <p><b>Intelligence</b>:{char.int} | modifier: {this.findMod(char.int)} </p>
-                <p><b>Wisdom</b>:{char.wis} | modifier: {this.findMod(char.wis)} </p>
-                <p><b>Charisma</b>:{char.cha} | modifier: {this.findMod(char.cha)} </p>
+                <p><b>Strength</b>:{char.str} | {this.findMod(char.str)>0&&'+'}{this.findMod(char.str)} </p>
+                <p><b>Dexterity</b>:{char.dex} | {this.findMod(char.dex)>0&&'+'} {this.findMod(char.dex)} </p>
+                <p><b>Constitution</b>:{char.con} |  {this.findMod(char.con)>0&&'+'}{this.findMod(char.con)} </p>
+                <p><b>Intelligence</b>:{char.int} |{this.findMod(char.int)>0&&'+'}{this.findMod(char.int)} </p>
+                <p><b>Wisdom</b>:{char.wis} | {this.findMod(char.wis)>0&&'+'}{this.findMod(char.wis)} </p>
+                <p><b>Charisma</b>:{char.cha} |  {this.findMod(char.cha)>0&&'+'}{this.findMod(char.cha)} </p>
             </div>
             <div className="skills">
                 <h3><u>Skills</u></h3>
                 {this.props.skills.map((item, i) => (
-                    <p key={i}><b>{item.skill_name}</b>: {this.calcStatBonus(item)}</p>
+                    <p key={i}><b>{item.skill_name}</b>: {this.calcStatBonus(item)>0&&'+'}{this.calcStatBonus(item)}</p>
                 ))}
             </div>
             <div className="equipment">

@@ -8,15 +8,32 @@ class ConditionalItemInfo extends Component {
         category: '',
         learnMore: false,
         desc: {},
-        showInfo:false,
-        ac:''
+        showInfo: false,
+        ac: '',
+        url: ''
     }
     handleChange = (event, type) => {
-        console.log(event.target.value)
+
+        type === 'url' ?
+            this.specialUrlHandler(event, type)
+            :
+            this.setState({
+                ...this.state,
+                [type]: event.target.value
+            })
+
+
+    }
+    specialUrlHandler = (event, type) => {
+        this.props.dispatch({ type: 'FETCH_ITEMS', payload: event.target.value })
+
         this.setState({
             ...this.state,
-            [type]: event.target.value
+            [type]: event.target.value,
+            desc: this.props.item
         })
+
+
     }
     toggleLearn = () => {
         this.state.learnMore ?
@@ -25,8 +42,7 @@ class ConditionalItemInfo extends Component {
                 itemToLearn: '',
                 category: 'none',
                 url: '',
-                learnMore: !this.state.learnMore,
-                showInfo:!this.state.showInfo
+                learnMore: !this.state.learnMore
             })
 
             :
@@ -38,10 +54,15 @@ class ConditionalItemInfo extends Component {
     }
     getItemDetails = () => {
         this.props.dispatch({ type: 'FETCH_ITEMS', payload: this.state.url })
+        this.state.category !== 'GET_PACKS' ?
         this.setState({
             ...this.state,
             desc: this.props.item,
+            showInfo: true
         })
+        :
+        console.log('is equipment')
+        
     }
 
 
@@ -59,7 +80,6 @@ class ConditionalItemInfo extends Component {
                         <option value="GET_MARTIALS">martial weapons</option>
                         <option value="GET_SIMPLES">simple weapons</option>
                         <option value="GET_PACKS">equipment packs</option>
-                        <option value="GET_SHIELDS">shields</option>
                     </select>
 
                 }
@@ -70,35 +90,20 @@ class ConditionalItemInfo extends Component {
                     </select>
                 </>
                 }
-                {this.state.category === 'GET_MARTIALS' &&<>
+                {this.state.category === 'GET_MARTIALS' && <>
                     <select value={this.state.itemToLearn.name} placeholder="Martial weapons" onChange={(event) => this.handleChange(event, 'url')}>
                         <option value=''>Martial weapon choice</option>
                         {this.props.martials.map((item, i) => (<option key={i} value={item.url}>{item.name}</option>))}
                     </select>
-                     
-                    <ul>
-                        <li>
-                            <b>name</b>: {item.name || ''}
-                        </li>
-                        <li>
-                        <b>wepon damage</b>: {JSON.stringify(item.damage) || ''}
-                        </li>
-                        <li>
-                        <b>weapon range</b>: {JSON.stringify(item.range) || ''}
-                        </li>
-                        <li>
-                        <b>Cost</b>: {JSON.stringify(item.cost) || ''}
-                        </li>
-                    </ul>
                 </>
                 }
 
-                {this.state.category === 'GET_SIMPLES' &&<>
+                {this.state.category === 'GET_SIMPLES' && <>
                     <select value={this.state.itemToLearn.name} placeholder="Simple weapons" onChange={(event) => this.handleChange(event, 'url')}>
                         <option value=''>Simple weapon choice</option>
                         {this.props.simples.map((item, i) => (<option key={i} value={item.url}>{item.name}</option>))}
                     </select>
-             </>
+                </>
                 }
                 {this.state.category === 'GET_PACKS' &&
                     <select value={this.state.itemToLearn.name} placeholder="shields" onChange={(event) => this.handleChange(event, 'url')}>
@@ -106,29 +111,50 @@ class ConditionalItemInfo extends Component {
                         {this.props.packs.map((item, i) => (<option key={i} value={item.url}>{item.name}</option>))}
                     </select>
                 }
-                {this.state.category === 'GET_SHIELDS' &&<>
-                    <button onClick={() => this.setState({
-                        ...this.state,
-                        desc: this.props.shields
-                    })}>{this.props.shields.name}</button>
-                </>
-                }
                 {
-                this.state.url && <button onClick={()=>this.getItemDetails()}>Get the info!</button>
+                    this.state.url && <button onClick={() => this.getItemDetails()}>Get the info!</button>
                 }
-                 { this.state.showInfo &&
+                {this.state.showInfo && desc.equipment_category.name === 'Armor' &&
                     <ul>
                         <li>
-                            <b>name</b>: {item.name || ''}
+                            <b>name</b>: {desc.name}
                         </li>
                         <li>
-                        <b>Armor class</b>: {this.parseObjectForMeDaddy(item.armor_class) || ''}
+                            <b>Armor type</b>: {desc.armor_category + ' Armor'}
                         </li>
                         <li>
-                        <b>Cost</b>: {JSON.stringify(item.cost) || ''}
+                            <b>Armor class</b>: {desc.armor_class.base}{desc.armor_class.max_bonus  ? ' Max Dexterity Bonus ' + desc.armor_class.max_bonus : desc.armor_class.dex_bonus && '+ Dexterity Mod'}
+                        </li>
+                        <li>
+                            <b>Weight</b>: {desc.weight+ 'lbs '}{desc.str_minimum>0&& "Strength Needed: "+desc.str_minimum}
+                        </li>
+                        <li>
+                            <b>Cost</b>: {desc.cost.quantity + ' ' + desc.cost.unit}
                         </li>
                     </ul>
-                    }
+                }
+                {this.state.showInfo && desc.equipment_category.name === 'Weapon' &&
+                    <ul>
+                        <li>
+                            <b>name</b>: {desc.name}
+                        </li>
+                        <li>
+                            <b>Damage</b>: {desc.damage.damage_dice +' '+desc.damage.damage_type.name} {desc.properties.name==='Versatile'&& 'two-handed damage: '+desc['2h_damage'].damage_dice}
+                        </li>
+                        <li>
+                            <b>Ability Mod</b>: {desc.properties.filter(prop => prop.name ==='Finesse') ? '+ Dex Mod': '+ Str Mod'} 
+                        </li>
+                        <li>
+                            <b>Range</b>: {desc.category_range+', '} {desc.category_range.includes('Ranged')? 'Normal Range: '+desc.range.normal+' ft'+' '+'Max Range: '+desc.range.long+' ft': 'Range: '+desc.range.normal+' ft'}
+                        </li>
+                        <li>
+                            <b>Weight</b>: {desc.weight+ 'lbs '}
+                        </li>
+                        <li>
+                            <b>Cost</b>: {desc.cost.quantity + ' ' + desc.cost.unit}
+                        </li>
+                    </ul>
+                }
             </div>
         </div>
     }
