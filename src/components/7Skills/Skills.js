@@ -26,13 +26,13 @@ class Skills extends Component {
         })
     }
     submitChoices = () => {
-        let skillArr =[]
-            skillArr.push(this.state.choice_one)
-            skillArr.push(this.state.choice_two)
+        let skills
+        this.state.choice_three ?
+         skills =this.state.choice_one+', '+this.state.choice_two+', '+this.state.choice_three
+         :
+         skills =this.state.choice_one+', '+this.state.choice_two
 
-            this.state.choice_three && skillArr.push(this.state.choice_three) 
-
-            this.props.dispatch({type:'NEW_CHARACTER_SKILLS',payload: skillArr})
+            this.props.dispatch({type:'NEW_CHARACTER_SKILLS',payload: skills})
             this.props.history.push('./Review')
     }
     render() {
