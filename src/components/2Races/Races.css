@@ -1,7 +1,16 @@
 .Races img{
+   
+    margin-left:25%;
     width:50%;
     height: auto;
 }
-.Races p{
+.Races select{
+
+  margin-left: 40%;
+}
+.Races h1{
+    text-align: center;
+}
+ p{
     white-space: pre-wrap;
 }

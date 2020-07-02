@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button, Input, Container } from 'semantic-ui-react'
 
 class LoginPage extends Component {
   state = {
@@ -31,58 +32,58 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.errors.loginMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.loginMessage}
-          </h2>
-        )}
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
+      <Container textAlign='center'>
+        <div className="log-in">
+          {this.props.errors.loginMessage && (
+            <h2
+              className="alert"
+              role="alert"
+            >
+              {this.props.errors.loginMessage}
+            </h2>
+          )}
+          <br />
+          <form onSubmit={this.login}>
+            <h1>Login</h1>
+            <div>
+              <Input
                 type="text"
-                name="username"
+                label="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
+            </div>
+            <br />
+            <div>
+              <Input
                 type="password"
-                name="password"
+                label="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
-            </label>
-          </div>
-          <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
-          </div>
-        </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Register
-          </button>
-        </center>
-      </div>
+
+            </div>
+            <br />
+            <div>
+              <Button
+                className="log-in"
+                type="submit"
+                name="submit"
+                value="Log In"
+              >Login
+              </Button>
+              <Button
+                basic color='black'
+                type="button"
+                className="link-button"
+                onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
+              >
+                Register
+          </Button>
+            </div>
+          </form>
+        </div>
+      </Container>
     );
   }
 }

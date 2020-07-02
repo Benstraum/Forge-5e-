@@ -1,33 +1,34 @@
 .nav-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     display: inline-block;
     color: #f2f2f2;
     padding-left: 10px;
+    vertical-align: middle;
 }
-body{
+body, html{
+  height: 100%;
   margin:0;
-  padding:3px;
 }
 .nav {
   top:0;
-  padding:0;
+  padding:10;
   position:relative;
   margin:0;
   width: 100%;
   overflow: hidden;
-  background-color: #00acb0;
+  background-color: #641212;
 
 }
 .nav img{
-  width: 50px;
+  width: 70px;
   height: auto;
   vertical-align: middle;
 }
 .nav-link {
   float: left;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #641212;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;

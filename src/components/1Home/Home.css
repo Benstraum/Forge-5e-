@@ -1,6 +1,5 @@
-.container{
-    border: 1px black;
-}
-.createCharBtn{
-    bottom: 100%;
+.Home {
+  padding: 5px;
+  height: 90%;
+  overflow-y: auto;
 }

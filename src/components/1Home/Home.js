@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 //styling
-import './Home.css'
-import { Container } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css';
+import { Button } from 'semantic-ui-react'
 import HomeMapItem from '../HomeMapItem/HomeMapItem';
 
 class Home extends Component {
@@ -14,13 +13,22 @@ class Home extends Component {
         this.props.dispatch({type:'SET_CHAR_SHEET', payload: char})
         this.props.history.push('./CharacterSheet')
     }
+    changePage=()=>{
+        this.props.history.push('/Races')
+    }
     render() {
         return <div className='Home'>
-            <Container>
+            <div className="characters">
                 {this.props.characters.map(char => (<HomeMapItem key={char.id} char={char} sendToSheet={this.sendToSheet} />))}
-            </Container>
-           <button className='createCharBtn' onClick={this.changePage}><Link to="/Races">Create Character!</Link></button>
-        </div>
+            </div>
+            <div className="characterCreate">
+            <Button 
+              fluid
+              attached='bottom'
+              color="red"   onClick={()=>this.changePage()}>Create Character!</Button>
+           </div>
+           </div>
+           
     }
 
 }

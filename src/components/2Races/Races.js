@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
 import './Races.css'
 class Races extends Component {
     state = {
@@ -20,6 +21,7 @@ class Races extends Component {
         let race = this.props.races
         return <div className='Races'>
             <br/>
+
                 <h1>Races from Faerun</h1>
                 <p>learn about your choices, then continue the character building process
                      hitting the continue buttonat the bottom of the screen</p>
@@ -27,7 +29,7 @@ class Races extends Component {
                     <option value=''>Choose</option>
                     {this.props.races.map((item, i) => (<option key={item.id} value={i}>{item.name}</option>))}
                 </select>
-                <h2>Reference image:</h2>
+                <br/>
                 {this.state.choice?
                     <img alt={race.name} src={race[x].image_male || race[x].image_female} />
                     :
