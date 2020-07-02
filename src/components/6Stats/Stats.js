@@ -35,6 +35,10 @@ class Stats extends Component {
                     Based on your class choice: {this.props.char.class.class_name},
                     and your race: {this.props.char.race.name}-- good stats to put higher scores in are:
                     {this.props.char.class.saving_throw_1}, and {this.props.char.class.saving_throw_2}
+                    </p>
+                <p>
+                    Because you are a {this.props.char.race.name}, add these bonuses on top of what you 
+                    assign to your scores: {this.props.char.race.stat_bonuses}
                 </p>
                 <div className="scores">
                 <h3>Strength :</h3>
