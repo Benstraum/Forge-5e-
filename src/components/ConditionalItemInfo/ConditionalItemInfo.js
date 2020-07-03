@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './ConditionalItemInfo.css'
+import { Button } from 'semantic-ui-react'
 
 class ConditionalItemInfo extends Component {
     state = {
@@ -69,9 +70,9 @@ class ConditionalItemInfo extends Component {
         let desc = this.state.desc
  
         console.log('item prop',this.props.item)
-        return <div className='Equipment'>
+        return (
             <div className="conditionalInfo">
-                <button onClick={() => this.toggleLearn()}>{this.state.learnMore ? "Close More info" : "Want to learn about equipment?"}</button>
+                <Button fluid color='purple' onClick={() => this.toggleLearn()}>{this.state.learnMore ? "Close More info" : "Click here to learn more about your equipment"}</Button>
                 {this.state.learnMore &&
                     <select value={this.state.category} placeholder="Armor" onChange={(event) => this.handleChange(event, 'category')}>
                         <option value="">select category</option>
@@ -111,12 +112,12 @@ class ConditionalItemInfo extends Component {
                     </select>
                 }
                 {
-                    this.state.url && <button onClick={() => this.getItemDetails()}>Get the info!</button>
+                    this.state.url && <Button fluid color='teal' onClick={() => this.getItemDetails()}>Get the info!</Button>
                 }
                 {this.state.showInfo && desc.equipment_category.name === 'Armor' &&
                     <ul>
                         <li>
-                            <b>name</b>: {desc.name}
+                            <b>Name</b>: {desc.name}
                         </li>
                         <li>
                             <b>Armor type</b>: {desc.armor_category + ' Armor'}
@@ -135,7 +136,7 @@ class ConditionalItemInfo extends Component {
                 {this.state.showInfo && desc.equipment_category.name === 'Weapon' &&
                     <ul>
                         <li>
-                            <b>name</b>: {desc.name}
+                            <b>Name</b>: {desc.name}
                         </li>
                         <li>
                             <b>Damage</b>: {desc.damage.damage_dice +' '+desc.damage.damage_type.name} {desc.properties.name==='Versatile'&& 'two-handed damage: '+desc['2h_damage'].damage_dice}
@@ -144,7 +145,7 @@ class ConditionalItemInfo extends Component {
                             <b>Ability Mod</b>: {desc.properties.filter(prop => prop.name ==='Finesse') ? '+ Dex Mod': '+ Str Mod'} 
                         </li>
                         <li>
-                            <b>Range</b>: {desc.category_range+', '} {desc.category_range.includes('Ranged')? 'Normal Range: '+desc.range.normal+' ft'+' '+'Max Range: '+desc.range.long+' ft': 'Range: '+desc.range.normal+' ft'}
+                            <b>Range</b>: {desc.category_range+', '} {desc.category_range.includes('Ranged')? `Normal Range: ${desc.range.normal} ft, Max Range: ${desc.range.long} ft`:`Range: ${desc.range.normal} ft`}
                         </li>
                         <li>
                             <b>Weight</b>: {desc.weight+ 'lbs '}
@@ -162,7 +163,7 @@ class ConditionalItemInfo extends Component {
                     </ul>
                 }
             </div>
-        </div>
+        )
     }
 
 }

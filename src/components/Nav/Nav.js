@@ -5,7 +5,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import anvil from './Anvil.png'
 import './Nav.css';
 
-import { Sidebar, Menu, Icon, Button, Modal } from 'semantic-ui-react';
+import { Sidebar, Menu, Icon } from 'semantic-ui-react';
 
 class Nav extends Component {
   state = {

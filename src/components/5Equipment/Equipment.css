@@ -1,3 +1,10 @@
 .Equipment p{
     white-space: pre-wrap;
 }
+.Equipment .choices select{
+    border-radius: 5px;
+
+  width: 50%;
+  height:30px;
+}
+

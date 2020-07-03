@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Icon, Step } from 'semantic-ui-react'
+import { Step } from 'semantic-ui-react'
 import './Stats.css'
 class Stats extends Component {
     state = {

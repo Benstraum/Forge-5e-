@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Icon, Step } from 'semantic-ui-react'
+import {  Step } from 'semantic-ui-react'
 class ReviewAndName extends Component{
     state={
         name:'',

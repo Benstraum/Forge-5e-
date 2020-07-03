@@ -81,14 +81,14 @@ class Races extends Component {
         <option value=''>Learn More about:</option>
         {this.props.races.map((item, i) => (<option key={item.id} value={i}>{item.name}</option>))}
       </select>
-      <p style={{textAlign:'center'}}>learn about your choices, then continue the character building process
+      <p style={{ textAlign: 'center' }}>learn about your choices, then continue the character building process
                      hitting the continue buttonat the bottom of the screen</p>
-      <br/>
-      {this.state.choice ?<>
+      <br />
+      {this.state.choice ? <>
         <img alt={race.name} src={race[x].image_male || race[x].image_female} /></>
-        :<>
-        <img alt="default person" src="https://4.bp.blogspot.com/-aJ-qyvGsvNc/WfS7NfszD8I/AAAAAAABGwc/8s_6iFOemH4Gu80Hv89wUbJp8GbRDSBcQCLcBGAs/s1600/Alec%2BIvanovich.jpg" />
-      </>
+        : <>
+          <img alt="default person" src="https://4.bp.blogspot.com/-aJ-qyvGsvNc/WfS7NfszD8I/AAAAAAABGwc/8s_6iFOemH4Gu80Hv89wUbJp8GbRDSBcQCLcBGAs/s1600/Alec%2BIvanovich.jpg" />
+        </>
       }
       <br />
       {this.state.choice &&

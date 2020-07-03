@@ -4,93 +4,93 @@ import { Icon, Step, Accordion, Button } from 'semantic-ui-react'
 
 import './Class.css'
 class Class extends Component {
-    state = {
-        choice: '',
-        activeIndex: ''
-    }
-    componentDidMount() {
-        this.props.dispatch({ type: 'GET_CLASSES' })
-    }
-    handleChange = (event, type) => {
-        console.log(event.target.value)
-        this.setState({
-            [type]: event.target.value
-        })
-    }
-    saveClass = () => {
-        this.props.dispatch({ type: 'NEW_CHARACTER_CLASS', payload: this.props.classes[this.state.choice] })
-        this.props.dispatch({ type: 'GET_SIMPLES' })
-        this.props.dispatch({ type: 'GET_MARTIALS' })
-        this.props.dispatch({ type: 'GET_ARMORS' })
-        this.props.dispatch({ type: 'GET_SHIELDS' })
-        this.props.dispatch({ type: 'GET_PACKS' })
-        this.props.dispatch({ type: 'GET_EQUIP_CHOICES', payload: this.props.classes[this.state.choice].id })
-        this.props.history.push('/Equipment')
-    }
-    handleClick = (e, titleProps) => {
-      const { index } = titleProps
-      const { activeIndex } = this.state
-      const newIndex = activeIndex === index ? -1 : index
-  
-      this.setState({ ...this.state, activeIndex: newIndex })
-    }
-    render() {
-        let classes = this.props.classes
-        let x = this.state.choice
-        const { activeIndex } = this.state
-        return <div className='Class'>
-            <Step.Group size='tiny' widths={8} unstackable>
-    <Step >
-      <Step.Content>
-        <Step.Title>Race</Step.Title>
-        <Step.Description>Choose your player race</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step active>
-      <Step.Content>
-        <Step.Title>Class</Step.Title>
-        <Step.Description>Choose your class</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Items</Step.Title>
-        <Step.Description>choose starting gear</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Stats</Step.Title>
-        <Step.Description>Allocate Stats</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Skills</Step.Title>
-        <Step.Description>Choose Skills</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Name</Step.Title>
-        <Step.Description>Review And Name</Step.Description>
-      </Step.Content>
-    </Step>
-  </Step.Group>
-            <h1>Classes</h1>
-            <select value={this.state.choice.name} placeholder='class choice' onChange={(event) => this.handleChange(event, 'choice')}>
-                <option value=''>Choose</option>
-                {this.props.classes.map((item, i) => (<option key={item.id} value={i}>{item.class_name}</option>))}
-            </select>
-            <p style={{textAlign:'center'}}>learn about your choices, then continue the character building process
-                     hitting the continue buttonat the bottom of the screen</p>
-            {this.state.choice ?
-                <img alt={classes.class_name} src={classes[x].image_male || classes[x].image_female} />
-                :
-                <img alt="default person" src="https://4.bp.blogspot.com/-aJ-qyvGsvNc/WfS7NfszD8I/AAAAAAABGwc/8s_6iFOemH4Gu80Hv89wUbJp8GbRDSBcQCLcBGAs/s1600/Alec%2BIvanovich.jpg" />
-            }
+  state = {
+    choice: '',
+    activeIndex: ''
+  }
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_CLASSES' })
+  }
+  handleChange = (event, type) => {
+    console.log(event.target.value)
+    this.setState({
+      [type]: event.target.value
+    })
+  }
+  saveClass = () => {
+    this.props.dispatch({ type: 'NEW_CHARACTER_CLASS', payload: this.props.classes[this.state.choice] })
+    this.props.dispatch({ type: 'GET_SIMPLES' })
+    this.props.dispatch({ type: 'GET_MARTIALS' })
+    this.props.dispatch({ type: 'GET_ARMORS' })
+    this.props.dispatch({ type: 'GET_SHIELDS' })
+    this.props.dispatch({ type: 'GET_PACKS' })
+    this.props.dispatch({ type: 'GET_EQUIP_CHOICES', payload: this.props.classes[this.state.choice].id })
+    this.props.history.push('/Equipment')
+  }
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps
+    const { activeIndex } = this.state
+    const newIndex = activeIndex === index ? -1 : index
 
-{this.state.choice &&
+    this.setState({ ...this.state, activeIndex: newIndex })
+  }
+  render() {
+    let classes = this.props.classes
+    let x = this.state.choice
+    const { activeIndex } = this.state
+    return <div className='Class'>
+      <Step.Group size='tiny' widths={8} unstackable>
+        <Step >
+          <Step.Content>
+            <Step.Title>Race</Step.Title>
+            <Step.Description>Choose your player race</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step active>
+          <Step.Content>
+            <Step.Title>Class</Step.Title>
+            <Step.Description>Choose your class</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Items</Step.Title>
+            <Step.Description>choose starting gear</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Stats</Step.Title>
+            <Step.Description>Allocate Stats</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Skills</Step.Title>
+            <Step.Description>Choose Skills</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Name</Step.Title>
+            <Step.Description>Review And Name</Step.Description>
+          </Step.Content>
+        </Step>
+      </Step.Group>
+      <h1>Classes</h1>
+      <select value={this.state.choice.name} placeholder='class choice' onChange={(event) => this.handleChange(event, 'choice')}>
+        <option value=''>Choose</option>
+        {this.props.classes.map((item, i) => (<option key={item.id} value={i}>{item.class_name}</option>))}
+      </select>
+      <p style={{ textAlign: 'center' }}>learn about your choices, then continue the character building process
+                     hitting the continue buttonat the bottom of the screen</p>
+      {this.state.choice ?
+        <img alt={classes.class_name} src={classes[x].image_male || classes[x].image_female} />
+        :
+        <img alt="default person" src="https://4.bp.blogspot.com/-aJ-qyvGsvNc/WfS7NfszD8I/AAAAAAABGwc/8s_6iFOemH4Gu80Hv89wUbJp8GbRDSBcQCLcBGAs/s1600/Alec%2BIvanovich.jpg" />
+      }
+
+      {this.state.choice &&
         <>
           <Accordion>
             <Accordion.Title
@@ -192,12 +192,12 @@ class Class extends Component {
           <Button fluid style={{ background: '#641212', color: 'white' }} onClick={() => this.saveClass()}>Select & Continue</Button>
         </>
       }
-        </div>
-    }
+    </div>
+  }
 
 }
 
 const mapStateToProps = state => ({
-    classes: state.classRouter
+  classes: state.classRouter
 });
 export default connect(mapStateToProps)(Class);
