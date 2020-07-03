@@ -65,7 +65,7 @@ class HomeMapItem extends Component {
                             </Item.Description>
                         <Item.Extra>
                             <p>level 1</p>
-                            <Button fluid inverted color='red' onClick={()=>this.props.sendToSheet(this.props.char)}>
+                            <Button fluid inverted color='purple' onClick={()=>this.props.sendToSheet(this.props.char)}>
                                 View Character Sheet
                             </Button>
                         </Item.Extra>
