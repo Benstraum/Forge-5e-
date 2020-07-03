@@ -1,6 +1,19 @@
-.Class img{
-    width:50%;
-}
+
 .Class p{
     white-space: pre-wrap;
+}
+.Class img{
+   
+    margin-left:25%;
+    width:50%;
+    height: auto;
+}
+.Class select{
+    border-radius: 5px;
+  margin-left:25%;
+  width: 50%;
+  height:30px
+}
+.Class h1{
+    text-align: center;
 }

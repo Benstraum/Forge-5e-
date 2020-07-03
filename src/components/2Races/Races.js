@@ -1,104 +1,167 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Icon, Step } from 'semantic-ui-react'
+import { Icon, Step, Accordion, Button } from 'semantic-ui-react'
 import './Races.css'
+
+
+
+
+
+
 class Races extends Component {
-    state = {
-        choice: ''
-    }
-    handleChange = (event, type) => {
-        console.log(event.target.value)
-        this.setState({
-            [type]: event.target.value
-        })
-    }
-    saveRace(){
-        this.props.dispatch({type:'NEW_CHARACTER_RACE', payload:this.props.races[this.state.choice]})
-        this.props.history.push('/Class')
-    }
-    render() {
-        let x = this.state.choice
-        let race = this.props.races
-        return <div className='Races'>
-            <Step.Group size='tiny' widths={8} unstackable>
-    <Step active>
-      <Step.Content>
-        <Step.Title>Race</Step.Title>
-        <Step.Description>Choose your player race</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Class</Step.Title>
-        <Step.Description>Choose your class</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Items</Step.Title>
-        <Step.Description>choose starting gear</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Stats</Step.Title>
-        <Step.Description>Allocate Stats</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Skills</Step.Title>
-        <Step.Description>Choose Skills</Step.Description>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Name</Step.Title>
-        <Step.Description>Review And Name</Step.Description>
-      </Step.Content>
-    </Step>
-  </Step.Group>
-            <br/>
 
-                <h1>Races from Faerun</h1>
-                <p>learn about your choices, then continue the character building process
+  state = {
+    choice: '',
+    activeIndex: ''
+  }
+  handleChange = (event, type) => {
+    console.log(event.target.value)
+    this.setState({
+      [type]: event.target.value
+    })
+  }
+  saveRace() {
+    this.props.dispatch({ type: 'NEW_CHARACTER_RACE', payload: this.props.races[this.state.choice] })
+    this.props.history.push('/Class')
+  }
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps
+    const { activeIndex } = this.state
+    const newIndex = activeIndex === index ? -1 : index
+
+    this.setState({ ...this.state, activeIndex: newIndex })
+  }
+  render() {
+    let x = this.state.choice
+    let race = this.props.races
+    const { activeIndex } = this.state
+    return <div className='Races'>
+      <Step.Group size='tiny' widths={8} unstackable>
+        <Step active>
+          <Step.Content>
+            <Step.Title>Race</Step.Title>
+            <Step.Description>Choose your player race</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Class</Step.Title>
+            <Step.Description>Choose your class</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Items</Step.Title>
+            <Step.Description>choose starting gear</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Stats</Step.Title>
+            <Step.Description>Allocate Stats</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Skills</Step.Title>
+            <Step.Description>Choose Skills</Step.Description>
+          </Step.Content>
+        </Step>
+        <Step disabled>
+          <Step.Content>
+            <Step.Title>Name</Step.Title>
+            <Step.Description>Review And Name</Step.Description>
+          </Step.Content>
+        </Step>
+      </Step.Group>
+      <br />
+
+      <h1>Races of Faerun</h1>
+      {this.state.choice ?
+        <img alt={race.name} src={race[x].image_male || race[x].image_female} />
+        :
+        <img alt="default person" src="https://4.bp.blogspot.com/-aJ-qyvGsvNc/WfS7NfszD8I/AAAAAAABGwc/8s_6iFOemH4Gu80Hv89wUbJp8GbRDSBcQCLcBGAs/s1600/Alec%2BIvanovich.jpg" />
+      }
+      <p>learn about your choices, then continue the character building process
                      hitting the continue buttonat the bottom of the screen</p>
-                <select value={this.state.choice.name} placeholder='race choice' onChange={(event) => this.handleChange(event, 'choice')}>
-                    <option value=''>Choose</option>
-                    {this.props.races.map((item, i) => (<option key={item.id} value={i}>{item.name}</option>))}
-                </select>
-                <br/>
-                {this.state.choice?
-                    <img alt={race.name} src={race[x].image_male || race[x].image_female} />
-                    :
-                    <img alt="default person" src="https://4.bp.blogspot.com/-aJ-qyvGsvNc/WfS7NfszD8I/AAAAAAABGwc/8s_6iFOemH4Gu80Hv89wUbJp8GbRDSBcQCLcBGAs/s1600/Alec%2BIvanovich.jpg"/>
-                }
-                {this.state.choice && <>
-                    <h2>Lore:</h2>
-                    <p>{race[x].lore}</p>
-                </>}
-                {this.state.choice && <>
-                    <h2>In Game Stats:</h2>
-                    <p><b>alignment</b>
-                        <br />
-                        {race[x].alignment}</p>
-                    <p><b>languages</b>
-                        <br />
-                        {race[x].languages}</p>
-                    <p><b>Stat increases:
-                        <br />
-                    </b>{race[x].stat_bonuses}</p>
-                    <h4>Features:</h4>
-                    <p>{race[x].features}</p>
-                    <button onClick={()=>this.saveRace()}>Select & Continue</button>
-                </>}
+      <br />
+      <select value={this.state.choice.name} placeholder='race choice' onChange={(event) => this.handleChange(event, 'choice')}>
+        <option value=''>Choose</option>
+        {this.props.races.map((item, i) => (<option key={item.id} value={i}>{item.name}</option>))}
+      </select>
+      {this.state.choice &&
+        <>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 0}
+              index={0}
+              onClick={this.handleClick}
+            >
+              <Icon name='dropdown' />
+              <b>{race[x].name} Lore</b>
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 0}>
+              <p>{race[x].lore}</p>
+            </Accordion.Content>
 
-        </div>
-    }
+            <Accordion.Title
+              active={activeIndex === 1}
+              index={1}
+              onClick={this.handleClick}
+            >
+              <Icon name='dropdown' />
+              <b>alignment</b>
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 1}>
+              <p>{race[x].alignment}</p>
+            </Accordion.Content>
 
+            <Accordion.Title
+              active={activeIndex === 2}
+              index={2}
+              onClick={this.handleClick}
+            >
+              <Icon name='dropdown' />
+              <b>languages</b>
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 2}>
+              <p>{race[x].languages}</p>
+            </Accordion.Content>
+
+            <Accordion.Title
+              active={activeIndex === 3}
+              index={3}
+              onClick={this.handleClick}
+            >
+              <Icon name='dropdown' />
+              <b>stat increases</b>
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 3}>
+              <p>{race[x].stat_bonuses}</p>
+            </Accordion.Content>
+
+            <Accordion.Title
+              active={activeIndex === 4}
+              index={4}
+              onClick={this.handleClick}
+            >
+              <Icon name='dropdown' />
+              <b>features</b>
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 4}>
+              <p>{race[x].features}</p>
+            </Accordion.Content>
+
+          </Accordion>
+          <Button fluid style={{ background: '#641212', color: 'white' }} onClick={() => this.saveRace()}>Select & Continue</Button>
+        </>
+      }
+
+    </div>
+  }
 }
 
 const mapStateToProps = state => ({
-    races: state.racesRouter
+  races: state.racesRouter
 });
 export default connect(mapStateToProps)(Races);
