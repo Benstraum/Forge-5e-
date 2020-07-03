@@ -31,3 +31,6 @@
 body{
   background-image: url('./background.jpg');
 }
+.ui .tiny .unstackable .eight .steps{
+  height: 30px;
+}
