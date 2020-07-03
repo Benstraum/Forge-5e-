@@ -73,7 +73,7 @@ class Class extends Component {
         <Step disabled>
           <Step.Content>
             <Step.Title>Name</Step.Title>
-            <Step.Description>Review And Name</Step.Description>
+            <Step.Description>Name Your Character</Step.Description>
           </Step.Content>
         </Step>
       </Step.Group>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Step, Input, Button, Grid } from 'semantic-ui-react'
+import { Step, Input, Button, Grid, Divider } from 'semantic-ui-react'
 import './Stats.css'
 class Stats extends Component {
     state = {
@@ -65,7 +65,7 @@ class Stats extends Component {
     <Step disabled>
       <Step.Content>
         <Step.Title>Name</Step.Title>
-        <Step.Description>Review And Name</Step.Description>
+        <Step.Description>Name Your Character</Step.Description>
       </Step.Content>
     </Step>
   </Step.Group>
@@ -114,6 +114,7 @@ class Stats extends Component {
                     max="20" />
                     </Grid.Column>
                  </Grid.Row>
+                 <Divider/>
                  <Grid.Row>
                  <Grid.Column >
                 <p>Intelligence :</p>
@@ -153,10 +154,14 @@ class Stats extends Component {
                     this.state.con &&
                     this.state.int &&
                     this.state.wis &&
-                    this.state.cha ?
+                    this.state.cha ?<>
+                    <br/>
                     <Button fluid style={{ background:'#641212', color:'white'}} onClick={() => this.submitChoices()}>Submit and Continue!</Button>
+                    </>
                     :
-                    <Button fluid style={{position:'absolute', bottom:10, background:'#641212', color:'white'}} disabled>Fill in all Stats to Continue</Button>}
+                    <><br/>
+                    <Button fluid style={{ background:'#641212', color:'white'}} disabled>Fill in all Stats to Continue</Button>
+                    </>}
             </div>
         )
     }

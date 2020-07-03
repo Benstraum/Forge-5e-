@@ -1,0 +1,22 @@
+.Skills  select{
+    border-radius: 5px;
+  width: 100%;
+  height:30px
+}
+.Skills  h1{
+    text-align: center;
+}
+.skillDef{
+    height:330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+}
+.skillDef p{
+    word-wrap: break-word;
+}
+.skillnames{
+    height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
