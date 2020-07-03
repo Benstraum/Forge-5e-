@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
     SELECT character.* FROM character
     JOIN "user"
     ON "user".id = character.user_id
-    WHERE "user".id = $1;`
+    WHERE "user".id = $1
+    ORDER BY character.id ASC;`
     pool.query(queryText, [req.user.id])
         .then(result => res.send(result.rows))
         .catch(error => {

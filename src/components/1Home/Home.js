@@ -25,6 +25,7 @@ class Home extends Component {
             <Button 
               fluid
               attached='bottom'
+              style={{position:'absolute', bottom:10}}
               color="red"   onClick={()=>this.changePage()}>Create Character!</Button>
            </div>
            </div>
