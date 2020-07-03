@@ -68,22 +68,25 @@ class Equipment extends Component {
       <div className="choices">
         <p><b>First Choice:</b></p>
         <select name="one" value={this.state.one} onChange={(event) => this.handleChange(event, 'one')}>
-          <option value=''>Choose one</option>
+          <option value=''>Choose One</option>
           <option value={this.props.choices.choice_1a}>{this.props.choices.choice_1a}</option>
           <option value={this.props.choices.choice_1b}>{this.props.choices.choice_1b}</option>
         </select>
+        <br/>
         <p><b>Second Choice:</b></p>
         <select name="two" value={this.state.two} onChange={(event) => this.handleChange(event, 'two')}>
-          <option value=''>Choose one</option>
+          <option value=''>Choose One</option>
           <option value={this.props.choices.choice_2a}>{this.props.choices.choice_2a}</option>
           <option value={this.props.choices.choice_2b}>{this.props.choices.choice_2b}</option>
         </select>
+        <br/>
         <p><b>Third Choice:</b></p>
         <select name="three" value={this.state.three} onChange={(event) => this.handleChange(event, 'three')}>
-          <option value=''>Choose one</option>
+          <option value=''>Choose One</option>
           <option value={this.props.choices.choice_3a}>{this.props.choices.choice_3a}</option>
           <option value={this.props.choices.choice_3b}>{this.props.choices.choice_3b}</option>
         </select>
+        <br/>
         <p><b>Fourth Choice:</b></p>
         <select value={this.state.four} onChange={(event) => this.handleChange(event, 'four')}>
           {this.props.choices.choice_4a === this.props.choices.choice_4b ?
@@ -93,19 +96,24 @@ class Equipment extends Component {
             </>
             :
             <>
-              <option value=''>Choose one</option>
+              <option value=''>Choose One</option>
               <option value={this.props.choices.choice_4a}>{this.props.choices.choice_4a}</option>
               <option value={this.props.choices.choice_4b}>{this.props.choices.choice_4b}</option>
             </>
           }
         </select>
+        <br/>
         {this.state.one &&
           this.state.two &&
           this.state.three &&
-          this.state.four ?
+          this.state.four ?<> <br/>
           <Button fluid style={{ background: '#641212', color: 'white' }} onClick={() => this.submitChoices()}>Submit and Continue!</Button>
-          :
-          <Button fluid style={{ background: '#641212', color: 'white' }} disabled>Choose items to Continue</Button>}
+         </>
+          :<> <br/>
+          <Button fluid style={{ background: '#641212', color: 'white' }} disabled>Choose items to Continue</Button>
+          </>
+          }
+          
       </div>
 
     </div>

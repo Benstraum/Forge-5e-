@@ -1,11 +1,10 @@
-
-.Stats input{
-    width: 50px;
-    height: 20px;
-  
+.Stats h1,p{
+    text-align: center;
 }
 
  .Stats .scores{
      margin: auto;
+     text-align: center;
 
  }
+ 
