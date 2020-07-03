@@ -64,25 +64,25 @@ class Equipment extends Component {
             <h1>Choose starting Equipment</h1>
             <ConditionalItemInfo />
             <div className="choices">
-                <h2>First Choice:</h2>
+                <p><b>First Choice:</b></p>
                 <select value={this.state.one}  onChange={(event) => this.handleChange(event, 'one')}>
                         <option value=''>Choose one</option>
                         <option value={this.props.choices.choice_1a}>{this.props.choices.choice_1a}</option>
                         <option value={this.props.choices.choice_1b}>{this.props.choices.choice_1b}</option>
                     </select>
-                <h2>Second Choice:</h2>
+                <p><b>Second Choice:</b></p>
                 <select value={this.state.two} onChange={(event) => this.handleChange(event, 'two')}>
                         <option value=''>Choose one</option>
                         <option value={this.props.choices.choice_2a}>{this.props.choices.choice_2a}</option>
                         <option value={this.props.choices.choice_2b}>{this.props.choices.choice_2b}</option>
                     </select>
-                <h2>Third Choice:</h2>
+                <p><b>Third Choice:</b></p>
                 <select value={this.state.three} onChange={(event) => this.handleChange(event, 'three')}>
                         <option value=''>Choose one</option>
                         <option value={this.props.choices.choice_3a}>{this.props.choices.choice_3a}</option>
                         <option value={this.props.choices.choice_3b}>{this.props.choices.choice_3b}</option>
                     </select>
-                <h2>Fourth Choice:</h2>
+                <p><b>Fourth Choice:</b></p>
                 <select value={this.state.four} onChange={(event) => this.handleChange(event, 'four')}>
                         { this.props.choices.choice_4a === this.props.choices.choice_4b ?
                         <>

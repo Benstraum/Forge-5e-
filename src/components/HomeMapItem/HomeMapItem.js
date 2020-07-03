@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 //styling
-import { Container, Divider, Button, Input, Item, Image, Icon,Dropdown } from 'semantic-ui-react'
+import { Divider, Button, Input, Item, Image, Icon,Dropdown } from 'semantic-ui-react'
 
 
 class HomeMapItem extends Component {

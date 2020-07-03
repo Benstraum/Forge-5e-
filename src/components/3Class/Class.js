@@ -78,12 +78,12 @@ class Class extends Component {
     </Step>
   </Step.Group>
             <h1>Classes</h1>
-            <p>learn about your choices, then continue the character building process
-                     hitting the continue buttonat the bottom of the screen</p>
             <select value={this.state.choice.name} placeholder='class choice' onChange={(event) => this.handleChange(event, 'choice')}>
                 <option value=''>Choose</option>
                 {this.props.classes.map((item, i) => (<option key={item.id} value={i}>{item.class_name}</option>))}
             </select>
+            <p style={{textAlign:'center'}}>learn about your choices, then continue the character building process
+                     hitting the continue buttonat the bottom of the screen</p>
             {this.state.choice ?
                 <img alt={classes.class_name} src={classes[x].image_male || classes[x].image_female} />
                 :
@@ -189,7 +189,7 @@ class Class extends Component {
               <p>{classes[x].feature}</p>
             </Accordion.Content>
           </Accordion>
-          <Button fluid style={{ background: '#641212', color: 'white' }} onClick={() => this.saveRace()}>Select & Continue</Button>
+          <Button fluid style={{ background: '#641212', color: 'white' }} onClick={() => this.saveClass()}>Select & Continue</Button>
         </>
       }
         </div>
