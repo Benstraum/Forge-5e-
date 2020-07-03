@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { Icon, Step } from 'semantic-ui-react'
 import './Races.css'
 class Races extends Component {
     state = {
@@ -20,6 +20,44 @@ class Races extends Component {
         let x = this.state.choice
         let race = this.props.races
         return <div className='Races'>
+            <Step.Group size='tiny' widths={8} unstackable>
+    <Step active>
+      <Step.Content>
+        <Step.Title>Race</Step.Title>
+        <Step.Description>Choose your player race</Step.Description>
+      </Step.Content>
+    </Step>
+    <Step disabled>
+      <Step.Content>
+        <Step.Title>Class</Step.Title>
+        <Step.Description>Choose your class</Step.Description>
+      </Step.Content>
+    </Step>
+    <Step disabled>
+      <Step.Content>
+        <Step.Title>Items</Step.Title>
+        <Step.Description>choose starting gear</Step.Description>
+      </Step.Content>
+    </Step>
+    <Step disabled>
+      <Step.Content>
+        <Step.Title>Stats</Step.Title>
+        <Step.Description>Allocate Stats</Step.Description>
+      </Step.Content>
+    </Step>
+    <Step disabled>
+      <Step.Content>
+        <Step.Title>Skills</Step.Title>
+        <Step.Description>Choose Skills</Step.Description>
+      </Step.Content>
+    </Step>
+    <Step disabled>
+      <Step.Content>
+        <Step.Title>Name</Step.Title>
+        <Step.Description>Review And Name</Step.Description>
+      </Step.Content>
+    </Step>
+  </Step.Group>
             <br/>
 
                 <h1>Races from Faerun</h1>

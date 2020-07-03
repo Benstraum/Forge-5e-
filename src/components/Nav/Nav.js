@@ -33,7 +33,7 @@ class Nav extends Component {
               this.props.user.id ?
               <>
                 <Link to='/home'>
-                <Icon  name='home' /><br/>
+                <Icon  name='home' onClick={()=>this.setState({...this.state,visible:!this.state.visible})}/><br/>
                 Home
                 </Link>
               </>

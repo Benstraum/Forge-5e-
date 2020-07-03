@@ -1,7 +1,4 @@
-.Stats  {
-display: inline-block;
-text-align: center;
-}
+
 .Stats input{
     width: 50px;
     height: 20px;
@@ -10,5 +7,5 @@ text-align: center;
 
  .Stats .scores{
      margin: auto;
-     width: 75%;
+
  }
