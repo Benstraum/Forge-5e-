@@ -4,6 +4,9 @@
   overflow-y: auto;
 
 }
+p{
+  padding: 5px;
+}
 body, html{
   overflow-x: hidden;
 }

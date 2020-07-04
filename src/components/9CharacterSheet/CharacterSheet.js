@@ -22,29 +22,25 @@ class CharacterSheet extends Component {
     }
     findArmorClass = (equip, char) => {
         let ac;
-        equip.includes('leather armor') ?
-            ac = (11 + this.findMod(char.dex))
-            : console.log('next')
-        equip.includes('chain mail') ?
-            this.findMod(char.dex) > 2 ?
-                ac = (13 + 2)
-                :
-                ac = (13 + this.findMod(char.dex))
-            : console.log('next')
-        equip.includes('chain mail') ?
-            this.findMod(char.dex) > 2 ?
-                ac = (14 + 2)
-                :
-                ac = (14 + this.findMod(char.dex))
-            : console.log('next')
-        equip.includes('scale mail') ?
-            this.findMod(char.dex) > 2 ?
-                ac = (14 + 2)
-                :
-                ac = (14 + this.findMod(char.dex))
-            : console.log('next')
-
-        return ac
+        switch (true) {
+            case equip.includes('leather armor'):
+                ac = (11 + this.findMod(char.dex))
+                return ac
+            case equip.includes('chain mail'):
+                this.findMod(char.dex) > 2 ?
+                    ac = (13 + 2)
+                    :
+                    ac = (13 + this.findMod(char.dex))
+                return ac
+            case equip.includes('scale mail'):
+                this.findMod(char.dex) > 2 ?
+                    ac = (14 + 2)
+                    :
+                    ac = (14 + this.findMod(char.dex))
+                return ac
+            default:
+                return 10 + this.findMod(char.dex)
+        }
     }
     calcStatBonus = (skill) => {
         let char = this.props.cSheet
@@ -107,24 +103,24 @@ class CharacterSheet extends Component {
         return (<div className="CharacterSheet">
             <div className="identity">
             </div>
-            <Tab  menu={{ pointing: true }} panes={[{
+            <Tab menu={{ pointing: true }} panes={[{
                 menuItem: 'Stats',
-                render: () => <Tab.Pane style={{ backgroundColor:'lightgrey', height:'60vh', overflowY:'auto'}} attached={false}>
+                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '60vh', overflowY: 'auto' }} attached={false}>
                     <StatAndSavesTab findMod={this.findMod} char={char} findArmorClass={this.findArmorClass} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Skills',
-                render: () => <Tab.Pane style={{ backgroundColor:'lightgrey', height:'75vh', overflowY:'auto'}} attached={false}>
-                    <SkillsTab  skills={this.props.skills} char={char} calcStatBonus={this.calcStatBonus} findMod={this.findMod} />
+                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
+                    <SkillsTab skills={this.props.skills} char={char} calcStatBonus={this.calcStatBonus} findMod={this.findMod} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Equipment',
-                render: () => <Tab.Pane style={{ backgroundColor:'lightgrey', height:'60vh', overflowY:'auto'}} attached={false}>
+                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '60vh', overflowY: 'auto' }} attached={false}>
                     <EquipTab char={char} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Features/Abilities',
-                render: () => <Tab.Pane style={{ backgroundColor:'lightgrey', height:'75vh', overflowY:'auto'}} attached={false}>
+                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
                     <FeaturesTab char={char} />
                 </Tab.Pane>,
             }]} />

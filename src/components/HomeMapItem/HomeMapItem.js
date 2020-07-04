@@ -51,7 +51,7 @@ class HomeMapItem extends Component {
                            <Icon size='big' style={{marginLeft:'75%'}}>  <Dropdown
                                 icon='edit'
                                 compact
-                                inverted
+                                
                                 inline
                                 direction='left'
                                 color='black'

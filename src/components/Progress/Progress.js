@@ -2,15 +2,18 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Step} from 'semantic-ui-react'
 import { Link, useLocation } from 'react-router-dom';
+import './Progress.css'
 const Progress =(props)=> {  
   let location = useLocation();
+  
      //conditionally render each step making active or innactive based on newcharacter reducer.
         return(
-          <Step.Group style={{width:'100%',overflowX:'auto'}} size='tiny' widths={8} unstackable>
+          <div className="progbar">
+          <Step.Group  size='tiny' widths={8} unstackable>
           { location.pathname ==='/Races'?
-          <Link to='/Races'>
-          <Step active>
-            <Step.Content>
+          <Link to='/Races' >
+          <Step >
+            <Step.Content >
               <Step.Title>Race</Step.Title> 
             </Step.Content>
           </Step>
@@ -24,7 +27,7 @@ const Progress =(props)=> {
           }
           {  location.pathname==='/Class'?
           <Link>
-          <Step active>
+          <Step >
             <Step.Content>
               <Step.Title>Class</Step.Title>
             </Step.Content>
@@ -39,7 +42,7 @@ const Progress =(props)=> {
             }
             {  location.pathname==='/Equipment'?
           <Link>
-           <Step active>
+           <Step >
             <Step.Content>
               <Step.Title>Items</Step.Title>
             </Step.Content>
@@ -54,7 +57,7 @@ const Progress =(props)=> {
             }
             {  location.pathname==='/Stats'?
           <Link>
-           <Step active>
+           <Step >
             <Step.Content>
               <Step.Title>Stats</Step.Title>
             </Step.Content>
@@ -69,7 +72,7 @@ const Progress =(props)=> {
             }
               {  location.pathname==='/Skills' ?
           <Link>
-           <Step active>
+           <Step >
             <Step.Content>
               <Step.Title>Skills</Step.Title>
             </Step.Content>
@@ -84,7 +87,7 @@ const Progress =(props)=> {
             }
            { location.pathname==='/Review'?
           <Link>
-           <Step active>
+           <Step >
             <Step.Content>
               <Step.Title>Finish</Step.Title>
             </Step.Content>
@@ -98,6 +101,7 @@ const Progress =(props)=> {
         </Step>
             }
         </Step.Group>
+        </div>
         )
 }
 const mapStateToProps = state => ({
