@@ -25,8 +25,8 @@ class Home extends Component {
             <div className="characterCreate">
             <Button 
               fluid
-              attached='bottom'
-              style={{position:'relative', bottom:10, background:'#641212', color:'white', border:'3px solid black'}}
+             
+              style={{position:'relative', bottom:10, marginTop:'5px' , background:'#641212', color:'white', border:'3px solid black'}}
               onClick={()=>this.changePage()}>Create Character!</Button>
            </div>
            </div>
