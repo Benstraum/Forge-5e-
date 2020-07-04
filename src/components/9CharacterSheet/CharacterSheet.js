@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ConditionalItemInfo from '../ConditionalItemInfo/ConditionalItemInfo'
 import './CharacterSheet.css'
+import { Icon, Accordion, Button } from 'semantic-ui-react'
 
 class CharacterSheet extends Component {
     state = {
-        cSheet: this.props.cSheet
+        cSheet: this.props.cSheet,
+        activeIndex: ''
     }
     componentDidMount() {
         this.props.dispatch({ type: 'RETRIEVE_SHEET' })
@@ -32,7 +34,7 @@ class CharacterSheet extends Component {
                 :
                 ac = (14 + this.findMod(char.dex))
             : console.log('next')
-            equip.includes('scale mail') ?
+        equip.includes('scale mail') ?
             this.findMod(char.dex) > 2 ?
                 ac = (14 + 2)
                 :
@@ -45,50 +47,50 @@ class CharacterSheet extends Component {
         let char = this.props.cSheet
         switch (skill.stat) {
             case 'str':
-            if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
-                let mod = this.findMod(char.str)+2
-                return mod
-            }else{
-                let mod = this.findMod(char.str)
-                return mod
-            }
-            case 'dex':
-                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
-                    let mod = this.findMod(char.dex)+2
+                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
+                    let mod = this.findMod(char.str) + 2
                     return mod
-                }else{
+                } else {
+                    let mod = this.findMod(char.str)
+                    return mod
+                }
+            case 'dex':
+                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
+                    let mod = this.findMod(char.dex) + 2
+                    return mod
+                } else {
                     let mod = this.findMod(char.dex)
                     return mod
                 }
             case 'con':
-                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
-                    let mod = this.findMod(char.con)+2
+                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
+                    let mod = this.findMod(char.con) + 2
                     return mod
-                }else{
+                } else {
                     let mod = this.findMod(char.con)
                     return mod
                 }
             case 'int':
-                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
-                    let mod = this.findMod(char.int)+2
+                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
+                    let mod = this.findMod(char.int) + 2
                     return mod
-                }else{
+                } else {
                     let mod = this.findMod(char.int)
                     return mod
                 }
             case 'wis':
-                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
-                    let mod = this.findMod(char.wis)+2
+                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
+                    let mod = this.findMod(char.wis) + 2
                     return mod
-                }else{
+                } else {
                     let mod = this.findMod(char.wis)
                     return mod
                 }
             case 'cha':
-                if(char.skills.includes(skill.skill_name)||char.features_class.includes(skill.skill_name)||char.features_race.includes(skill.skill_name)){
-                    let mod = this.findMod(char.cha)+2
+                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
+                    let mod = this.findMod(char.cha) + 2
                     return mod
-                }else{
+                } else {
                     let mod = this.findMod(char.cha)
                     return mod
                 }
@@ -96,45 +98,110 @@ class CharacterSheet extends Component {
                 return console.log('something is wrong')
         }
     }
+    handleClick = (e, titleProps) => {
+        const { index } = titleProps
+        const { activeIndex } = this.state
+        const newIndex = activeIndex === index ? -1 : index
+
+        this.setState({ ...this.state, activeIndex: newIndex })
+    }
     render() {
+        const { activeIndex } = this.state
         let char = this.props.cSheet
         console.log(char.features_class)
-        return <div className='CharacterSheet'>
+        return (<div className="CharacterSheet">
             <div className="identity">
-                <h3>{char.name} the {char.race}, {char.class} </h3>
-                <p>level: 1</p>
+                <h3> {char.name} the {char.race}, {char.class} Lv:1</h3>
             </div>
             <div className="combatStats">
                 <h5>Health Pool:{char.total_health}</h5>
-            <h5>Armor Class:{this.findArmorClass(char.equipment, char)} {char.equipment.includes('shield') && `| with shield: ${this.findArmorClass(char.equipment, char)+2}` }</h5>
+                <h5>Armor Class:{this.findArmorClass(char.equipment, char)} {char.equipment.includes('shield') && `| with shield: ${this.findArmorClass(char.equipment, char) + 2}`}</h5>
             </div>
-            <div className="abilityScores">
-                <h4><u>Ability Scores</u></h4>
-                <p><b>Strength</b>:{char.str} | {this.findMod(char.str)>0&&'+'}{this.findMod(char.str)} </p>
-                <p><b>Dexterity</b>:{char.dex} | {this.findMod(char.dex)>0&&'+'} {this.findMod(char.dex)} </p>
-                <p><b>Constitution</b>:{char.con} |  {this.findMod(char.con)>0&&'+'}{this.findMod(char.con)} </p>
-                <p><b>Intelligence</b>:{char.int} |{this.findMod(char.int)>0&&'+'}{this.findMod(char.int)} </p>
-                <p><b>Wisdom</b>:{char.wis} | {this.findMod(char.wis)>0&&'+'}{this.findMod(char.wis)} </p>
-                <p><b>Charisma</b>:{char.cha} |  {this.findMod(char.cha)>0&&'+'}{this.findMod(char.cha)} </p>
-            </div>
-            <div className="skills">
-                <h3><u>Skills</u></h3>
-                {this.props.skills.map((item, i) => (
-                    <p key={i}><b>{item.skill_name}</b>: {this.calcStatBonus(item)>0&&'+'}{this.calcStatBonus(item)}</p>
-                ))}
-            </div>
-            <div className="equipment">
-                    <h3><u>Equipment</u></h3>
-                    <ConditionalItemInfo />
-                   <p> {char.equipment}</p>
-            </div>
-            <div className="features">
-                    <h3><u>Racial Features</u></h3>
-                   <p> {char.features_race}</p>
-                   <h3><u>Class Features</u></h3>
-                    <p>{char.features_class.replace('{"','').replace('"}','')}</p>
-            </div>
-        </div>
+            <Accordion>
+                <Accordion.Title
+                    active={activeIndex === 0}
+                    index={0}
+                    onClick={this.handleClick}
+                >
+                    <Icon name='dropdown' />
+                    <b>Ability Scores</b>
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 0}>
+                    <div className="abilityScores">
+                        <h4><u>Ability Scores</u></h4>
+                        <p><b>Strength</b>:{char.str} | {this.findMod(char.str) > 0 && '+'}{this.findMod(char.str)} </p>
+                        <p><b>Dexterity</b>:{char.dex} | {this.findMod(char.dex) > 0 && '+'} {this.findMod(char.dex)} </p>
+                        <p><b>Constitution</b>:{char.con} |  {this.findMod(char.con) > 0 && '+'}{this.findMod(char.con)} </p>
+                        <p><b>Intelligence</b>:{char.int} |{this.findMod(char.int) > 0 && '+'}{this.findMod(char.int)} </p>
+                        <p><b>Wisdom</b>:{char.wis} | {this.findMod(char.wis) > 0 && '+'}{this.findMod(char.wis)} </p>
+                        <p><b>Charisma</b>:{char.cha} |  {this.findMod(char.cha) > 0 && '+'}{this.findMod(char.cha)} </p>
+                    </div>
+                </Accordion.Content>
+
+                <Accordion.Title
+                    active={activeIndex === 1}
+                    index={1}
+                    onClick={this.handleClick}
+                >
+                    <Icon name='dropdown' />
+                    <b>Skills</b>
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 1}>
+                    <div className="allSkills">
+                        <h3><u>Skills</u></h3>
+                        {this.props.skills.map((item, i) => (
+                            <p key={i}><b>{item.skill_name}</b>: {this.calcStatBonus(item) > 0 && '+'}{this.calcStatBonus(item)}</p>
+                        ))}
+                    </div>
+                </Accordion.Content>
+
+                <Accordion.Title
+                    active={activeIndex === 2}
+                    index={2}
+                    onClick={this.handleClick}
+                >
+                    <Icon name='dropdown' />
+                    <b>Equipment</b>
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 2}>
+                    <p><div className="equipment">
+                        <h3><u>Equipment</u></h3>
+                        <ConditionalItemInfo />
+                        <p> {char.equipment}</p>
+                    </div></p>
+                </Accordion.Content>
+
+                <Accordion.Title
+                    active={activeIndex === 3}
+                    index={3}
+                    onClick={this.handleClick}
+                >
+                    <Icon name='dropdown' />
+                    <b>Racial features</b>
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 3}>
+                    <div className="features">
+                        <p> {char.features_race}</p>
+                    </div>
+                </Accordion.Content>
+
+                <Accordion.Title
+                    active={activeIndex === 4}
+                    index={4}
+                    onClick={this.handleClick}
+                >
+                    <Icon name='dropdown' />
+                    <b>Class Features</b>
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 4}>
+                    <div className="features">
+                        <p>{char.features_class.replace('{"', '').replace('"}', '')}</p>
+                    </div>
+                </Accordion.Content>
+
+            </Accordion>
+           </div>
+        )
     }
 
 }

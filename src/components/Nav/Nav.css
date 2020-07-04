@@ -1,10 +1,9 @@
 .nav-title {
-  font-size: 20px;
+  font-size: 40px;
   font-weight: 700;
-  display: inline-block;
   color: #f2f2f2;
-  padding-left: 10px;
-  vertical-align: middle;
+  vertical-align: bottom;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 body, html{
 height: 100%;
@@ -22,18 +21,13 @@ background-color: #641212;
 
 }
 .nav img{
-width: 70px;
+width: 60px;
 height: auto;
 vertical-align: middle;
 }
-.nav .icon{
- margin-top: 20px;
- margin-left: 10px;
-}
 
 
 
 
-.nav-right {
-float: right;
-}
+
+
