@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ConditionalItemInfo from '../ConditionalItemInfo/ConditionalItemInfo'
 import './CharacterSheet.css'
-import { Icon, Accordion, Button } from 'semantic-ui-react'
+import { Tab } from 'semantic-ui-react'
+import StatAndSavesTab from './StatAndSavesTab'
+import SkillsTab from './SkillsTab'
+import EquipTab from './EquipTab'
+import FeaturesTab from './FeaturesTab'
 
 class CharacterSheet extends Component {
     state = {
@@ -98,109 +101,35 @@ class CharacterSheet extends Component {
                 return console.log('something is wrong')
         }
     }
-    handleClick = (e, titleProps) => {
-        const { index } = titleProps
-        const { activeIndex } = this.state
-        const newIndex = activeIndex === index ? -1 : index
 
-        this.setState({ ...this.state, activeIndex: newIndex })
-    }
     render() {
-        const { activeIndex } = this.state
         let char = this.props.cSheet
-        console.log(char.features_class)
         return (<div className="CharacterSheet">
             <div className="identity">
                 <h3> {char.name} the {char.race}, {char.class} Lv:1</h3>
             </div>
-            <div className="combatStats">
-                <h5>Health Pool:{char.total_health}</h5>
-                <h5>Armor Class:{this.findArmorClass(char.equipment, char)} {char.equipment.includes('shield') && `| with shield: ${this.findArmorClass(char.equipment, char) + 2}`}</h5>
-            </div>
-            <Accordion>
-                <Accordion.Title
-                    active={activeIndex === 0}
-                    index={0}
-                    onClick={this.handleClick}
-                >
-                    <Icon name='dropdown' />
-                    <b>Ability Scores</b>
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 0}>
-                    <div className="abilityScores">
-                        <h4><u>Ability Scores</u></h4>
-                        <p><b>Strength</b>:{char.str} | {this.findMod(char.str) > 0 && '+'}{this.findMod(char.str)} </p>
-                        <p><b>Dexterity</b>:{char.dex} | {this.findMod(char.dex) > 0 && '+'} {this.findMod(char.dex)} </p>
-                        <p><b>Constitution</b>:{char.con} |  {this.findMod(char.con) > 0 && '+'}{this.findMod(char.con)} </p>
-                        <p><b>Intelligence</b>:{char.int} |{this.findMod(char.int) > 0 && '+'}{this.findMod(char.int)} </p>
-                        <p><b>Wisdom</b>:{char.wis} | {this.findMod(char.wis) > 0 && '+'}{this.findMod(char.wis)} </p>
-                        <p><b>Charisma</b>:{char.cha} |  {this.findMod(char.cha) > 0 && '+'}{this.findMod(char.cha)} </p>
-                    </div>
-                </Accordion.Content>
-
-                <Accordion.Title
-                    active={activeIndex === 1}
-                    index={1}
-                    onClick={this.handleClick}
-                >
-                    <Icon name='dropdown' />
-                    <b>Skills</b>
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 1}>
-                    <div className="allSkills">
-                        <h3><u>Skills</u></h3>
-                        {this.props.skills.map((item, i) => (
-                            <p key={i}><b>{item.skill_name}</b>: {this.calcStatBonus(item) > 0 && '+'}{this.calcStatBonus(item)}</p>
-                        ))}
-                    </div>
-                </Accordion.Content>
-
-                <Accordion.Title
-                    active={activeIndex === 2}
-                    index={2}
-                    onClick={this.handleClick}
-                >
-                    <Icon name='dropdown' />
-                    <b>Equipment</b>
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 2}>
-                    <p><div className="equipment">
-                        <h3><u>Equipment</u></h3>
-                        <ConditionalItemInfo />
-                        <p> {char.equipment}</p>
-                    </div></p>
-                </Accordion.Content>
-
-                <Accordion.Title
-                    active={activeIndex === 3}
-                    index={3}
-                    onClick={this.handleClick}
-                >
-                    <Icon name='dropdown' />
-                    <b>Racial features</b>
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 3}>
-                    <div className="features">
-                        <p> {char.features_race}</p>
-                    </div>
-                </Accordion.Content>
-
-                <Accordion.Title
-                    active={activeIndex === 4}
-                    index={4}
-                    onClick={this.handleClick}
-                >
-                    <Icon name='dropdown' />
-                    <b>Class Features</b>
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 4}>
-                    <div className="features">
-                        <p>{char.features_class.replace('{"', '').replace('"}', '')}</p>
-                    </div>
-                </Accordion.Content>
-
-            </Accordion>
-           </div>
+            <Tab menu={{ pointing: true }} panes={[{
+                menuItem: 'Tab 1',
+                render: () => <Tab.Pane attached={false}>
+                    <StatAndSavesTab findMod={this.findMod} char={char} findArmorClass={this.findArmorClass} />
+                </Tab.Pane>,
+            }, {
+                menuItem: 'Tab 2',
+                render: () => <Tab.Pane attached={false}>
+                    <SkillsTab skills={this.props.skills} char={char} calcStatBonus={this.calcStatBonus} findMod={this.findMod} />
+                </Tab.Pane>,
+            }, {
+                menuItem: 'Tab 3',
+                render: () => <Tab.Pane attached={false}>
+                    <EquipTab char={char} />
+                </Tab.Pane>,
+            }, {
+                menuItem: 'Tab 3',
+                render: () => <Tab.Pane attached={false}>
+                    <FeaturesTab char={char} />
+                </Tab.Pane>,
+            }]} />
+        </div>
         )
     }
 
