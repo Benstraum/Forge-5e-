@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Divider, Button, Input, Item, Image, Icon,Dropdown } from 'semantic-ui-react'
 
 
+
 class HomeMapItem extends Component {
     state = {
         newName: '',
@@ -12,8 +13,8 @@ class HomeMapItem extends Component {
     componentDidMount() {
         this.props.dispatch({ type: 'GET_CHARACTERS' })
     }
-    deleteChar = (id) => {
-        this.props.dispatch({ type: 'DELETE_CHARACTER', payload: id })
+    deleteChar = () => {
+        this.props.dispatch({ type: 'DELETE_CHARACTER', payload: this.props.char.id })
     }
     changeName = (data) => {
         console.log(data)
@@ -58,13 +59,13 @@ class HomeMapItem extends Component {
                                 <Dropdown.Menu>
                                     <Dropdown.Header icon='edit'/>
                                     <Dropdown.Divider />
-                                    <Dropdown.Item icon='attention' text='Delete' onClick={() => this.deleteChar(this.props.char.id)}/>
+                                    <Dropdown.Item icon='attention' text='Delete' onClick={() => this.deleteChar()}/>
                                     <Dropdown.Item icon='comment' text='Edit Name' onClick={() => this.toggleEdit()}/>
                                 </Dropdown.Menu>
                             </Dropdown></Icon>
                             </Item.Description>
                         <Item.Extra>
-                            <p>level 1</p>
+                            <p style={{ color:'black'}}>LV: 1</p>
                             <Button fluid inverted color='purple' onClick={()=>this.props.sendToSheet(this.props.char)}>
                                 View Character Sheet
                             </Button>

@@ -108,24 +108,24 @@ class CharacterSheet extends Component {
             <div className="identity">
                 <h3> {char.name} the {char.race}, {char.class} Lv:1</h3>
             </div>
-            <Tab style={{width:'100%'}} menu={{ pointing: true }} panes={[{
+            <Tab  menu={{ pointing: true }} panes={[{
                 menuItem: 'Stats',
-                render: () => <Tab.Pane attached={false}>
+                render: () => <Tab.Pane style={{ backgroundColor:'lightgrey'}} attached={false}>
                     <StatAndSavesTab findMod={this.findMod} char={char} findArmorClass={this.findArmorClass} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Skills',
-                render: () => <Tab.Pane attached={false}>
-                    <SkillsTab skills={this.props.skills} char={char} calcStatBonus={this.calcStatBonus} findMod={this.findMod} />
+                render: () => <Tab.Pane style={{ backgroundColor:'lightgrey'}} attached={false}>
+                    <SkillsTab  skills={this.props.skills} char={char} calcStatBonus={this.calcStatBonus} findMod={this.findMod} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Equipment',
-                render: () => <Tab.Pane attached={false}>
+                render: () => <Tab.Pane style={{ backgroundColor:'lightgrey'}} attached={false}>
                     <EquipTab char={char} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Features/Abilities',
-                render: () => <Tab.Pane attached={false}>
+                render: () => <Tab.Pane style={{ backgroundColor:'lightgrey'}} attached={false}>
                     <FeaturesTab char={char} />
                 </Tab.Pane>,
             }]} />

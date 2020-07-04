@@ -28,8 +28,13 @@
     cursor: pointer;
 }
 
-body{
+ .App{
   background-image: url('./background.jpg');
+  background-color: rgb(49, 49, 49);
+  background-blend-mode: soft-light;
+ background-size: cover;
+ height: 100vh;
+ overflow-y: auto;
 }
 .ui .tiny .unstackable .eight .steps{
   height: 30px;
