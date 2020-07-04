@@ -1,4 +1,4 @@
-const newCharacterReducer = (state={race:'', class:'',  equipment:[], stats:{}, skills:[], name:'', health:''}, action) =>{
+const newCharacterReducer = (state={race:'', class:'',  equipment:[], stats:{}, skills:[], name:'', bio:'',portrait:'', health:''}, action) =>{
     switch(action.type){
         case'NEW_CHARACTER_RACE':
         state.race = action.payload
@@ -20,6 +20,12 @@ const newCharacterReducer = (state={race:'', class:'',  equipment:[], stats:{}, 
         return state
         case'NEW_CHARACTER_NAME':
         state.name = action.payload
+        return state
+        case'NEW_CHARACTER_BIO':
+        state.bio = action.payload
+        return state
+        case'NEW_CHARACTER_PIC':
+        state.portrait = action.payload
         return state
         case'NEW_CHARACTER_HEALTH':
         state.health = action.payload

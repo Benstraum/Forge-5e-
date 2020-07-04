@@ -6,6 +6,8 @@ import Progress from '../Progress/Progress'
 class ReviewAndName extends Component {
   state = {
     name: '',
+    bio:'',
+    portrait:''
   }
   componentDidMount() {
     console.log(this.props.char)
@@ -19,6 +21,8 @@ class ReviewAndName extends Component {
   }
   finishCharacter = () => {
     this.props.dispatch({ type: 'NEW_CHARACTER_NAME', payload: this.state.name })
+    this.props.dispatch({type:'NEW_CHARACTER_BIO', payload:this.state.bio})
+    this.props.dispatch({type:'NEW_CHARACTER_PIC', payload:this.state.portrait})
     this.props.dispatch({ type: 'POST_CHAR', payload: this.props.char })
     this.props.history.push('/home')
   }
@@ -29,8 +33,10 @@ class ReviewAndName extends Component {
       <Input fluid placeholder='What is your name?' onChange={(event) => this.handleChange(event, 'name')} />
       <h4 style={{textAlign:'center'}}> the {this.props.char.race.name} {this.props.char.class.class_name}</h4>
       <br />
+      <Input fluid placeholder='character picture URL' onChange={(event) => this.handleChange(event, 'portrait')} />
+      <br/>
       <Form>
-        <TextArea rows={3} placeholder='What is your story?' />
+        <TextArea rows={3} placeholder='What is your story?' onChange={(event) => this.handleChange(event, 'bio')} />
       </Form>
       <Button
         fluid

@@ -48,8 +48,8 @@ GROUP BY class.id;`
         .then(result => res.send(result.rows))
         .catch(error => {
             console.log('error in character get', error)
-    res.sendStatus(500)
-})
+            res.sendStatus(500)
+        })
 
 });
 router.get('/equipment:id', (req, res) => {
@@ -97,7 +97,9 @@ router.post('/create', (req, res) => {
     console.log('post req body', req.body)
     let values =
         [req.user.id,
+        req.body.portrait,
         req.body.name,
+        req.body.bio,
         req.body.race.name,
         req.body.class.class_name,
         req.body.class.hit_dice,
@@ -113,8 +115,8 @@ router.post('/create', (req, res) => {
         req.body.stats.wis,
         req.body.stats.cha]
     const queryText = `
-    INSERT INTO character(user_id, name, race, class, hit_dice,total_health, equipment, features_race, features_class, skills, str, dex, con, int, wis, cha)
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+    INSERT INTO character(user_id, portrait, name, bio, race, class, hit_dice,total_health, equipment, features_race, features_class, skills, str, dex, con, int, wis, cha)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
     ;`
     pool.query(queryText, values)
         .then(result => res.sendStatus(200))
