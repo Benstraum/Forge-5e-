@@ -2,6 +2,7 @@
   padding: 5px;
   height: 90%;
   overflow-y: auto;
+
 }
 body, html{
   overflow-x: hidden;
