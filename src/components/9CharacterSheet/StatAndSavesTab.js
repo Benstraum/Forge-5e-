@@ -5,6 +5,7 @@ class StatAndSavesTab extends Component{
         let char = this.props.char
         return(
         <div >
+            <h3> {char.name} the {char.race} {char.class}: Lv:1</h3>
              <div className="combatStats">
                 <h5>Health Pool:{char.total_health}</h5>
                 <h5>Armor Class:{this.props.findArmorClass(char.equipment, char)} {char.equipment.includes('shield') && `| with shield: ${this.props.findArmorClass(char.equipment, char) + 2}`}</h5>

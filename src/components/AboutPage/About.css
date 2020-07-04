@@ -1,0 +1,12 @@
+.About p{
+    text-align: center;
+}
+.About h3{
+text-align: center;
+}
+.About{
+    border-radius: 5px;
+    background-color: lightgray;
+    margin-top:25%;
+    padding: 10px;
+}

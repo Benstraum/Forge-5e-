@@ -34,10 +34,9 @@ body{
   background-image: url('./background.jpg');
   background-color: rgb(49, 49, 49);
   background-blend-mode: soft-light;
-
- min-height: 100vh;
- height: 100%;
- overflow-y: inherit;
+  min-height: 100vh;
+  height: 100%;
+  overflow-y: inherit;
 }
 .ui .tiny .unstackable .eight .steps{
   height: 30px;

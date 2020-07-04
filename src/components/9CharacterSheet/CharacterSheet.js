@@ -106,7 +106,6 @@ class CharacterSheet extends Component {
         let char = this.props.cSheet
         return (<div className="CharacterSheet">
             <div className="identity">
-                <h3> {char.name} the {char.race}, {char.class} Lv:1</h3>
             </div>
             <Tab  menu={{ pointing: true }} panes={[{
                 menuItem: 'Stats',
