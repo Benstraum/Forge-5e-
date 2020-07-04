@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Icon, Step, Accordion, Button } from 'semantic-ui-react'
+import { Icon, Accordion, Button } from 'semantic-ui-react'
+import Progress from '../Progress/Progress'
 
 import './Class.css'
 class Class extends Component {
@@ -39,38 +40,7 @@ class Class extends Component {
     let x = this.state.choice
     const { activeIndex } = this.state
     return <div className='Class'>
-      <Step.Group size='tiny' widths={8} unstackable>
-        <Step >
-          <Step.Content>
-            <Step.Title>Race</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step active>
-          <Step.Content>
-            <Step.Title>Class</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Items</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Stats</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Skills</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Name</Step.Title>
-          </Step.Content>
-        </Step>
-      </Step.Group>
+     <Progress/>
       <h1>Classes</h1>
       <select value={this.state.choice.name} placeholder='class choice' onChange={(event) => this.handleChange(event, 'choice')}>
         <option value=''>Choose</option>

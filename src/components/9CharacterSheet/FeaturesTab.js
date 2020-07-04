@@ -5,14 +5,12 @@ class FeaturesTab extends Component{
         let char = this.props.char
         return(
         <div >
-            <p><b>Racial features</b></p>
-               
+            <h3><b>Racial features</b></h3>  
                <div className="features">
                    <p> {char.features_race}</p>
                </div>
-         
-              <p> <b>Class Features</b></p>
-          
+               <br/>
+              <h3> <b>Class Features</b></h3>
                <div className="features">
                    <p>{char.features_class.replace('{"', '').replace('"}', '')}</p>
                </div>

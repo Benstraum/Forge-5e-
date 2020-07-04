@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Step, TextArea, Input, Button, Form } from 'semantic-ui-react'
+import {  TextArea, Input, Button, Form } from 'semantic-ui-react'
+
+import Progress from '../Progress/Progress'
 class ReviewAndName extends Component {
   state = {
     name: '',
@@ -22,38 +24,7 @@ class ReviewAndName extends Component {
   }
   render() {
     return <div className='Review'>
-      <Step.Group size='tiny' widths={8} unstackable>
-        <Step >
-          <Step.Content>
-            <Step.Title>Race</Step.Title> 
-          </Step.Content>
-        </Step>
-        <Step >
-          <Step.Content>
-            <Step.Title>Class</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step >
-          <Step.Content>
-            <Step.Title>Items</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step >
-          <Step.Content>
-            <Step.Title>Stats</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step >
-          <Step.Content>
-            <Step.Title>Skills</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step active>
-          <Step.Content>
-            <Step.Title>Name</Step.Title>
-          </Step.Content>
-        </Step>
-      </Step.Group>
+     <Progress />
       <h2 style={{textAlign:'center'}}>Who are you?</h2>
       <Input fluid placeholder='What is your name?' onChange={(event) => this.handleChange(event, 'name')} />
       <h4 style={{textAlign:'center'}}> the {this.props.char.race.name} {this.props.char.class.class_name}</h4>

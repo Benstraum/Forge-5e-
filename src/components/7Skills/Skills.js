@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Step, Button, Grid, Divider, Icon } from 'semantic-ui-react'
+import {  Button, Grid, Divider, Icon } from 'semantic-ui-react'
 import './Skills.css'
+
+import Progress from '../Progress/Progress'
 class Skills extends Component {
   state = {
     skill: '',
@@ -39,38 +41,7 @@ class Skills extends Component {
   render() {
     return (
     <div className='Skills'>
-      <Step.Group size='tiny' widths={8} unstackable>
-        <Step >
-          <Step.Content>
-            <Step.Title>Race</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step >
-          <Step.Content>
-            <Step.Title>Class</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step >
-          <Step.Content>
-            <Step.Title>Items</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step >
-          <Step.Content>
-            <Step.Title>Stats</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step active>
-          <Step.Content>
-            <Step.Title>Skills</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Name</Step.Title>
-          </Step.Content>
-        </Step>
-      </Step.Group>
+      <Progress />
       <h1>{this.props.char.class.class_name} Skill Choices</h1>
       <Grid columns={this.props.char.class.class_name ==='Ranger'?3:2} divided>
         <Grid.Row>

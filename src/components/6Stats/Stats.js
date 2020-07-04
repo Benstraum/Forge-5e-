@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Step, Input, Button, Grid, Divider } from 'semantic-ui-react'
+import {  Input, Button, Grid, Divider } from 'semantic-ui-react'
 import './Stats.css'
+
+import Progress from '../Progress/Progress'
 class Stats extends Component {
     state = {
         str: '',
@@ -31,38 +33,7 @@ class Stats extends Component {
     render() {
         return (
             <div className='Stats'>
-     <Step.Group size='tiny' widths={8} unstackable>
-    <Step >
-      <Step.Content>
-        <Step.Title>Race</Step.Title>
-      </Step.Content>
-    </Step>
-    <Step >
-      <Step.Content>
-        <Step.Title>Class</Step.Title>
-      </Step.Content>
-    </Step>
-    <Step >
-      <Step.Content>
-        <Step.Title>Items</Step.Title>
-      </Step.Content>
-    </Step>
-    <Step active>
-      <Step.Content>
-        <Step.Title>Stats</Step.Title>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Skills</Step.Title>
-      </Step.Content>
-    </Step>
-    <Step disabled>
-      <Step.Content>
-        <Step.Title>Name</Step.Title>
-      </Step.Content>
-    </Step>
-  </Step.Group>
+              <Progress/>
                 <h1>Ability Scores</h1>
                 <p>
                     Based on your class choice: {this.props.char.class.class_name},

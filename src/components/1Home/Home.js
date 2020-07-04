@@ -14,6 +14,7 @@ class Home extends Component {
         this.props.history.push('./CharacterSheet')
     }
     changePage=()=>{
+        this.props.dispatch({type:'NEW_CHARACTER'})
         this.props.history.push('/Races')
     }
     render() {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Icon, Step, Accordion, Button } from 'semantic-ui-react'
+import { Icon, Accordion, Button } from 'semantic-ui-react'
 import './Races.css'
-
+import Progress from '../Progress/Progress'
 
 
 
@@ -36,38 +36,7 @@ class Races extends Component {
     let race = this.props.races
     const { activeIndex } = this.state
     return <div className='Races'>
-      <Step.Group size='tiny' widths={8} unstackable>
-        <Step active>
-          <Step.Content>
-            <Step.Title>Race</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Class</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Items</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Stats</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Skills</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Name</Step.Title>
-          </Step.Content>
-        </Step>
-      </Step.Group>
+      <Progress />
       <br />
 
       <h1>Races of Faerun</h1>

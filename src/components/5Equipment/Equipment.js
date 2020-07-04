@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ConditionalItemInfo from '../ConditionalItemInfo/ConditionalItemInfo'
-import { Step, Button } from 'semantic-ui-react'
+import {  Button } from 'semantic-ui-react'
 import './Equipment.css'
+
+import Progress from '../Progress/Progress'
 class Equipment extends Component {
   state = {
     one: '',
@@ -18,44 +20,13 @@ class Equipment extends Component {
     })
   }
   submitChoices = () => {
-    this.props.dispatch({ type: 'NEW_CHARACTER_EQUIPMENT', payload: this.state.one + '. ' + this.state.two + '. ' + this.state.three + '. ' + this.state.four })
+    this.props.dispatch({ type: 'NEW_CHARACTER_EQUIPMENT', payload: this.state.one + ' | ' + this.state.two + ' | ' + this.state.three + ' | ' + this.state.four })
     this.props.history.push('./Stats')
   }
   render() {
     console.log(this.state)
     return <div className='Equipment'>
-      <Step.Group size='tiny' widths={8} unstackable>
-        <Step >
-          <Step.Content>
-            <Step.Title>Race</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step >
-          <Step.Content>
-            <Step.Title>Class</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step active>
-          <Step.Content>
-            <Step.Title>Items</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Stats</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Skills</Step.Title>
-          </Step.Content>
-        </Step>
-        <Step disabled>
-          <Step.Content>
-            <Step.Title>Name</Step.Title>
-          </Step.Content>
-        </Step>
-      </Step.Group>
+      <Progress/>
       <h1>Choose starting Equipment</h1>
       <ConditionalItemInfo />
       <br />

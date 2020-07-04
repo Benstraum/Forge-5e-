@@ -108,23 +108,23 @@ class CharacterSheet extends Component {
             <div className="identity">
                 <h3> {char.name} the {char.race}, {char.class} Lv:1</h3>
             </div>
-            <Tab menu={{ pointing: true }} panes={[{
-                menuItem: 'Tab 1',
+            <Tab style={{width:'100%'}} menu={{ pointing: true }} panes={[{
+                menuItem: 'Stats',
                 render: () => <Tab.Pane attached={false}>
                     <StatAndSavesTab findMod={this.findMod} char={char} findArmorClass={this.findArmorClass} />
                 </Tab.Pane>,
             }, {
-                menuItem: 'Tab 2',
+                menuItem: 'Skills',
                 render: () => <Tab.Pane attached={false}>
                     <SkillsTab skills={this.props.skills} char={char} calcStatBonus={this.calcStatBonus} findMod={this.findMod} />
                 </Tab.Pane>,
             }, {
-                menuItem: 'Tab 3',
+                menuItem: 'Equipment',
                 render: () => <Tab.Pane attached={false}>
                     <EquipTab char={char} />
                 </Tab.Pane>,
             }, {
-                menuItem: 'Tab 3',
+                menuItem: 'Features/Abilities',
                 render: () => <Tab.Pane attached={false}>
                     <FeaturesTab char={char} />
                 </Tab.Pane>,
