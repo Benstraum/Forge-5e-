@@ -75,7 +75,7 @@ class StatAndSavesTab extends Component {
                     <Grid.Row>
                         <Grid.Column>
                         {char.equipment.includes('shield') ?
-                                <Input  style={{width:'60%', padding:'0'}}
+                                <Input  style={{width:'90px', padding:'0'}}
                                     defaultValue={this.props.findArmorClass(char.equipment, char) + 2}
                                     type="number"
                                     label='Armor'
@@ -83,7 +83,7 @@ class StatAndSavesTab extends Component {
                                     onChange={(event) => this.handleChange(event, 'ac')}
                                 />
                                 :
-                                <Input style={{width:'60%', padding:'0'}}
+                                <Input style={{width:'90px', padding:'0'}}
                                     defaultValue={this.props.findArmorClass(char.equipment, char)}
                                     type="number"
                                     label='Armor:'
@@ -93,7 +93,7 @@ class StatAndSavesTab extends Component {
                             }
                         </Grid.Column>
                         <Grid.Column>
-                        <Input style={{width:'50%', padding:'0'}}
+                        <Input style={{width:'90px', padding:'0'}}
                                 defaultValue={char.total_health}
                                 type="number"
                                 label={'/' + char.total_health + ' HP'}
@@ -104,7 +104,7 @@ class StatAndSavesTab extends Component {
                     </Grid.Row>
                     <Grid.Row>
                         <Grid.Column>
-                        <Input style={{width:'50%', padding:'0'}}
+                        <Input style={{width:'80px', padding:'0'}}
                                 value={+mod.dex}
                                 type="number"
                                 label='Initiative'
@@ -112,7 +112,7 @@ class StatAndSavesTab extends Component {
                             />
                         </Grid.Column>
                         <Grid.Column>
-                        <Input style={{width:'50%', padding:'0'}}
+                        <Input style={{width:'85px', padding:'0'}}
                                 defaultValue='30'
                                 type="text"
                                 label='ft move'
