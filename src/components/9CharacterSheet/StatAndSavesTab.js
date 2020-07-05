@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Input, Grid, Divider, Button } from 'semantic-ui-react'
-
+import {connect} from 'react-redux'
 class StatAndSavesTab extends Component {
     state = {
         char: this.props.char,
@@ -31,6 +31,7 @@ class StatAndSavesTab extends Component {
         })
     }
     updateMods = () => {
+       let char=this.state
         this.setState({
             ...this.state,
             mod: {
@@ -43,6 +44,7 @@ class StatAndSavesTab extends Component {
             }
 
         })
+        // this.props.dispatch({type:'UPDATE_ABILITIES',payload:{str:parseInt(char.str), dex:parseInt(char.dex), con:parseInt(char.con), int:parseInt(char.int), wis:parseInt(char.wis), cha:parseInt(char.cha), id:parseInt(this.props.char.id)}})
     }
     findSave = (word,stat) => {
         let save;
@@ -255,13 +257,17 @@ class StatAndSavesTab extends Component {
                                     max="20" />
                             </Grid.Column>
                         </Grid.Row>
-                        <Button color='black' style={{ width: '100%', height: '30px', padding: '0', margin: '0' }} onClick={() => this.updateMods()}>update modifiers</Button>
                 </Grid>
-
+                <br/>
+                <Button 
+                color='black' 
+                fluid
+                onClick={() => this.updateMods()}
+                >update modifiers</Button>
             </div>
         )
     }
 
 }
 
-export default StatAndSavesTab;
+export default connect()(StatAndSavesTab);

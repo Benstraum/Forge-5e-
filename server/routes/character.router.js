@@ -148,10 +148,31 @@ router.put('/:id', (req, res) => {
     pool.query(queryText, [req.params.id, req.body.name])
         .then(result => res.sendStatus(200))
         .catch(error => {
-            console.log('error in character get', error)
+            console.log('error in character put', error)
             res.sendStatus(500)
         })
 });
 
+router.put('/sheet', (req,res)=>{
+    console.log(req.body)
+    values=[req.body.str,req.body.dex,req.body.con,req.body.int,req.body.wis,req.body.cha,req.body.id]
+    const queryText =`
+    UPDATE character
+    SET "str"=$1,
+    "dex"=$2,
+    "con"=$3,
+    "int"=$4,
+    "wis"=$5,
+    "cha"=$6
+    WHERE id=$7
+    ;
+    `
+    pool.query(queryText,[req.body.str,req.body.dex,req.body.con,req.body.int,req.body.wis,req.body.cha,req.body.id])
+    .then(result => res.sendStatus(200))
+    .catch(error => {
+        console.log('error in ability put', error)
+        res.sendStatus(500)
+    })
+})
 module.exports = router;
 
