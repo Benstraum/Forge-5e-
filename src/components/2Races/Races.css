@@ -13,3 +13,12 @@
 .Races h1{
     text-align: center;
 }
+.Races{
+    margin-top: 10px;
+    padding: 5px;
+    background-color: lightgrey;
+    background-image: url('../App/background.jpg');
+    height: 75vh;
+    overflow-y: auto;
+    border-radius: 8px;
+}

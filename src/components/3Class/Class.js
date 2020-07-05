@@ -41,8 +41,9 @@ class Class extends Component {
     let classes = this.props.classes
     let x = this.state.choice
     const { activeIndex } = this.state
-    return <div className='Class'>
-     <Progress/>
+    return <> 
+    <Progress/>
+    <div className='Class'>
       <h1>Classes</h1>
       <select value={this.state.choice.name} placeholder='class choice' onChange={(event) => this.handleChange(event, 'choice')}>
         <option value=''>Choose</option>
@@ -159,6 +160,7 @@ class Class extends Component {
         </>
       }
     </div>
+    </>
   }
 
 }

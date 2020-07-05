@@ -35,8 +35,8 @@ class Races extends Component {
     let x = this.state.choice
     let race = this.props.races
     const { activeIndex } = this.state
-    return <div className='Races'>
-      <Progress />
+    return <> <Progress />
+    <div className='Races'>
       <br />
 
       <h1>Races of Faerun</h1>
@@ -123,6 +123,7 @@ class Races extends Component {
       }
 
     </div>
+    </>
   }
 }
 

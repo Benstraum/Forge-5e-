@@ -1,19 +1,9 @@
-.Stats h1, .Stats p{
-    text-align: center;
-}
-
- .Stats .scores{
-     margin: auto;
-     text-align: center;
-
- }
- .Stats{
+.Review{
     margin-top: 10px;
     padding: 5px;
     background-color: lightgrey;
     background-image: url('../App/background.jpg');
     height: 75vh;
     overflow-y: auto;
-    overflow-x: hidden;
     border-radius: 8px;
- }
+}
