@@ -14,7 +14,6 @@ class ConditionalItemInfo extends Component {
         url: ''
     }
     handleChange = (event, type) => {
-
         type === 'url' ?
             this.specialUrlHandler(event, type)
             :
@@ -22,8 +21,6 @@ class ConditionalItemInfo extends Component {
                 ...this.state,
                 [type]: event.target.value
             })
-
-
     }
     specialUrlHandler = (event, type) => {
         this.props.dispatch({ type: 'FETCH_ITEMS', payload: event.target.value })
@@ -33,8 +30,6 @@ class ConditionalItemInfo extends Component {
             [type]: event.target.value,
             desc: this.props.item
         })
-
-
     }
     toggleLearn = () => {
         this.state.learnMore ?
@@ -61,15 +56,9 @@ class ConditionalItemInfo extends Component {
             desc: this.props.item,
             showInfo: true
         })
-        
-        
     }
-
-
     render() {
         let desc = this.state.desc
- 
-        console.log('item prop',this.props.item)
         return (
             <div className="conditionalInfo">
                 <Button fluid color='purple' onClick={() => this.toggleLearn()}>{this.state.learnMore ? "Close More info" : "Click here to learn more about your equipment"}</Button>
@@ -123,10 +112,10 @@ class ConditionalItemInfo extends Component {
                             <b>Armor type</b>: {desc.armor_category + ' Armor'}
                         </li>
                         <li>
-                            <b>Armor class</b>: {desc.armor_class.base}{desc.armor_class.max_bonus  ? ' Max Dexterity Bonus ' + desc.armor_class.max_bonus : desc.armor_class.dex_bonus && '+ Dexterity Mod'}
+                            <b>Armor class</b>: {desc.armor_class.base}{desc.armor_class.max_bonus ? ' Max Dexterity Bonus ' + desc.armor_class.max_bonus : desc.armor_class.dex_bonus && '+ Dexterity Mod'}
                         </li>
                         <li>
-                            <b>Weight</b>: {desc.weight+ 'lbs '}{desc.str_minimum>0&& "Strength Needed: "+desc.str_minimum}
+                            <b>Weight</b>: {desc.weight + 'lbs '}{desc.str_minimum > 0 && "Strength Needed: " + desc.str_minimum}
                         </li>
                         <li>
                             <b>Cost</b>: {desc.cost.quantity + ' ' + desc.cost.unit}
@@ -139,16 +128,16 @@ class ConditionalItemInfo extends Component {
                             <b>Name</b>: {desc.name}
                         </li>
                         <li>
-                            <b>Damage</b>: {desc.damage.damage_dice +' '+desc.damage.damage_type.name} {desc.properties.filter(prop => prop.name ==='Versatile').length && 'two-handed damage: '+desc['2h_damage'].damage_dice}
+                            <b>Damage</b>: {desc.damage.damage_dice + ' ' + desc.damage.damage_type.name} <br />{desc.properties.filter(obj => { return obj.name === 'Versatile' }) === true && 'two-handed damage: ' + desc['2h_damage'].damage_dice}
                         </li>
                         <li>
-                            <b>Ability Mod</b>: {desc.properties.filter(prop => prop.name ==='Finesse').length ? '+ Dex or Str': '+ Str Mod'} 
+                            <b>Ability Mod</b>: {desc.properties.filter(obj => { return obj.name === 'Finesse' }) === true ? '+ Dex or Str' : '+ Str Mod'}
                         </li>
                         <li>
-                            <b>Range</b>: {desc.category_range+', '} {desc.category_range.includes('Ranged')? `Normal Range: ${desc.range.normal} ft, Max Range: ${desc.range.long} ft`:`Range: ${desc.range.normal} ft`}
+                            <b>Range</b>: {desc.category_range + ', '} {desc.category_range.includes('Ranged') ? `Normal Range: ${desc.range.normal} ft, Max Range: ${desc.range.long} ft` : `Range: ${desc.range.normal} ft`}
                         </li>
                         <li>
-                            <b>Weight</b>: {desc.weight+ 'lbs '}
+                            <b>Weight</b>: {desc.weight + 'lbs '}
                         </li>
                         <li>
                             <b>Cost</b>: {desc.cost.quantity + ' ' + desc.cost.unit}
@@ -156,10 +145,10 @@ class ConditionalItemInfo extends Component {
                     </ul>
                 }
                 {
-                    this.state.category ==='GET_PACKS' && this.state.showInfo &&
+                    this.state.category === 'GET_PACKS' && this.state.showInfo &&
                     <ul>
-                <li><b>{desc.name}:</b> costs:{desc.cost.quantity+' '+desc.cost.unit}<br/> Includes:</li>
-                   { desc.contents.map((item,i)=>(<li key={i}>{'('+item.quantity+')'}{item.item_url.replace('/api/equipment/', '')}</li>))}
+                        <li><b>{desc.name}:</b> costs:{desc.cost.quantity + ' ' + desc.cost.unit}<br /> Includes:</li>
+                        {desc.contents.map((item, i) => (<li key={i}>{'(' + item.quantity + ')'}{item.item_url.replace('/api/equipment/', '')}</li>))}
                     </ul>
                 }
             </div>

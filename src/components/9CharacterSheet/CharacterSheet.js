@@ -23,9 +23,6 @@ class CharacterSheet extends Component {
     findArmorClass = (equip, char) => {
         let ac;
         switch (true) {
-            case equip.includes('leather armor'):
-                ac = (11 + this.findMod(char.dex))
-                return ac
             case equip.includes('chain mail'):
                 this.findMod(char.dex) > 2 ?
                     ac = (13 + 2)
@@ -37,6 +34,9 @@ class CharacterSheet extends Component {
                     ac = (14 + 2)
                     :
                     ac = (14 + this.findMod(char.dex))
+                return ac
+            case equip.includes('leather armor'):
+                ac = (11 + this.findMod(char.dex))
                 return ac
             default:
                 return 10 + this.findMod(char.dex)

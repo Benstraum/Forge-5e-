@@ -11,13 +11,11 @@ const Progress =(props)=> {
           <div className="progbar">
           <Step.Group  size='tiny' widths={8} unstackable>
           { location.pathname ==='/Races'?
-          <Link to='/Races' >
           <Step >
             <Step.Content >
               <Step.Title>Race</Step.Title> 
             </Step.Content>
           </Step>
-          </Link>
           :
           <Step disabled>
             <Step.Content>
@@ -26,13 +24,11 @@ const Progress =(props)=> {
           </Step>
           }
           {  location.pathname==='/Class'?
-          <Link>
           <Step >
             <Step.Content>
               <Step.Title>Class</Step.Title>
             </Step.Content>
           </Step>
-          </Link>
           :
           <Step disabled>
             <Step.Content>
@@ -41,13 +37,11 @@ const Progress =(props)=> {
           </Step>
             }
             {  location.pathname==='/Equipment'?
-          <Link>
            <Step >
             <Step.Content>
               <Step.Title>Items</Step.Title>
             </Step.Content>
           </Step>
-          </Link>
           :
           <Step disabled>
           <Step.Content>
@@ -56,13 +50,11 @@ const Progress =(props)=> {
         </Step>
             }
             {  location.pathname==='/Stats'?
-          <Link>
            <Step >
             <Step.Content>
               <Step.Title>Stats</Step.Title>
             </Step.Content>
           </Step>
-          </Link>
           :
           <Step disabled>
           <Step.Content>
@@ -71,13 +63,11 @@ const Progress =(props)=> {
         </Step>
             }
               {  location.pathname==='/Skills' ?
-          <Link>
            <Step >
             <Step.Content>
               <Step.Title>Skills</Step.Title>
             </Step.Content>
           </Step>
-          </Link>
           :
           <Step disabled>
           <Step.Content>
@@ -86,13 +76,11 @@ const Progress =(props)=> {
         </Step>
             }
            { location.pathname==='/Review'?
-          <Link>
            <Step >
             <Step.Content>
               <Step.Title>Finish</Step.Title>
             </Step.Content>
           </Step>
-          </Link>
           :
           <Step disabled>
           <Step.Content>
