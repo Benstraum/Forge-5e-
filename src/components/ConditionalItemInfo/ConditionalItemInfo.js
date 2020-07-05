@@ -139,10 +139,10 @@ class ConditionalItemInfo extends Component {
                             <b>Name</b>: {desc.name}
                         </li>
                         <li>
-                            <b>Damage</b>: {desc.damage.damage_dice +' '+desc.damage.damage_type.name} {desc.properties.name==='Versatile'&& 'two-handed damage: '+desc['2h_damage'].damage_dice}
+                            <b>Damage</b>: {desc.damage.damage_dice +' '+desc.damage.damage_type.name} {desc.properties.filter(prop => prop.name ==='Versatile').length && 'two-handed damage: '+desc['2h_damage'].damage_dice}
                         </li>
                         <li>
-                            <b>Ability Mod</b>: {desc.properties.filter(prop => prop.name ==='Finesse') ? '+ Dex Mod': '+ Str Mod'} 
+                            <b>Ability Mod</b>: {desc.properties.filter(prop => prop.name ==='Finesse').length ? '+ Dex or Str': '+ Str Mod'} 
                         </li>
                         <li>
                             <b>Range</b>: {desc.category_range+', '} {desc.category_range.includes('Ranged')? `Normal Range: ${desc.range.normal} ft, Max Range: ${desc.range.long} ft`:`Range: ${desc.range.normal} ft`}

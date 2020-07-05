@@ -26,10 +26,7 @@ class StatAndSavesTab extends Component {
     handleChange = (event, type) => {
         this.setState({
             ...this.state,
-
             [type]: parseInt(event.target.value)
-
-
         })
     }
     updateMods = () => {
