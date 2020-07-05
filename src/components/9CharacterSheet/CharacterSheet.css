@@ -2,6 +2,20 @@
     white-space: pre-wrap;
 }
 .stats input{
-    margin: 0;
+    margin: 0; 
     padding:0;
+}
+.skillName{
+    height:80vh;
+    overflow-y: auto;
+}
+.skillDef{
+    height:70vh;
+    overflow-y: auto;
+}
+.skillPage{
+    overflow-y: hidden;
+}
+.stats.ui.label.label{
+    padding:0
 }

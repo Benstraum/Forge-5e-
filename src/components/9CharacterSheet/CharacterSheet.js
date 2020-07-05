@@ -42,76 +42,18 @@ class CharacterSheet extends Component {
                 return 10 + this.findMod(char.dex)
         }
     }
-    calcStatBonus = (skill) => {
-        let char = this.props.cSheet
-        switch (skill.stat) {
-            case 'str':
-                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
-                    let mod = this.findMod(char.str) + 2
-                    return mod
-                } else {
-                    let mod = this.findMod(char.str)
-                    return mod
-                }
-            case 'dex':
-                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
-                    let mod = this.findMod(char.dex) + 2
-                    return mod
-                } else {
-                    let mod = this.findMod(char.dex)
-                    return mod
-                }
-            case 'con':
-                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
-                    let mod = this.findMod(char.con) + 2
-                    return mod
-                } else {
-                    let mod = this.findMod(char.con)
-                    return mod
-                }
-            case 'int':
-                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
-                    let mod = this.findMod(char.int) + 2
-                    return mod
-                } else {
-                    let mod = this.findMod(char.int)
-                    return mod
-                }
-            case 'wis':
-                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
-                    let mod = this.findMod(char.wis) + 2
-                    return mod
-                } else {
-                    let mod = this.findMod(char.wis)
-                    return mod
-                }
-            case 'cha':
-                if (char.skills.includes(skill.skill_name) || char.features_class.includes(skill.skill_name) || char.features_race.includes(skill.skill_name)) {
-                    let mod = this.findMod(char.cha) + 2
-                    return mod
-                } else {
-                    let mod = this.findMod(char.cha)
-                    return mod
-                }
-            default:
-                return console.log('something is wrong')
-        }
-    }
-
     render() {
         let char = this.props.cSheet
         return (<div className="CharacterSheet">
-            <div className="identity">
-            </div>
             <Tab menu={{ pointing: true }} panes={[{
                 menuItem: 'Stats',
                 render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '80vh', overflowY: 'auto' }} attached={false}>
-                    <StatAndSavesTab findMod={this.findMod} char={char} findArmorClass={this.findArmorClass} />
+                    <StatAndSavesTab char={char} findArmorClass={this.findArmorClass} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Skills',
                 render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
-                    <SkillsTab skills={this.props.skills} char={char} calcStatBonus={this.calcStatBonus} findMod={this.findMod} />
+                    <SkillsTab skills={this.props.skills} char={char} findMod={this.findMod} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Equipment',
@@ -127,7 +69,6 @@ class CharacterSheet extends Component {
         </div>
         )
     }
-
 }
 const mapStateToProps = state => ({
     cSheet: state.characterSheetReducer,
