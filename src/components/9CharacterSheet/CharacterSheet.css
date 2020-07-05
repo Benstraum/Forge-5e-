@@ -1,3 +1,7 @@
 .CharacterSheet p{
     white-space: pre-wrap;
 }
+.stats input{
+    margin: 0;
+    padding:0;
+}

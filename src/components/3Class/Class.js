@@ -19,6 +19,7 @@ class Class extends Component {
     })
   }
   saveClass = () => {
+    let saves = this.props.classes[this.state.choice].saving_throw_1+' | '+this.props.classes[this.state.choice].saving_throw_2
     this.props.dispatch({ type: 'NEW_CHARACTER_CLASS', payload: this.props.classes[this.state.choice] })
     this.props.dispatch({ type: 'GET_SIMPLES' })
     this.props.dispatch({ type: 'GET_MARTIALS' })
@@ -26,6 +27,7 @@ class Class extends Component {
     this.props.dispatch({ type: 'GET_SHIELDS' })
     this.props.dispatch({ type: 'GET_PACKS' })
     this.props.dispatch({ type: 'GET_EQUIP_CHOICES', payload: this.props.classes[this.state.choice].id })
+    this.props.dispatch({type:'NEW_CHARACTER_SAVES', payload: saves})
     this.props.history.push('/Equipment')
   }
   handleClick = (e, titleProps) => {

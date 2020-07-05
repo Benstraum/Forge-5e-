@@ -108,6 +108,7 @@ router.post('/create', (req, res) => {
         req.body.race.features,
         req.body.class.feature,
         req.body.skills,
+        req.body.saves,
         req.body.stats.str,
         req.body.stats.dex,
         req.body.stats.con,
@@ -115,8 +116,8 @@ router.post('/create', (req, res) => {
         req.body.stats.wis,
         req.body.stats.cha]
     const queryText = `
-    INSERT INTO character(user_id, portrait, name, bio, race, class, hit_dice,total_health, equipment, features_race, features_class, skills, str, dex, con, int, wis, cha)
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
+    INSERT INTO character(user_id, portrait, name, bio, race, class, hit_dice,total_health, equipment, features_race, features_class, skills, saves, str, dex, con, int, wis, cha)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
     ;`
     pool.query(queryText, values)
         .then(result => res.sendStatus(200))

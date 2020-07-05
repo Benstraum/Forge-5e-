@@ -105,7 +105,7 @@ class CharacterSheet extends Component {
             </div>
             <Tab menu={{ pointing: true }} panes={[{
                 menuItem: 'Stats',
-                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '60vh', overflowY: 'auto' }} attached={false}>
+                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '80vh', overflowY: 'auto' }} attached={false}>
                     <StatAndSavesTab findMod={this.findMod} char={char} findArmorClass={this.findArmorClass} />
                 </Tab.Pane>,
             }, {

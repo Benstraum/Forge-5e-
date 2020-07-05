@@ -23,13 +23,17 @@ class Home extends Component {
                 {this.props.characters.map(char => (<HomeMapItem key={char.id} char={char} sendToSheet={this.sendToSheet} />))}
             </div>
             <div className="characterCreate">
-            <Button 
+              
+            
+                
+           </div>
+           <Button 
               fluid
-             
-              style={{position:'relative', bottom:10, marginTop:'5px' , background:'#641212', color:'white', border:'3px solid black'}}
-              onClick={()=>this.changePage()}>Create Character!</Button>
+              inverted
+               style={{position:'relative' , background:'#641212', color:'white', border:'3px solid black'}}
+              onClick={()=>this.changePage()}>Click Here To Create Character!</Button>
            </div>
-           </div>
+           
            
     }
 

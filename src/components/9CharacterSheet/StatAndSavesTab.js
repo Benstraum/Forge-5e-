@@ -44,28 +44,38 @@ class StatAndSavesTab extends Component {
 
         })
     }
+    findSave = (word,stat) => {
+        let save;
+        switch (true) {
+            case this.props.char.saves.includes(word):
+                 save = (stat + 2)
+                return save
+            default:
+                return stat
+        }
+    }
     render() {
         let char = this.props.char
         let stat = this.state
         let mod = this.state.mod
         return (
-            <div >
+            <div className="stats" >
                 <h3> {char.name} the {char.race} {char.class}: Lv:1</h3>
                 <div className="combatStats">
                     <h5>Health Pool:{char.total_health}</h5>
                     <h5>Armor Class:{this.props.findArmorClass(char.equipment, char)} {char.equipment.includes('shield') && `| with shield: ${this.props.findArmorClass(char.equipment, char) + 2}`}</h5>
                 </div>
                 <br />
-                <Grid columns={2} divided>
-                    <Grid columns={2} >
+                <Grid columns={4} style={{ width: '90vw' }} >
+                   
                         <h3><u>Ability Scores</u></h3>
                         <Grid.Row>
-
+                        <Grid.Column><h2>Str:</h2></Grid.Column>
                             <Grid.Column>
                                 <Input defaultValue={stat.str}
                                     onChange={(event) => this.handleChange(event, 'str')}
                                     type="number"
-                                    label="Str:"
+                                    label="Score"
                                     labelPosition='left corner'
                                     color='red'
                                     min="1"
@@ -80,14 +90,24 @@ class StatAndSavesTab extends Component {
                                     min="1"
                                     max="20" />
                             </Grid.Column>
+                            <Grid.Column>
+                                <Input value={this.findSave('Strength',mod.str)}
+
+                                    type="number"
+                                    label="Save:"
+                                    labelPosition='left corner'
+                                    min="1"
+                                    max="20" />
+                            </Grid.Column>
                         </Grid.Row>
                         <Divider />
                         <Grid.Row>
+                        <Grid.Column><h2>Dex:</h2></Grid.Column>
                             <Grid.Column>
                                 <Input defaultValue={stat.dex}
                                     onChange={(event) => this.handleChange(event, 'dex')}
                                     type="number"
-                                    label="Dex:"
+                                    label="Score:"
                                     labelPosition='left corner'
                                     min="1"
                                     max="20" />
@@ -101,14 +121,24 @@ class StatAndSavesTab extends Component {
                                     min="1"
                                     max="20" />
                             </Grid.Column>
+                            <Grid.Column>
+                                <Input value={this.findSave('Dexterity',mod.dex)}
+
+                                    type="number"
+                                    label="Save:"
+                                    labelPosition='left corner'
+                                    min="1"
+                                    max="20" />
+                            </Grid.Column>
                         </Grid.Row>
                         <Divider />
                         <Grid.Row>
+                        <Grid.Column><h2>Con:</h2></Grid.Column>
                             <Grid.Column>
                                 <Input defaultValue={stat.con}
                                     onChange={(event) => this.handleChange(event, 'con')}
                                     type="number"
-                                    label="Con:"
+                                    label="Score:"
                                     labelPosition='left corner'
                                     min="1"
                                     max="20" />
@@ -122,14 +152,24 @@ class StatAndSavesTab extends Component {
                                     min="1"
                                     max="20" />
                             </Grid.Column>
+                            <Grid.Column>
+                                <Input value={this.findSave('Constitution',mod.con)}
+
+                                    type="number"
+                                    label="Save:"
+                                    labelPosition='left corner'
+                                    min="1"
+                                    max="20" />
+                            </Grid.Column>
                         </Grid.Row>
                         <Divider />
                         <Grid.Row>
+                        <Grid.Column><h2>Int:</h2></Grid.Column>
                             <Grid.Column>
                                 <Input defaultValue={stat.int}
                                     onChange={(event) => this.handleChange(event, 'int')}
                                     type="number"
-                                    label="Int:"
+                                    label="Score:"
                                     labelPosition='left corner'
                                     min="1"
                                     max="20" />
@@ -143,14 +183,24 @@ class StatAndSavesTab extends Component {
                                     min="1"
                                     max="20" />
                             </Grid.Column>
+                            <Grid.Column>
+                                <Input value={this.findSave('Intelligence',mod.int)}
+
+                                    type="number"
+                                    label="Save:"
+                                    labelPosition='left corner'
+                                    min="1"
+                                    max="20" />
+                            </Grid.Column>
                         </Grid.Row>
                         <Divider />
                         <Grid.Row>
+                        <Grid.Column><h2>Wis:</h2></Grid.Column>
                             <Grid.Column>
                                 <Input defaultValue={stat.wis}
                                     onChange={(event) => this.handleChange(event, 'wis')}
                                     type="number"
-                                    label="Wis:"
+                                    label="Score:"
                                     labelPosition='left corner'
                                     min="1"
                                     max="20" />
@@ -164,14 +214,24 @@ class StatAndSavesTab extends Component {
                                     min="1"
                                     max="20" />
                             </Grid.Column>
+                            <Grid.Column>
+                                <Input value={this.findSave('Wisdom',mod.wis)}
+
+                                    type="number"
+                                    label="Save:"
+                                    labelPosition='left corner'
+                                    min="1"
+                                    max="20" />
+                            </Grid.Column>
                         </Grid.Row>
                         <Divider />
                         <Grid.Row>
+                        <Grid.Column><h2>Cha:</h2></Grid.Column>
                             <Grid.Column>
                                 <Input defaultValue={stat.cha}
                                     onChange={(event) => this.handleChange(event, 'cha')}
                                     type="number"
-                                    label="Cha:"
+                                    label="Score:"
                                     labelPosition='left corner'
                                     min="1"
                                     max="20" />
@@ -185,12 +245,17 @@ class StatAndSavesTab extends Component {
                                     min="1"
                                     max="20" />
                             </Grid.Column>
-                        </Grid.Row>
-                        <Button  color='black' style={{width:'100%', height: '30px', padding: '0', margin: '0' }} onClick={() => this.updateMods()}>update modifiers</Button>
-                    </Grid>
-                    <Grid >
+                            <Grid.Column>
+                                <Input value={this.findSave('Charisma',mod.cha)}
 
-                    </Grid>
+                                    type="number"
+                                    label="Save:"
+                                    labelPosition='left corner'
+                                    min="1"
+                                    max="20" />
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Button color='black' style={{ width: '100%', height: '30px', padding: '0', margin: '0' }} onClick={() => this.updateMods()}>update modifiers</Button>
                 </Grid>
 
             </div>
