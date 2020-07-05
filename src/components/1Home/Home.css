@@ -1,16 +1,7 @@
-.Home {
-  padding: 5px;
-  overflow-y: auto;
-  min-height: 500px;
-  height: 100%;
-}
+
 p{
   padding: 5px;
 }
 body, html{
   overflow-x: hidden;
-}
-.characters{
-  min-height: 90vh;
-  height: 100%;
 }

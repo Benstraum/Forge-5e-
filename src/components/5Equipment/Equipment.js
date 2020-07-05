@@ -78,9 +78,7 @@ class Equipment extends Component {
               <Button fluid style={{ background: '#641212', color: 'white' }} disabled>Choose items to Continue</Button>
             </>
           }
-
         </div>
-
       </div>
     </>
   }

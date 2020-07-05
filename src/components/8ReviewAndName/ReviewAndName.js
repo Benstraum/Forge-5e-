@@ -48,9 +48,7 @@ class ReviewAndName extends Component {
     </div>
     </>
   }
-
 }
-
 const mapStateToProps = state => ({
   char: state.newCharacterReducer
 });

@@ -6,6 +6,7 @@ import StatAndSavesTab from './StatAndSavesTab'
 import SkillsTab from './SkillsTab'
 import EquipTab from './EquipTab'
 import FeaturesTab from './FeaturesTab'
+import image from '../App/background.jpg'
 
 class CharacterSheet extends Component {
     state = {
@@ -47,22 +48,22 @@ class CharacterSheet extends Component {
         return (<div className="CharacterSheet">
             <Tab menu={{ pointing: true }} panes={[{
                 menuItem: 'Stats',
-                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '80vh', overflowY: 'auto' }} attached={false}>
+                render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '80vh', overflowY: 'auto' }} attached={false}>
                     <StatAndSavesTab char={char} findArmorClass={this.findArmorClass} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Skills',
-                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
+                render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
                     <SkillsTab skills={this.props.skills} char={char} findMod={this.findMod} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Equipment',
-                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '60vh', overflowY: 'auto' }} attached={false}>
+                render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '60vh', overflowY: 'auto' }} attached={false}>
                     <EquipTab char={char} />
                 </Tab.Pane>,
             }, {
                 menuItem: 'Features/Abilities',
-                render: () => <Tab.Pane style={{ backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
+                render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
                     <FeaturesTab char={char} />
                 </Tab.Pane>,
             }]} />

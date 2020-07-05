@@ -56,7 +56,6 @@ class Class extends Component {
         :
         <img alt="default person" style={{padding:'1px',border:'2px solid #021a40',backgroundColor:'darkgray', borderRadius:'4px'}} src="https://4.bp.blogspot.com/-aJ-qyvGsvNc/WfS7NfszD8I/AAAAAAABGwc/8s_6iFOemH4Gu80Hv89wUbJp8GbRDSBcQCLcBGAs/s1600/Alec%2BIvanovich.jpg" />
       }
-
       {this.state.choice &&
         <>
           <Accordion>
@@ -162,9 +161,7 @@ class Class extends Component {
     </div>
     </>
   }
-
 }
-
 const mapStateToProps = state => ({
   classes: state.classRouter
 });
