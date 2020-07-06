@@ -46,9 +46,9 @@ class CharacterSheet extends Component {
     render() {
         let char = this.props.cSheet
         return (<div className="CharacterSheet">
-            <Tab menu={{ pointing: true }} panes={[{
+            <Tab  style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '80vh', overflowY: 'hidden',overflowX:'hidden' }} menu={{ pointing: true }} panes={[{
                 menuItem: 'Stats',
-                render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '80vh', overflowY: 'auto' }} attached={false}>
+                render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '80vh', overflowY: 'hidden',overflowX:'hidden' }} attached={false}>
                     <StatAndSavesTab char={char} findArmorClass={this.findArmorClass} />
                 </Tab.Pane>,
             }, {

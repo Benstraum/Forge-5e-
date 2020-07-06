@@ -69,7 +69,7 @@ class SkillsTab extends Component {
     }
     render() {
         return (
-            <div className='skillPage'>   
+            <div className='skillPage' >   
                     <Grid columns={2} divided>
                         <Grid.Row>
                             <Grid.Column >
