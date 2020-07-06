@@ -75,7 +75,7 @@ class StatAndSavesTab extends Component {
                     <Grid.Row>
                         <Grid.Column>
                             {char.equipment.includes('shield') ?
-                                <Input style={{ width: '90px', padding: '0' }}
+                                <Input style={{ width: '25vw', padding: '0' }}
                                     defaultValue={this.props.findArmorClass(char.equipment, char) + 2}
                                     type="number"
                                     label='Armor'
@@ -83,7 +83,7 @@ class StatAndSavesTab extends Component {
                                     onChange={(event) => this.handleChange(event, 'ac')}
                                 />
                                 :
-                                <Input style={{ width: '90px', padding: '0' }}
+                                <Input style={{ width: '25vw', padding: '0' }}
                                     defaultValue={this.props.findArmorClass(char.equipment, char)}
                                     type="number"
                                     label='Armor:'
@@ -93,7 +93,7 @@ class StatAndSavesTab extends Component {
                             }
                         </Grid.Column>
                         <Grid.Column>
-                            <Input style={{ width: '90px', padding: '0' }}
+                            <Input style={{ width: '25vw', padding: '0' }}
                                 defaultValue={char.total_health}
                                 type="number"
                                 label={'/' + char.total_health + ' HP'}
@@ -104,7 +104,7 @@ class StatAndSavesTab extends Component {
                     </Grid.Row>
                     <Grid.Row>
                         <Grid.Column>
-                            <Input style={{ width: '80px', padding: '0' }}
+                            <Input style={{ width: '20.5vw', padding: '0' }}
                                 value={+mod.dex}
                                 type="number"
                                 label='Initiative'
@@ -112,7 +112,7 @@ class StatAndSavesTab extends Component {
                             />
                         </Grid.Column>
                         <Grid.Column>
-                            <Input style={{ width: '85px', padding: '0' }}
+                            <Input style={{ width: '25vw', padding: '0' }}
                                 defaultValue='30'
                                 type="text"
                                 label='ft move'
@@ -122,9 +122,21 @@ class StatAndSavesTab extends Component {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
-
-                <Grid columns={4} style={{ width: '90vw' }} >
-                    <h3><u>Ability Scores</u></h3>
+                <Grid columns={4} style={{ width: '95vw' }}  >
+                    <Grid.Row>
+                        <Grid.Column><h4><u>Ability</u></h4></Grid.Column>
+                        <Grid.Column><h4><u>Scores</u></h4></Grid.Column>
+                        <Grid.Column><h4><u>Modifiers</u></h4></Grid.Column>
+                        <Grid.Column><h4><u>Saving Throws</u></h4></Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row >
+                        <Button
+                            style={{ margin: 'auto' }}
+                            fluid
+                            color='black'
+                            onClick={() => this.updateMods()}
+                        >update mods & saves</Button>
+                    </Grid.Row>
                     <Grid.Row>
                         <Grid.Column><h2>Str:</h2></Grid.Column>
                         <Grid.Column>
@@ -312,12 +324,7 @@ class StatAndSavesTab extends Component {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
-                <br />
-                <Button
-                    color='black'
-                    fluid
-                    onClick={() => this.updateMods()}
-                >update modifiers</Button>
+
             </div>
         )
     }
