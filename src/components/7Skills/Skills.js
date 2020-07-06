@@ -103,8 +103,8 @@ class Skills extends Component {
               </div>
             </Grid.Column>
           </Grid.Row>
+          <Button fluid style={{ background: '#641212', color: 'white' }} onClick={() => this.submitChoices()}>Select and Continue!</Button>
         </Grid>
-        <Button fluid style={{ background: '#641212', color: 'white' }} onClick={() => this.submitChoices()}>Select and Continue!</Button>
       </div>
     </>
     )

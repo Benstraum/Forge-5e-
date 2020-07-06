@@ -19,7 +19,10 @@ class ConditionalItemInfo extends Component {
             :
             this.setState({
                 ...this.state,
-                [type]: event.target.value
+                [type]: event.target.value,
+                itemToLearn:'',
+                showInfo:false
+
             })
     }
     specialUrlHandler = (event, type) => {
@@ -36,7 +39,7 @@ class ConditionalItemInfo extends Component {
             this.setState({
                 ...this.state,
                 itemToLearn: '',
-                category: 'none',
+                category: '',
                 url: '',
                 learnMore: !this.state.learnMore,
                 showInfo: false

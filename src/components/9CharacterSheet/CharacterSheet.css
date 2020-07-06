@@ -1,5 +1,7 @@
 .CharacterSheet p{
     white-space: pre-wrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 .stats input{
     margin: 0; 

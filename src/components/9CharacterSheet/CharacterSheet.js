@@ -6,6 +6,7 @@ import StatAndSavesTab from './StatAndSavesTab'
 import SkillsTab from './SkillsTab'
 import EquipTab from './EquipTab'
 import FeaturesTab from './FeaturesTab'
+import SpellTab from './SpellTab'
 import image from '../App/background.jpg'
 
 class CharacterSheet extends Component {
@@ -14,6 +15,10 @@ class CharacterSheet extends Component {
         activeIndex: ''
     }
     componentDidMount() {
+        this.props.cSheet.is_full_caster &&
+        console.log('full caster get dispatch needed ')
+        this.props.cSheet.is_half_caster &&
+        console.log('half caster get dispatch needed ')
         this.props.dispatch({ type: 'RETRIEVE_SHEET' })
         this.props.dispatch({ type: 'GET_ALL_SKILLS' })
     }
@@ -45,8 +50,8 @@ class CharacterSheet extends Component {
     }
     render() {
         let char = this.props.cSheet
-        return (<div className="CharacterSheet">
-            <Tab   menu={{ pointing: true }} panes={[{
+        return (<div className="CharacterSheet" >
+            <Tab style={{width:'100vw'}}  menu={{ pointing: true }} panes={[{
                 menuItem: 'Stats',
                 render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '80vh',overflowY: 'auto' }} attached={false}>
                     <StatAndSavesTab char={char} findArmorClass={this.findArmorClass} />
@@ -57,14 +62,20 @@ class CharacterSheet extends Component {
                     <SkillsTab skills={this.props.skills} char={char} findMod={this.findMod} />
                 </Tab.Pane>,
             }, {
-                menuItem: 'Equipment',
+                menuItem: 'Backpack',
                 render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '60vh', overflowY: 'auto' }} attached={false}>
                     <EquipTab char={char} />
                 </Tab.Pane>,
             }, {
-                menuItem: 'Features/Abilities',
+                menuItem: 'Features',
                 render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
                     <FeaturesTab char={char} />
+                </Tab.Pane>,
+            },
+            {
+                menuItem: 'Spells',
+                render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
+                    <SpellTab char={char} />
                 </Tab.Pane>,
             }]} />
         </div>

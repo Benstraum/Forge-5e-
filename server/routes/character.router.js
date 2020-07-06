@@ -52,6 +52,45 @@ GROUP BY class.id;`
         })
 
 });
+router.get('/fullCaster', (req, res) => {
+    const queryText = `
+    SELECT * FROM half_caster 
+    WHERE id =1`
+    pool.query(queryText)
+        .then(result => res.send(result.rows))
+        .catch(error => {
+            console.log('error in character get', error)
+            res.sendStatus(500)
+        })
+});
+router.get('/halfCaster', (req, res) => {
+    const queryText = `
+    SELECT * FROM full_caster 
+    WHERE id =1`
+    pool.query(queryText)
+        .then(result => res.send(result.rows))
+        .catch(error => {
+            console.log('error in character get', error)
+            res.sendStatus(500)
+        })
+});
+router.get('/spells', (req, res) => {
+    const queryText = `
+    SELECT dnd5_spells.*, array_agg(DISTINCT dnd5_classes.class_name) FROM dnd5_spells
+    JOIN dnd5_class_spells
+    ON dnd5_class_spells.spell_id = dnd5_spells.spell_id
+    JOIN dnd5_classes
+    ON dnd5_classes.class_id= dnd5_class_spells.class_id
+    GROUP BY dnd5_spells.spell_id
+    ORDER BY spell_level ASC;`
+    pool.query(queryText)
+        .then(result => res.send(result.rows))
+        .catch(error => {
+            console.log('error in character get', error)
+            res.sendStatus(500)
+        })
+});
+//the spells routers still need sagas
 router.get('/equipment:id', (req, res) => {
     console.log(req.body)
     const queryText = `
@@ -109,6 +148,8 @@ router.post('/create', (req, res) => {
         req.body.class.feature,
         req.body.skills,
         req.body.saves,
+        req.body.class.half_caster_id,
+        req.body.class.full_caster_id,
         req.body.stats.str,
         req.body.stats.dex,
         req.body.stats.con,
@@ -116,8 +157,8 @@ router.post('/create', (req, res) => {
         req.body.stats.wis,
         req.body.stats.cha]
     const queryText = `
-    INSERT INTO character(user_id, portrait, name, bio, race, class, hit_dice,total_health, equipment, features_race, features_class, skills, saves, str, dex, con, int, wis, cha)
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
+    INSERT INTO character(user_id, portrait, name, bio, race, class, hit_dice,total_health, equipment, features_race, features_class, skills, saves, is_half_caster, is_full_caster, str, dex, con, int, wis, cha)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)
     ;`
     pool.query(queryText, values)
         .then(result => res.sendStatus(200))
@@ -153,10 +194,10 @@ router.put('/:id', (req, res) => {
         })
 });
 
-router.put('/sheet', (req,res)=>{
+router.put('/sheet', (req, res) => {
     console.log(req.body)
-    values=[req.body.str,req.body.dex,req.body.con,req.body.int,req.body.wis,req.body.cha,req.body.id]
-    const queryText =`
+    values = [req.body.str, req.body.dex, req.body.con, req.body.int, req.body.wis, req.body.cha, req.body.id]
+    const queryText = `
     UPDATE character
     SET "str"=$1,
     "dex"=$2,
@@ -167,12 +208,12 @@ router.put('/sheet', (req,res)=>{
     WHERE id=$7
     ;
     `
-    pool.query(queryText,[req.body.str,req.body.dex,req.body.con,req.body.int,req.body.wis,req.body.cha,req.body.id])
-    .then(result => res.sendStatus(200))
-    .catch(error => {
-        console.log('error in ability put', error)
-        res.sendStatus(500)
-    })
+    pool.query(queryText, [req.body.str, req.body.dex, req.body.con, req.body.int, req.body.wis, req.body.cha, req.body.id])
+        .then(result => res.sendStatus(200))
+        .catch(error => {
+            console.log('error in ability put', error)
+            res.sendStatus(500)
+        })
 })
 module.exports = router;
 

@@ -20,7 +20,7 @@ class Equipment extends Component {
     })
   }
   submitChoices = () => {
-    this.props.dispatch({ type: 'NEW_CHARACTER_EQUIPMENT', payload: this.state.one + ' | ' + this.state.two + ' | ' + this.state.three + ' | ' + this.state.four })
+    this.props.dispatch({ type: 'NEW_CHARACTER_EQUIPMENT', payload: this.state.one + ' -- ' + this.state.two + ' -- ' + this.state.three + ' -- ' + this.state.four })
     this.props.history.push('./Stats')
   }
   render() {

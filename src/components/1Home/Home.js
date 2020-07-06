@@ -20,7 +20,7 @@ class Home extends Component {
     }
     render() {
         return <div className='Home' style={{overflowX:'hidden'}}>
-            <div className="characters" style={{ backgroundImage: 'url(' + image + ')', backgroundColor: 'lightgrey', height: '70vh', overflowY: 'auto' }}>
+            <div className="characters" style={{ backgroundImage: 'url(' + image + ')', backgroundColor: 'lightgrey', height: '80vh', overflowY: 'auto' }}>
                 {
                     this.props.characters.length ?
                         this.props.characters.map(char => (<HomeMapItem key={char.id} char={char} sendToSheet={this.sendToSheet} />))
