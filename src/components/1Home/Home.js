@@ -19,7 +19,7 @@ class Home extends Component {
         this.props.history.push('/Races')
     }
     render() {
-        return <div className='Home'>
+        return <div className='Home' style={{overflowX:'hidden'}}>
             <div className="characters" style={{ backgroundImage: 'url(' + image + ')', backgroundColor: 'lightgrey', height: '70vh', overflowY: 'auto' }}>
                 {
                     this.props.characters.length ?

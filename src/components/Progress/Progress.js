@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Step} from 'semantic-ui-react'
-import { Link, useLocation } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 import './Progress.css'
 const Progress =(props)=> {  
   let location = useLocation();

@@ -20,7 +20,6 @@ import './App.css';
 import Home from '../1Home/Home';
 import Races from '../2Races/Races';
 import Class from '../3Class/Class';
-import Features from '../4Features/Features';
 import Equipment from '../5Equipment/Equipment';
 import Stats from '../6Stats/Stats';
 import Skills from '../7Skills/Skills';
@@ -77,11 +76,6 @@ class App extends Component {
               exact
               path="/Class"
               component={Class}
-            />
-            <ProtectedRoute
-              exact
-              path="/Features"
-              component={Features}
             />
             <ProtectedRoute
               exact

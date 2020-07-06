@@ -7,9 +7,11 @@ import { Divider, Button, Input, Item, Image, Icon, Dropdown, Header, Modal } fr
 
 class HomeMapItem extends Component {
     state = {
-        newName: '',
-        edit: false,
-        open: false
+        newName: this.props.char.name,
+        newPic: this.props.char.portrait || '',
+        name: false,
+        open: false,
+        portrait: false
     }
     show = (dimmer) => () => this.setState({ ...this.state, dimmer, open: true })
     close = () => this.setState({ ...this.state, open: false })
@@ -23,11 +25,11 @@ class HomeMapItem extends Component {
     changeName = (data) => {
         console.log(data)
         this.props.dispatch({ type: 'CHANGE_NAME', payload: { id: data, name: this.state.newName } })
-        this.toggleEdit()
+        this.setState({ ...this.state, name: false, portrait: false })
     }
-    toggleEdit = () => {
+    toggleEdit = (type) => {
         this.setState({
-            edit: !this.state.edit
+            [type]: !this.state.edit
         })
     }
     handleChange = (event, type) => {
@@ -45,12 +47,27 @@ class HomeMapItem extends Component {
                     <Item >
                         <Image size='tiny' style={{ padding: '1px', border: '2px solid #021a40', backgroundColor: 'darkgray', borderRadius: '4px' }} src={this.props.char.portrait || 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/811a2908-404c-4d71-b6d2-0b4e737898e1/dd7ujlf-d2ef5bf2-a0a8-4578-83e5-f0e01c3b375a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvODExYTI5MDgtNDA0Yy00ZDcxLWI2ZDItMGI0ZTczNzg5OGUxXC9kZDd1amxmLWQyZWY1YmYyLWEwYTgtNDU3OC04M2U1LWYwZTAxYzNiMzc1YS5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.VbDb7DLBgJYYY90Jb7LUq5thiWlyo65M73Q0SX3I-Zw'} />
                         <Item.Content verticalAlign='middle'>
-                            <Item.Header > {this.state.edit ? <>
-                                <Input size='mini' label='Name' value={this.state.newName} placeholder="New Name" onChange={(event) => this.handleChange(event, 'newName')} />
+                            <Item.Header > {this.state.name ? <>
+                                <Input size='mini'
+                                    label='Name'
+                                    defaultValue={this.state.newName}
+                                    placeholder="New Name"
+                                    onChange={(event) => this.handleChange(event, 'newName')} />
                                 <br />
-                                <Button inverted color="violet" size='tiny' onClick={() => this.changeName(this.props.char.id)}>Save</Button>
+                                <Button inverted color="violet"
+                                    size='tiny'
+                                    onClick={() => this.changeName(this.props.char.id)}>Save</Button>
                             </>
-                                : <> <h3>{this.props.char.name}</h3><h5>{this.props.char.race} {this.props.char.class}</h5></>}
+                                : <> <h3>{this.props.char.name}</h3><h5>{this.props.char.race} {this.props.char.class}</h5>
+                                    {this.state.portrait && <>
+                                        <Input labelPosition='left corner'
+                                            label='URL'
+                                            size='mini'
+                                            defaultValue={this.state.newPic}
+                                            onChange={(event) => this.handleChange(event, 'newPic')} />
+                                        <Button inverted color="violet"
+                                            size='tiny'
+                                            onClick={()=>this.setState({...this.state,portrait:false})}>Save</Button></>}</>}
                             </Item.Header>
                             <Item.Description >
                                 <Icon size='big' style={{ marginLeft: '75%' }}>  <Dropdown
@@ -64,7 +81,8 @@ class HomeMapItem extends Component {
                                         <Dropdown.Header icon='edit' />
                                         <Dropdown.Divider />
                                         <Dropdown.Item icon='attention' text='Delete' onClick={this.show(true)} />
-                                        <Dropdown.Item icon='comment' text='Edit Name' onClick={() => this.toggleEdit()} />
+                                        <Dropdown.Item icon='comment' text='Edit Name' onClick={() => this.toggleEdit('name')} />
+                                        <Dropdown.Item icon='picture' text='Edit Picture' onClick={() => this.toggleEdit('portrait')} />
                                     </Dropdown.Menu>
                                 </Dropdown></Icon>
                             </Item.Description>
@@ -83,10 +101,10 @@ class HomeMapItem extends Component {
                 <Modal.Header>Delete</Modal.Header>
                 <Modal.Content image>
                     <Modal.Description>
-                    <Image
-                        size='small'
-                        style={{padding:'10px', borderRadius: '4px', float: 'left' }}
-                        src={this.props.char.portrait || 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/811a2908-404c-4d71-b6d2-0b4e737898e1/dd7ujlf-d2ef5bf2-a0a8-4578-83e5-f0e01c3b375a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvODExYTI5MDgtNDA0Yy00ZDcxLWI2ZDItMGI0ZTczNzg5OGUxXC9kZDd1amxmLWQyZWY1YmYyLWEwYTgtNDU3OC04M2U1LWYwZTAxYzNiMzc1YS5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.VbDb7DLBgJYYY90Jb7LUq5thiWlyo65M73Q0SX3I-Zw'} />
+                        <Image
+                            size='small'
+                            style={{ padding: '10px', borderRadius: '4px', float: 'left' }}
+                            src={this.props.char.portrait || 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/811a2908-404c-4d71-b6d2-0b4e737898e1/dd7ujlf-d2ef5bf2-a0a8-4578-83e5-f0e01c3b375a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvODExYTI5MDgtNDA0Yy00ZDcxLWI2ZDItMGI0ZTczNzg5OGUxXC9kZDd1amxmLWQyZWY1YmYyLWEwYTgtNDU3OC04M2U1LWYwZTAxYzNiMzc1YS5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.VbDb7DLBgJYYY90Jb7LUq5thiWlyo65M73Q0SX3I-Zw'} />
                         <Header>Delete {this.props.char.name}?</Header>
                         <p>
                             {this.props.char.name} will be deleted forever.
@@ -103,7 +121,7 @@ class HomeMapItem extends Component {
                         icon='exclamation'
                         labelPosition='right'
                         content="Yes, delete away!"
-                        onClick={()=>this.deleteChar()}
+                        onClick={() => this.deleteChar()}
                     />
                 </Modal.Actions>
             </Modal>
