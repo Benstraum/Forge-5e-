@@ -9,18 +9,14 @@ Before you get started, make sure you have the following software installed on y
 
 ## Create database and table
 
-Create a new database called `prime_app` and create a `user` table:
-
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+Create a new database called `Forge(5e)` :
+Then copy and paste the whole `Database.sql` file into the SQL queries.
+use cmd + a and execute
+that will create the tables with proper links needed to run the app
 
 
-## Development Setup Instructions
+## Installation
+
 
 * Run `npm install`
 * Start postgres if not running already by using `brew services start postgresql`
@@ -29,27 +25,22 @@ CREATE TABLE "user" (
 * Navigate to `localhost:3000`
 
 
+## USAGE
+I have had a passion for dungeons and dragons all of my life, and I have wanted to share that with many friends. One thing
+holding most people back are the rules of the game. It's extremely complex and can be very tedious to navigate.
+That is where my app comes in. It is geared toward helping to teach new players how to make characters. 
+There are two main functionalities: 
+1) Walking the user step by step through making their character.
+2) An interactive "Character Sheet" that allows the user to keep track of their character in game.
 
+The intended purpose is for a Game Master (Person who runs the game) to have their players use this to expidite the creation process.
+What normally could take players hours upon hours can be simplified to a handful of minutues for a casual newbie.
 
-## Production Build
+## Technologies
+React, react-hooks, dnd5e.api/co(external api) , jsx, redux, react-redux, react-router-dom, express, pg, pool, axios, Semantic-UI, 
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+## Acknowledgement
+I want to thank my instructors Casie, Kris, and Edan for providing me the tools to learn. Also big thanks to my classmates for being a source of motivation as we all strive to better ourselves by learning to code.
 
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm start`
-* Navigate to `localhost:5000`
-
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+This project really helped solidify my undertanding of how to take advantage of the flow/ manipulation of information in redux. 
+It also started paving the path for my understanding of using Hooks in functional React Components.
