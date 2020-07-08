@@ -11,7 +11,9 @@ class Skills extends Component {
     choice_two: '',
     choice_three: ''
   }
-
+  componentDidMount(){
+    localStorage.setItem('char', this.props.char)
+  }
   learnMore = (item) => {
     //make get request matching skill name to skill name in  table and return description
     this.props.dispatch({ type: 'GET_DEFINITION', payload: item })

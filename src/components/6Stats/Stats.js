@@ -13,6 +13,7 @@ class Stats extends Component {
         wis: '',
         cha: ''
     }
+
     handleChange = (event, type) => {
         console.log(event.target.value)
         this.setState({

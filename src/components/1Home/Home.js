@@ -14,6 +14,7 @@ class Home extends Component {
     //sends completed character info to reducer to display on the character sheet and routes them there
     sendToSheet = (char) => {
         this.props.dispatch({ type: 'SET_CHAR_SHEET', payload: char })
+        localStorage.setItem('char', JSON.stringify(char))
         this.props.history.push('./CharacterSheet')
     }
     //send a person to start the creation process. clears any existing build character info

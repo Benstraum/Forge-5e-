@@ -10,7 +10,7 @@ class ReviewAndName extends Component {
     portrait:''
   }
   componentDidMount() {
-    console.log(this.props.char)
+    localStorage.setItem('char', this.props.char)
   }
   handleChange = (event, type) => {
     console.log(event.target.value)

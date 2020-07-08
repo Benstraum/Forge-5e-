@@ -12,7 +12,8 @@ import image from '../App/background.jpg'
 class CharacterSheet extends Component {
     state = {
         cSheet: this.props.cSheet,
-        activeIndex: ''
+        activeIndex: '',
+        char: JSON.parse(localStorage.getItem('char'))
     }
     componentDidMount() {
         //gets character info and all skills and spells
@@ -50,7 +51,8 @@ class CharacterSheet extends Component {
         }
     }
     render() {
-        let char = this.props.cSheet
+        console.log(this.state.char)
+        let char =this.state.char|| this.props.cSheet
         return (<div className="CharacterSheet" >
             <Tab style={{width:'100vw'}}  menu={{ pointing: true }}  panes={[{
                 menuItem: 'Stats',

@@ -10,7 +10,8 @@ class Equipment extends Component {
     one: '',
     two: '',
     three: '',
-    four: ''
+    four: '',
+    choice:''
   }
   handleChange = (event, type) => {
     console.log(event.target.text)
@@ -24,7 +25,8 @@ class Equipment extends Component {
     this.props.history.push('./Stats')
   }
   render() {
-    return <>
+    let choice =  this.props.choices ||this.state.choice
+    return (<>
       <Progress />
       <div className='Equipment'>
         <h1>Choose starting Equipment</h1>
@@ -35,36 +37,36 @@ class Equipment extends Component {
           <p><b>First Choice:</b></p>
           <select name="one" value={this.state.one} onChange={(event) => this.handleChange(event, 'one')}>
             <option value=''>Choose One</option>
-            <option value={this.props.choices.choice_1a}>{this.props.choices.choice_1a}</option>
-            <option value={this.props.choices.choice_1b}>{this.props.choices.choice_1b}</option>
+            <option value={choice.choice_1a}>{choice.choice_1a}</option>
+            <option value={choice.choice_1b}>{choice.choice_1b}</option>
           </select>
           <br />
           <p><b>Second Choice:</b></p>
           <select name="two" value={this.state.two} onChange={(event) => this.handleChange(event, 'two')}>
             <option value=''>Choose One</option>
-            <option value={this.props.choices.choice_2a}>{this.props.choices.choice_2a}</option>
-            <option value={this.props.choices.choice_2b}>{this.props.choices.choice_2b}</option>
+            <option value={choice.choice_2a}>{choice.choice_2a}</option>
+            <option value={choice.choice_2b}>{choice.choice_2b}</option>
           </select>
           <br />
           <p><b>Third Choice:</b></p>
           <select name="three" value={this.state.three} onChange={(event) => this.handleChange(event, 'three')}>
             <option value=''>Choose One</option>
-            <option value={this.props.choices.choice_3a}>{this.props.choices.choice_3a}</option>
-            <option value={this.props.choices.choice_3b}>{this.props.choices.choice_3b}</option>
+            <option value={choice.choice_3a}>{choice.choice_3a}</option>
+            <option value={choice.choice_3b}>{choice.choice_3b}</option>
           </select>
           <br />
           <p><b>Fourth Choice:</b></p>
           <select value={this.state.four} onChange={(event) => this.handleChange(event, 'four')}>
-            {this.props.choices.choice_4a === this.props.choices.choice_4b ?
+            {choice.choice_4a === choice.choice_4b ?
               <>
                 <option >This class has an automatic choice</option>
-                <option value={this.props.choices.choice_4a}>{this.props.choices.choice_4a}</option>
+                <option value={choice.choice_4a}>{choice.choice_4a}</option>
               </>
               :
               <>
                 <option value=''>Choose One</option>
-                <option value={this.props.choices.choice_4a}>{this.props.choices.choice_4a}</option>
-                <option value={this.props.choices.choice_4b}>{this.props.choices.choice_4b}</option>
+                <option value={choice.choice_4a}>{choice.choice_4a}</option>
+                <option value={choice.choice_4b}>{choice.choice_4b}</option>
               </>
             }
           </select>
@@ -82,10 +84,12 @@ class Equipment extends Component {
         </div>
       </div>
     </>
+    )
   }
 }
 
 const mapStateToProps = state => ({
+  char: state.newCharacterReducer,
   classes: state.classReducer,
   choices: state.equipmentChoiceRouter
 });
