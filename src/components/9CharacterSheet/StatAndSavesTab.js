@@ -133,7 +133,7 @@ class StatAndSavesTab extends Component {
                         <Button
                             style={{ margin: 'auto' }}
                             fluid
-                            color='black'
+                            style={{background:' black',color:'white', border:'3px solid maroon'}}
                             onClick={() => this.updateMods()}
                         >update mods & saves</Button>
                     </Grid.Row>

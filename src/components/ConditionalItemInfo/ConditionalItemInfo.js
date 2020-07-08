@@ -67,7 +67,7 @@ class ConditionalItemInfo extends Component {
         return (
             <div className="conditionalInfo">
                 <Button fluid
-                    color='purple'
+                    style={{background:' black',color:'white', border:'3px solid maroon'}}
                     onClick={() => this.toggleLearn()}>{this.state.learnMore ? "Close More info" : "Click here to learn more about your equipment"}
                 </Button>
                 {/*these are the cascading choices. CATEGORY => CATEGORY ITEMS => BUTTON TO DISPLAY*/}
@@ -110,7 +110,9 @@ class ConditionalItemInfo extends Component {
                     </select>
                 }
                 {
-                    this.state.url && <Button fluid color='teal' onClick={() => this.getItemDetails()}>Get the info!</Button>
+                    this.state.url && <Button fluid 
+                    style={{background:' black',color:'white', border:'3px solid maroon'}}
+                    onClick={() => this.getItemDetails()}>Get the info!</Button>
                 }
                 {/* following conditionally rendered areas are based on category. will target relevant
                  information within and also conditionally render special features */}
