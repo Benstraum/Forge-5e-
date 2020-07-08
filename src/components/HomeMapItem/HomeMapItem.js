@@ -27,6 +27,11 @@ class HomeMapItem extends Component {
         this.props.dispatch({ type: 'CHANGE_NAME', payload: { id: data, name: this.state.newName } })
         this.setState({ ...this.state, name: false, portrait: false })
     }
+    changePic = (data) => {
+        console.log(data)
+        this.props.dispatch({ type: 'CHANGE_PIC', payload: { id: data, portrait: this.state.newPic } })
+        this.setState({...this.state,portrait:false})
+    }
     toggleEdit = (type) => {
         this.setState({
             [type]: !this.state.edit
@@ -67,7 +72,7 @@ class HomeMapItem extends Component {
                                             onChange={(event) => this.handleChange(event, 'newPic')} />
                                         <Button inverted color="violet"
                                             size='tiny'
-                                            onClick={()=>this.setState({...this.state,portrait:false})}>Save</Button></>}</>}
+                                            onClick={()=>this.changePic(this.props.char.id)}>Save</Button></>}</>}
                             </Item.Header>
                             <Item.Description >
                                 <Icon size='big' style={{ marginLeft: '75%' }}>  <Dropdown

@@ -192,6 +192,20 @@ router.put('/:id', (req, res) => {
             res.sendStatus(500)
         })
 });
+router.put('/portrait/:id', (req, res) => {
+    console.log(req.body)
+    const queryText = `
+    UPDATE character 
+    SET "portrait" = $2
+    WHERE id = $1
+   ; `
+    pool.query(queryText, [req.params.id, req.body.portrait])
+        .then(result => res.sendStatus(200))
+        .catch(error => {
+            console.log('error in character put', error)
+            res.sendStatus(500)
+        })
+});
 
 router.put('/sheet', (req, res) => {
     console.log(req.body)

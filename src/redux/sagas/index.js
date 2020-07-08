@@ -14,7 +14,7 @@ import getChoices from './equipmentChoice' //class based equipment choices
 import getSkillDef from './skillDefinitionSaga' //gets specific skill definition
 import finishCharacter from './finishCreationSaga' // this will post new character and route them to main page so they can select their character to view
 import deleteSaga from './deleteCharacter' //deletes character from db. can only delete chars they see
-import nameChangeSaga from './nameChangeSaga' //put request to change name saga
+import PutSaga from './PutSaga' //put request to change name saga
 import allSkillsSaga from './allSkillsSaga'
 import updateStatSaga from './UpdateStatSaga'
 import allSpellSaga from './allSpellSaga'
@@ -44,7 +44,7 @@ export default function* rootSaga() {
     getSkillDef(),
     finishCharacter(),
     deleteSaga(),
-    nameChangeSaga(),
+    PutSaga(),
     allSkillsSaga(),
     updateStatSaga(),
     allSpellSaga()

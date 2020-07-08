@@ -12,8 +12,18 @@ function* changeName(action) {
     }
 }
 
-function* nameChangeSaga() {
-    yield takeEvery('CHANGE_NAME', changeName);
+function* changePic(action) {
+    try {
+        yield axios.put(`/api/character/portrait/${action.payload.id}`, action.payload);
+        yield put({ type: 'GET_CHARACTERS'});
+    } catch (error) {
+        console.log('put saga request failed', error);
+    }
 }
 
-export default nameChangeSaga;
+function* PutSaga() {
+    yield takeEvery('CHANGE_NAME', changeName);
+    yield takeEvery('CHANGE_PIC', changePic)
+}
+
+export default PutSaga;
