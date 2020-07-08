@@ -6,6 +6,8 @@ class SkillsTab extends Component {
         skill: ''
     }
     calcStatBonus = (skill) => {
+        //switch case based on stat type then adds the asociated modifier for that stat to find skills bonus
+        //+2 is if they are proficient
         let char = this.props.char
         switch (skill.stat) {
             case 'str':

@@ -19,13 +19,10 @@ class Class extends Component {
     })
   }
   saveClass = () => {
+    //this looks like a lot but it's just access packaging responses to send to reducer
     let saves = this.props.classes[this.state.choice].saving_throw_1+' | '+this.props.classes[this.state.choice].saving_throw_2
+    //these set up the reducer for nect page before sending us off
     this.props.dispatch({ type: 'NEW_CHARACTER_CLASS', payload: this.props.classes[this.state.choice] })
-    this.props.dispatch({ type: 'GET_SIMPLES' })
-    this.props.dispatch({ type: 'GET_MARTIALS' })
-    this.props.dispatch({ type: 'GET_ARMORS' })
-    this.props.dispatch({ type: 'GET_SHIELDS' })
-    this.props.dispatch({ type: 'GET_PACKS' })
     this.props.dispatch({ type: 'GET_EQUIP_CHOICES', payload: this.props.classes[this.state.choice].id })
     this.props.dispatch({type:'NEW_CHARACTER_SAVES', payload: saves})
     this.props.history.push('/Equipment')

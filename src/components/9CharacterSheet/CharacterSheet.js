@@ -15,10 +15,7 @@ class CharacterSheet extends Component {
         activeIndex: ''
     }
     componentDidMount() {
-        this.props.cSheet.is_full_caster &&
-        console.log('full caster get dispatch needed ')
-        this.props.cSheet.is_half_caster &&
-        console.log('half caster get dispatch needed ')
+        //gets character info and all skills and spells
         this.props.dispatch({ type: 'RETRIEVE_SHEET' })
         this.props.dispatch({ type: 'GET_ALL_SKILLS' })
         this.props.dispatch({ type: 'GET_ALL_SPELLS' })
@@ -28,13 +25,16 @@ class CharacterSheet extends Component {
         return mod
     }
     findArmorClass = (equip, char) => {
+        //sorts through equipment applying proper armor class with dex mod to their character
+        // it goes with highest armor first when checking for when characters get more equip but 
+        //will make ac changable 
         let ac;
         switch (true) {
             case equip.includes('chain mail'):
                 this.findMod(char.dex) > 2 ?
-                    ac = (13 + 2)
+                    ac = (14 + 2)
                     :
-                    ac = (13 + this.findMod(char.dex))
+                    ac = (14 + this.findMod(char.dex))
                 return ac
             case equip.includes('scale mail'):
                 this.findMod(char.dex) > 2 ?

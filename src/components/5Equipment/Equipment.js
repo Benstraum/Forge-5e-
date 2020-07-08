@@ -31,6 +31,7 @@ class Equipment extends Component {
         <ConditionalItemInfo />
         <br />
         <div className="choices">
+          {/* pretty starightforward. choices created linearly from inside the db then button is usable when choices are made. */}
           <p><b>First Choice:</b></p>
           <select name="one" value={this.state.one} onChange={(event) => this.handleChange(event, 'one')}>
             <option value=''>Choose One</option>

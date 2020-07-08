@@ -42,6 +42,8 @@ class Skills extends Component {
     return (<>
       <Progress />
       <div className='Skills'>
+        {/* This section takes skills and filters out the previous choice from what one can choose in their skills
+        also maps out skills and descriptions to display neatly on dom */}
         <h1>{this.props.char.class.class_name} Skill Choices</h1>
         <p style={{textAlign:'center'}}><i>Click on the <Icon name='question circle' /> icons for more info</i></p>
         <Grid columns={this.props.char.class.class_name === 'Ranger' ? 3 : 2} divided>

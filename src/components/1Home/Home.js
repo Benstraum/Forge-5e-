@@ -7,13 +7,16 @@ import { Button } from 'semantic-ui-react'
 import HomeMapItem from '../HomeMapItem/HomeMapItem';
 
 class Home extends Component {
+    //gets all characters for specific user
     componentDidMount() {
         this.props.dispatch({ type: 'GET_CHARACTERS' })
     }
+    //sends completed character info to reducer to display on the character sheet and routes them there
     sendToSheet = (char) => {
         this.props.dispatch({ type: 'SET_CHAR_SHEET', payload: char })
         this.props.history.push('./CharacterSheet')
     }
+    //send a person to start the creation process. clears any existing build character info
     changePage = () => {
         this.props.dispatch({ type: 'NEW_CHARACTER' })
         this.props.history.push('/Races')

@@ -8,12 +8,7 @@ class SpellTab extends Component {
         activeIndex: '',
         secondaryIndex: ''
     }
-    handleChange = (event, type) => {
-        this.setState({
-            ...this.state,
-            [type]: parseInt(event.target.value)
-        })
-    }
+    //these control the accordian displaying on the dom based on which you click.
     handleClick = (e, titleProps) => {
         const { index } = titleProps
         const { activeIndex } = this.state

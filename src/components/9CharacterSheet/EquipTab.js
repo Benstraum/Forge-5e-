@@ -11,6 +11,7 @@ class EquipTab extends Component{
             [type]: parseInt(event.target.value)
         })
     }
+    //will create a put request so users can update their equipment for higher levels 
     render(){
         let char = this.props.char
         return(

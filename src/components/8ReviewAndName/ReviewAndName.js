@@ -20,6 +20,7 @@ class ReviewAndName extends Component {
     })
   }
   finishCharacter = () => {
+    //finall dispatch to the reducer before posting the character to the database!
     this.props.dispatch({ type: 'NEW_CHARACTER_NAME', payload: this.state.name })
     this.props.dispatch({type:'NEW_CHARACTER_BIO', payload:this.state.bio})
     this.props.dispatch({type:'NEW_CHARACTER_PIC', payload:this.state.portrait})

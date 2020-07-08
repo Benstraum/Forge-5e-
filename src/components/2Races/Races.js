@@ -24,6 +24,7 @@ class Races extends Component {
     this.props.dispatch({ type: 'NEW_CHARACTER_RACE', payload: this.props.races[this.state.choice] })
     this.props.history.push('/Class')
   }
+//handles the accordian
   handleClick = (e, titleProps) => {
     const { index } = titleProps
     const { activeIndex } = this.state
@@ -38,20 +39,24 @@ class Races extends Component {
       <div className='Races'>
         <br />
         <h1>Races of Faerun</h1>
-        <select value={this.state.choice.name} placeholder='race choice' onChange={(event) => this.handleChange(event, 'choice')}>
+        <select value={this.state.choice.name} 
+        placeholder='race choice' onChange={(event) => this.handleChange(event, 'choice')}>
           <option value=''>Learn More about:</option>
-          {this.props.races.map((item, i) => (<option key={item.id} value={i}>{item.name}</option>))}
+          {//creates options for each race in the db stored in reducer
+          this.props.races.map((item, i) => (<option key={item.id} value={i}>{item.name}</option>))
+          }
         </select>
         <p style={{ textAlign: 'center' }}>learn about your choices, then continue the character building process
                      hitting the continue buttonat the bottom of the screen</p>
         <br />
-        {this.state.choice ? <>
+        {this.state.choice ? <> {/*conditional rendering for images. default and race specific */}
           <img alt={race.name} style={{ padding: '1px', border: '2px solid #021a40', backgroundColor: 'darkgray', borderRadius: '4px' }} src={race[x].image_male || race[x].image_female} /></>
           : <>
             <img alt="default person" style={{ padding: '1px', border: '2px solid #021a40', backgroundColor: 'darkgray', borderRadius: '4px' }} src="https://4.bp.blogspot.com/-aJ-qyvGsvNc/WfS7NfszD8I/AAAAAAABGwc/8s_6iFOemH4Gu80Hv89wUbJp8GbRDSBcQCLcBGAs/s1600/Alec%2BIvanovich.jpg" />
           </>
         }
         <br />
+        {/* makes sure information is there before trying to display anything */}
         {this.state.choice &&
           <>
             <Accordion>

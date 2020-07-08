@@ -34,6 +34,8 @@ class Stats extends Component {
         return (<>
             <Progress />
             <div className='Stats'>
+                {/* this section is fairly simple. uses info from db to populate recommendations 
+                and will wiat for all to be filled until user can proceed */}
                 <h1>Ability Scores</h1>
                 <p>
                     Based on your class choice: {this.props.char.class.class_name},

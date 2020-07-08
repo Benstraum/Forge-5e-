@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 
 class FeaturesTab extends Component{
     render(){
+        //this is a display for now but I will turn into a textarea so users will
+        // be able to crop out and make notes on their abilities / add others
         let char = this.props.char
         return(
         <div >

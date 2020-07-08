@@ -14,20 +14,21 @@ class ConditionalItemInfo extends Component {
         url: ''
     }
     handleChange = (event, type) => {
+        //created special handler for getting item info to avoid crashes
         type === 'url' ?
             this.specialUrlHandler(event, type)
             :
             this.setState({
                 ...this.state,
                 [type]: event.target.value,
-                itemToLearn:'',
-                showInfo:false
+                itemToLearn: '',
+                showInfo: false
 
             })
     }
     specialUrlHandler = (event, type) => {
+        //this was made to prep the state so it wouldnt error out when I inserted tried to display info
         this.props.dispatch({ type: 'FETCH_ITEMS', payload: event.target.value })
-
         this.setState({
             ...this.state,
             [type]: event.target.value,
@@ -35,6 +36,7 @@ class ConditionalItemInfo extends Component {
         })
     }
     toggleLearn = () => {
+        //this will start the conditional rendering chain to find equipment information. on toggling off it resets the sequence 
         this.state.learnMore ?
             this.setState({
                 ...this.state,
@@ -44,15 +46,15 @@ class ConditionalItemInfo extends Component {
                 learnMore: !this.state.learnMore,
                 showInfo: false
             })
-
             :
             this.setState({
                 ...this.state,
                 learnMore: !this.state.learnMore,
             })
-
     }
     getItemDetails = () => {
+        //this shows the information fetched onto the dom. had to be prepped in prior func will implement async funcs to better
+        //accomplish same goal 
         this.props.dispatch({ type: 'FETCH_ITEMS', payload: this.state.url })
         this.setState({
             ...this.state,
@@ -64,7 +66,11 @@ class ConditionalItemInfo extends Component {
         let desc = this.state.desc
         return (
             <div className="conditionalInfo">
-                <Button fluid color='purple' onClick={() => this.toggleLearn()}>{this.state.learnMore ? "Close More info" : "Click here to learn more about your equipment"}</Button>
+                <Button fluid
+                    color='purple'
+                    onClick={() => this.toggleLearn()}>{this.state.learnMore ? "Close More info" : "Click here to learn more about your equipment"}
+                </Button>
+                {/*these are the cascading choices. CATEGORY => CATEGORY ITEMS => BUTTON TO DISPLAY*/}
                 {this.state.learnMore &&
                     <select value={this.state.category} placeholder="Armor" onChange={(event) => this.handleChange(event, 'category')}>
                         <option value="">select category</option>
@@ -106,6 +112,8 @@ class ConditionalItemInfo extends Component {
                 {
                     this.state.url && <Button fluid color='teal' onClick={() => this.getItemDetails()}>Get the info!</Button>
                 }
+                {/* following conditionally rendered areas are based on category. will target relevant
+                 information within and also conditionally render special features */}
                 {this.state.showInfo && desc.equipment_category.name === 'Armor' &&
                     <ul>
                         <li>
@@ -115,10 +123,14 @@ class ConditionalItemInfo extends Component {
                             <b>Armor type</b>: {desc.armor_category + ' Armor'}
                         </li>
                         <li>
-                            <b>Armor class</b>: {desc.armor_class.base}{desc.armor_class.max_bonus ? ' Max Dexterity Bonus ' + desc.armor_class.max_bonus : desc.armor_class.dex_bonus && '+ Dexterity Mod'}
+                            <b>Armor class</b>: {desc.armor_class.base}{desc.armor_class.max_bonus ?
+                                ' Max Dexterity Bonus ' + desc.armor_class.max_bonus
+                                :
+                                desc.armor_class.dex_bonus && '+ Dexterity Mod'}
                         </li>
                         <li>
-                            <b>Weight</b>: {desc.weight + 'lbs '}{desc.str_minimum > 0 && "Strength Needed: " + desc.str_minimum}
+                            <b>Weight</b>: {desc.weight + 'lbs '}{desc.str_minimum > 0 &&
+                                "Strength Needed: " + desc.str_minimum}
                         </li>
                         <li>
                             <b>Cost</b>: {desc.cost.quantity + ' ' + desc.cost.unit}
@@ -131,13 +143,21 @@ class ConditionalItemInfo extends Component {
                             <b>Name</b>: {desc.name}
                         </li>
                         <li>
-                            <b>Damage</b>: {desc.damage.damage_dice + ' ' + desc.damage.damage_type.name} <br />{desc.properties.filter(obj => { return obj.name === 'Versatile' }) === true && 'two-handed damage: ' + desc['2h_damage'].damage_dice}
+                            <b>Damage</b>: {desc.damage.damage_dice + ' ' + desc.damage.damage_type.name} <br />
+                            {desc.properties.filter(obj =>( obj.name === 'Versatile' )) === true &&
+                                'two-handed damage: ' + desc['2h_damage'].damage_dice}
                         </li>
                         <li>
-                            <b>Ability Mod</b>: {desc.properties.filter(obj => { return obj.name === 'Finesse' }) === true ? '+ Dex or Str' : '+ Str Mod'}
+                            <b>Ability Mod</b>: {desc.properties.filter(obj => { return obj.name === 'Finesse' }) === true ?
+                                '+ Dex or Str Mod'
+                                :
+                                '+ Str Mod'}
                         </li>
                         <li>
-                            <b>Range</b>: {desc.category_range + ', '} {desc.category_range.includes('Ranged') ? `Normal Range: ${desc.range.normal} ft, Max Range: ${desc.range.long} ft` : `Range: ${desc.range.normal} ft`}
+                            <b>Range</b>: {desc.category_range + ', '} {desc.category_range.includes('Ranged') ?
+                                `Normal Range: ${desc.range.normal} ft, Max Range: ${desc.range.long} ft`
+                                :
+                                `Range: ${desc.range.normal} ft`}
                         </li>
                         <li>
                             <b>Weight</b>: {desc.weight + 'lbs '}
