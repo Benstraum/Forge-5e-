@@ -115,8 +115,6 @@ Occasionally, genasi result from exposure to a surge of elemental power, through
 ;
 
 
-
-
 CREATE TABLE "character" (
   "id" SERIAL PRIMARY KEY,
   "user_id" INT REFERENCES "user",
@@ -133,6 +131,8 @@ CREATE TABLE "character" (
   "features_class" VARCHAR(3000),
   "skills" VARCHAR(500),
   "saves" VARCHAR(100),
+  "is_full_caster" INTEGER,
+  "is_half_caster" INTEGER,
   "str" INTEGER,
   "dex" INTEGER,
   "con" INTEGER,
@@ -311,7 +311,6 @@ INSERT INTO "class_skills"("class_id", "skills_id")
 VALUES(1, 1), (1, 2),(1, 4),(1, 6),(1, 7),(1, 8),(1, 12),(1, 18),(2,2),(2,4),(2,7),(2,9),(2,10),(2,12),(2,17),(2,18);
 
 
-
 --section for spellbook and references
 	
 CREATE TABLE IF NOT EXISTS dnd5_classes (
@@ -353,6 +352,7 @@ CREATE TABLE IF NOT EXISTS "dnd5_spells" (
 --
 -- Dumping data for table `dnd5_spells`
 --
+
 
 INSERT INTO "dnd5_spells" (spell_id, spell_name, spell_level, spell_type, casting_time, spell_range, components, duration, description, higher_levels) VALUES
 (1, 'Aid', 2, '2nd-level abjuration', '1 action', '30 feet', 'V, S, M (a tiny strip of white cloth)', '8 hours', 'Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target''s Max HP and current HP increase by 5 for the duration', 'When you cast this spell using a slot of 3rd level or higher, a target''s HP increases by an addition 5 for each slot above 2nd.'),
@@ -399,7 +399,7 @@ INSERT INTO "dnd5_spells" (spell_id, spell_name, spell_level, spell_type, castin
 (42, 'Calm Emotions', 2, '2nd-level enchantment', '1 action', '60 feet', 'V, S', 'Concentration, up to 1 minute', 'All creatures within 20 feet of a point you designate within range make a Charisma saving throw or suffer from one of two effects:<br>Suppress charm or frightened effects; or<br>Make targets indifferent to creatures it was hostile toward.<br>Creatures can willingly fail the Charisma saving throw.', ''),
 (43, 'Chain Lightning', 6, '6th-level evocation', '1 action', '150 feet', 'V, S, M (a bit of fur; a piece of amber, glass, or a crystal rod; and three silver pins)', 'Instantaneous', 'A bolt of lightning strikes a target within range, then lances out to strike up to three additional targets within 30 feet of the first. Creatures struck by this take 10d8 damage, halved by a successful Dexterity saving throw.', 'An additional bolt of lightning leaps from the first target to additional targets for each slot level above 6th used.'),
 (44, 'Charm Person', 1, '1st-level enchantment', '1 action', '30 feet', 'V, S', '1 hour', 'You target one creature within range. That creature must make a Wisdom saving throw. If it fails it regards you as friendly for the duration or until you or an ally cause harm to it. When the duration ends the creature is aware it was charmed by you.', 'You can target one additional creature for each slot level above 1st used to cast this spell.'),
-(45, 'Chill Touch', 0, 'Necromancy cantrip', '1 action', '120 feet', 'V, S', '1 round', 'Make a ranged spell attack against a creature within range. The target takes 1d8 necrotic damage and can''t regain HP until the start of your next turn. If this hits an undead target, it also has disadvantage on attack rolls until the end of your next turn.<br>This spell''s damage increases to 2d8 at 5th level, 3d8 at 11th, and 4d8 at 17th.', ''),
+(45, 'Chill Touch', 0, 'Necromancy cantrip', '1 action', '120 feet', 'V, S', '1 round', 'Make a ranged spell attack against a creature within range. The target takes 1d8 necrotic damage and can''t regain HP until the start of your next turn. If this hits an undead target, it also has disadvantage on attack rolls until the end of your next turn.This spell''s damage increases to 2d8 at 5th level, 3d8 at 11th, and 4d8 at 17th.', ''),
 (46, 'Chromatic Orb', 1, '1st-level evocation', '1 action', '120 feet', 'V, S, M (a diamond worth 50 gp)', 'Instantaneous', 'Make a ranged spell attack. This spell deals 2d8 cold, fire, electricity, acid, poison, or thunder damage (your choice).', 'The damage increases by 1d8 for each slot level above 1st used to cast this spell.'),
 (47, 'Circle of Death', 6, '6th-level necromancy', '1 action', '150 feet', 'V, S, M (the powder of a crushed black pearl worth at least 500 gp)', 'Instantaneous', 'Negative energy radiates out to 60 feet from a point you designate within range. Creatures within the area take 8d6 necrotic damage, halved on a successful Constitution saving throw.', 'The damage increases by 2d6 for each slot level above 6th used to cast this spell.'),
 (48, 'Circle of Power', 5, '5th-level abjuration', '1 action', 'Self (30-foot radius)', 'V', 'Concentration, up to 10 minutes', 'A magical aura emanates from you granting all allies within 30 feet advantage against spells and other magical effects. Also, any creature under the effect of this spell makes a successful saving throw it takes no damage instead of half damage from spell effects.', ''),
@@ -1575,3 +1575,48 @@ INSERT INTO dnd5_class_spells (class_id, spell_id) VALUES
 (7, 92),
 (10, 361),
 (12, 361);
+--
+----Example query to grab all relevant class information from all connected tables. feature, skills and equipment are just titles. need to include desc.
+--
+--SELECT class.*, array_agg(DISTINCT CONCAT(features.feature,': ', features.description)) feature, array_agg(DISTINCT skills.skill_name) skills, array_agg(DISTINCT class_starting_equipment) starter_gear
+--    FROM class 
+--    JOIN class_features
+--    ON class_features.class_id = class.id
+--    JOIN features
+--    ON features.id = class_features.feature_id
+--    JOIN class_skills
+--    ON class_skills.class_id = class.id
+--    JOIN skills
+--    ON skills.id = class_skills.skills_id
+--    JOIN class_starting_equipment
+--    ON class_starting_equipment.id = class.id
+--GROUP BY class.id;
+--
+--SELECT * FROM full_caster 
+--WHERE id =1
+--;
+-- SELECT  array_agg(class_starting_equipment)
+--    FROM class_starting_equipment
+--    JOIN class
+--    ON class.id = class_starting_equipment.id
+--    WHERE class.id =1;
+--    
+--    
+--    
+--    
+----Select individual character . will need to verify user and or just send info attatched to character button on homepage.
+--SELECT character.* FROM character
+--JOIN "user"
+--ON "user".id = character.user_id
+--WHERE "user".id = 1;
+--
+----SELECT skills.description
+----FROM skills
+----WHERE skills.skill_name = 'Athletics';
+--SELECT dnd5_spells.*, array_agg(DISTINCT dnd5_classes.class_name) FROM dnd5_spells
+--join dnd5_class_spells
+--ON dnd5_class_spells.spell_id = dnd5_spells.spell_id
+--join dnd5_classes
+--ON dnd5_classes.class_id= dnd5_class_spells.class_id
+--GROUP BY dnd5_spells.spell_id
+--ORDER BY spell_level ASC;

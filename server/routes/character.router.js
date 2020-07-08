@@ -133,7 +133,6 @@ router.get('/allSkills', (req, res) => {
  * POST route template
  */
 router.post('/create', (req, res) => {
-    console.log('post req body', req.body)
     let values =
         [req.user.id,
         req.body.portrait,
