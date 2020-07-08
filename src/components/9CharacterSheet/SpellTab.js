@@ -30,7 +30,6 @@ class SpellTab extends Component {
         const { activeIndex } = this.state
         const { secondaryIndex } = this.state
         let spells = this.props.spells
-        console.log(spells)
         return (
             <div >
                 <div className="spells">
@@ -55,7 +54,7 @@ class SpellTab extends Component {
                                     ))
                                 }
                             </Accordion>
-
+                            <Divider />
                         </Accordion.Content>
                         <Divider />
                         <Accordion.Title
@@ -64,7 +63,7 @@ class SpellTab extends Component {
                             onClick={this.handleClick}
                         >
                             <Icon name='dropdown' />
-                            <b>Level 1 Spells</b>
+                            <b>1st Level Spells</b>
                         </Accordion.Title>
                         <Accordion.Content active={activeIndex === 1}>
                             <Accordion style={{ marginLeft: '20px' }}>
@@ -77,9 +76,185 @@ class SpellTab extends Component {
                                     ))
                                 }
                             </Accordion>
-
+                            <Divider />
                         </Accordion.Content>
-
+                        <Divider />
+                        <Accordion.Title
+                            active={activeIndex === 2}
+                            index={2}
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='dropdown' />
+                            <b>2nd Level Spells</b>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 2}>
+                            <Accordion style={{ marginLeft: '20px' }}>
+                                {
+                                    spells.filter(item => item.spell_level === 2).map((item, i) => (
+                                        <div key={i}>
+                                            <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
+                                            <Divider />
+                                        </div>
+                                    ))
+                                }
+                            </Accordion>
+                            <Divider />
+                        </Accordion.Content>
+                        <Divider />
+                        <Accordion.Title
+                            active={activeIndex === 3}
+                            index={3}
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='dropdown' />
+                            <b>3rd Level Spells</b>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 3}>
+                            <Accordion style={{ marginLeft: '20px' }}>
+                                {
+                                    spells.filter(item => item.spell_level === 3).map((item, i) => (
+                                        <div key={i}>
+                                            <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
+                                            <Divider />
+                                        </div>
+                                    ))
+                                }
+                            </Accordion>
+                            <Divider />
+                        </Accordion.Content>
+                        <Divider />
+                        <Accordion.Title
+                            active={activeIndex === 4}
+                            index={4}
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='dropdown' />
+                            <b>4th Level Spells</b>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 4}>
+                            <Accordion style={{ marginLeft: '20px' }}>
+                                {
+                                    spells.filter(item => item.spell_level === 4).map((item, i) => (
+                                        <div key={i}>
+                                            <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
+                                            <Divider />
+                                        </div>
+                                    ))
+                                }
+                            </Accordion>
+                            <Divider />
+                        </Accordion.Content>
+                        <Divider />
+                        <Accordion.Title
+                            active={activeIndex === 5}
+                            index={5}
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='dropdown' />
+                            <b>5th Level Spells</b>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 5}>
+                            <Accordion style={{ marginLeft: '20px' }}>
+                                {
+                                    spells.filter(item => item.spell_level === 5).map((item, i) => (
+                                        <div key={i}>
+                                            <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
+                                            <Divider />
+                                        </div>
+                                    ))
+                                }
+                            </Accordion>
+                            <Divider />
+                        </Accordion.Content>
+                        <Divider />
+                        <Accordion.Title
+                            active={activeIndex === 6}
+                            index={6}
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='dropdown' />
+                            <b>6th Level Spells</b>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 6}>
+                            <Accordion style={{ marginLeft: '20px' }}>
+                                {
+                                    spells.filter(item => item.spell_level === 6).map((item, i) => (
+                                        <div key={i}>
+                                            <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
+                                            <Divider />
+                                        </div>
+                                    ))
+                                }
+                            </Accordion>
+                            <Divider />
+                        </Accordion.Content>
+                        <Divider />
+                        <Accordion.Title
+                            active={activeIndex === 7}
+                            index={7}
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='dropdown' />
+                            <b>7th Level Spells</b>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 7}>
+                            <Accordion style={{ marginLeft: '20px' }}>
+                                {
+                                    spells.filter(item => item.spell_level === 7).map((item, i) => (
+                                        <div key={i}>
+                                            <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
+                                            <Divider />
+                                        </div>
+                                    ))
+                                }
+                            </Accordion>
+                            <Divider />
+                        </Accordion.Content>
+                        <Divider />
+                        <Accordion.Title
+                            active={activeIndex === 8}
+                            index={8}
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='dropdown' />
+                            <b>8th Level Spells</b>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 8}>
+                            <Accordion style={{ marginLeft: '20px' }}>
+                                {
+                                    spells.filter(item => item.spell_level === 8).map((item, i) => (
+                                        <div key={i}>
+                                            <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
+                                            <Divider />
+                                        </div>
+                                    ))
+                                }
+                            </Accordion>
+                            <Divider />
+                        </Accordion.Content>
+                        <Divider />
+                        <Accordion.Title
+                            active={activeIndex === 9}
+                            index={9}
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='dropdown' />
+                            <b>9th Level Spells</b>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 9}>
+                            <Accordion style={{ marginLeft: '20px' }}>
+                                {
+                                    spells.filter(item => item.spell_level === 9).map((item, i) => (
+                                        <div key={i}>
+                                            <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
+                                            <Divider />
+                                        </div>
+                                    ))
+                                }
+                            </Accordion>
+                            <Divider />
+                        </Accordion.Content>
+                        <Divider />
                     </Accordion>
                 </div>
 
