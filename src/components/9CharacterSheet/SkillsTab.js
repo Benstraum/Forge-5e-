@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Divider } from 'semantic-ui-react'
+import { Grid, Divider, Icon } from 'semantic-ui-react'
 import './CharacterSheet.css'
 class SkillsTab extends Component {
     state = {
@@ -71,12 +71,13 @@ class SkillsTab extends Component {
         return (
             <div className='skillPage' >   
                     <Grid columns={2} divided>
+                    <Grid.Row style={{marginLeft:'20vw'}}> <p><i>Click on the <Icon name='question circle' /> icons for more info</i></p></Grid.Row>
                         <Grid.Row>
                             <Grid.Column >
                                 <div className="skillName">
-                                <h3><u>Skills</u></h3>
+                                <h3><u>Skills & Bonus</u></h3>
                                 {this.props.skills.map((item, i) => (<div key={i}> 
-                                    <p  onClick={()=>this.learnMore(item)}><b>{item.skill_name}</b>: {this.calcStatBonus(item) > 0 && '+'}{this.calcStatBonus(item)}</p>
+                                    <p  onClick={()=>this.learnMore(item)}><Icon name='question circle' /><br/><b>{item.skill_name}</b>: {this.calcStatBonus(item) > 0 && '+'}{this.calcStatBonus(item)}</p>
                                     <Divider />
                                 </div>
                                 ))}

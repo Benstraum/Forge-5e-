@@ -31,10 +31,19 @@ class ReviewAndName extends Component {
     <Progress />
     <div className='Review'>
       <h2 style={{textAlign:'center'}}>Who are you?</h2>
-      <Input fluid placeholder='What is your name?' onChange={(event) => this.handleChange(event, 'name')} />
+      <Input fluid 
+      label='Name' 
+      labelPosition='left' 
+      placeholder='What is your characters name?' 
+      onChange={(event) => this.handleChange(event, 'name')} />
       <h4 style={{textAlign:'center'}}> the {this.props.char.race.name} {this.props.char.class.class_name}</h4>
       <br />
-      <Input fluid placeholder='character picture URL' onChange={(event) => this.handleChange(event, 'portrait')} />
+      <Input 
+      fluid 
+      label='Url' 
+      labelPosition='left' 
+      placeholder='character image URL' 
+      onChange={(event) => this.handleChange(event, 'portrait')} />
       <br/>
       <Form>
         <TextArea rows={3} placeholder='What is your story?' onChange={(event) => this.handleChange(event, 'bio')} />

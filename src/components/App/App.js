@@ -94,7 +94,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/Review"
+              path="/review"
               component={ReviewAndName}
             />
             <ProtectedRoute

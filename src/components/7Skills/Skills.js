@@ -43,6 +43,7 @@ class Skills extends Component {
       <Progress />
       <div className='Skills'>
         <h1>{this.props.char.class.class_name} Skill Choices</h1>
+        <p style={{textAlign:'center'}}><i>Click on the <Icon name='question circle' /> icons for more info</i></p>
         <Grid columns={this.props.char.class.class_name === 'Ranger' ? 3 : 2} divided>
           <Grid.Row>
             <Grid.Column>
@@ -54,12 +55,12 @@ class Skills extends Component {
             <Grid.Column>
               {this.state.choice_one ?
                 <select required value={this.state.choice_two} onChange={(event) => this.handleChange(event, 'choice_two')}>
-                  <option value=''>Choose First Skill</option>
-                  {this.props.char.class.skills.map((item, i) => (<option key={i} value={item}>{item}</option>))}
+                  <option value=''>Choose second Skill</option>
+                  {this.props.char.class.skills.filter(item=> item!==this.state.choice_one).map((item, i) => (<option key={i} value={item}>{item}</option>))}
                 </select>
                 :
-                <select disabled value={this.state.choice_two} onChange={(event) => this.handleChange(event, 'choice_two')}>
-                  <option value=''>Choose Second Skill</option>
+                <select disabled value={this.state.choice_two} onChange={(event) => this.handleChange(event, 'choice_two')}>item!==this.state.choice_two
+                  <option value=''>Choose second</option>
                   {this.props.char.class.skills.map((item, i) => (<option key={i} value={item}>{item}</option>))}
                 </select>
               }
@@ -68,8 +69,8 @@ class Skills extends Component {
               <Grid.Column>
                 {this.state.choice_two ?
                   <select required value={this.state.choice_three} onChange={(event) => this.handleChange(event, 'choice_three')}>
-                    <option value=''>Choose First Skill</option>
-                    {this.props.char.class.skills.map((item, i) => (<option key={i} value={item}>{item}</option>))}
+                    <option value=''>Choose Third </option>
+                    {this.props.char.class.skills.filter(item=> item!==this.state.choice_one).filter(item=> item!==this.state.choice_two).map((item, i) => (<option key={i} value={item}>{item}</option>))}
                   </select>
                   :
                   <select disabled value={this.state.choice_three} onChange={(event) => this.handleChange(event, 'choice_three')}>
@@ -93,7 +94,7 @@ class Skills extends Component {
           <Grid.Row>
             <Grid.Column>
               <div className="skillnames">
-                {this.props.char.class.skills.map((item) => (<p key={item} style={{ textAlign: 'left' }} onClick={() => this.learnMore(item)}><b>{item}</b><Icon name='info' /></p>))}
+                {this.props.char.class.skills.map((item) => (<p key={item} style={{ textAlign: 'left' }} onClick={() => this.learnMore(item)}><Icon name='question circle' /><b>{item}</b></p>))}
               </div>
             </Grid.Column>
             <Grid.Column>

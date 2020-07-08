@@ -75,7 +75,7 @@ const Progress =(props)=> {
           </Step.Content>
         </Step>
             }
-           { location.pathname==='/Review'?
+           { location.pathname==='/review'?
            <Step >
             <Step.Content>
               <Step.Title>Finish</Step.Title>
