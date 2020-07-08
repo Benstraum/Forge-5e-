@@ -21,6 +21,7 @@ class CharacterSheet extends Component {
         console.log('half caster get dispatch needed ')
         this.props.dispatch({ type: 'RETRIEVE_SHEET' })
         this.props.dispatch({ type: 'GET_ALL_SKILLS' })
+        this.props.dispatch({ type: 'GET_ALL_SPELLS' })
     }
     findMod = (stat) => {
         let mod = Math.floor((stat - 10) / 2)
@@ -75,7 +76,7 @@ class CharacterSheet extends Component {
             {
                 menuItem: 'Spells',
                 render: () => <Tab.Pane style={{backgroundImage: 'url('+image+')', backgroundColor: 'lightgrey', height: '75vh', overflowY: 'auto' }} attached={false}>
-                    <SpellTab char={char} />
+                    <SpellTab spells={this.props.spells} char={char} />
                 </Tab.Pane>,
             }]} />
         </div>
@@ -84,6 +85,7 @@ class CharacterSheet extends Component {
 }
 const mapStateToProps = state => ({
     cSheet: state.characterSheetReducer,
-    skills: state.allSkills
+    skills: state.allSkills,
+    spells:state.allSpells
 });
 export default connect(mapStateToProps)(CharacterSheet);

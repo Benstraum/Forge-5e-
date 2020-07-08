@@ -17,6 +17,7 @@ import deleteSaga from './deleteCharacter' //deletes character from db. can only
 import nameChangeSaga from './nameChangeSaga' //put request to change name saga
 import allSkillsSaga from './allSkillsSaga'
 import updateStatSaga from './UpdateStatSaga'
+import allSpellSaga from './allSpellSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -45,7 +46,8 @@ export default function* rootSaga() {
     deleteSaga(),
     nameChangeSaga(),
     allSkillsSaga(),
-    updateStatSaga()
+    updateStatSaga(),
+    allSpellSaga()
     
 
 

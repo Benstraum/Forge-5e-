@@ -11,7 +11,8 @@ import classRouter from './classRouter' // provides list of all classes
 import equipmentChoiceRouter from './equipmentChoiceReducer' // holds equipment choices for class
 import skillDefinition from './skillDefRouter'
 import characterSheetReducer from './characterSheetReducer' //sets object for character sheep page
-import allSkills from './allSkillReducer'
+import allSkills from './allSkillReducer' //contais all skills and definitions
+import allSpells from './allSpellReducer' //contains all spells and classes assigned to them
 
 
 // rootReducer is the primary reducer for our entire project
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
   equipmentChoiceRouter,
   skillDefinition,
   characterSheetReducer,
-  allSkills
+  allSkills,
+  allSpells
 });
 
 export default rootReducer;
