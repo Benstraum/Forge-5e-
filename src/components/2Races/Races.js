@@ -47,7 +47,7 @@ class Races extends Component {
           }
         </select>
         <p style={{ textAlign: 'center' }}>learn about your choices, then continue the character building process
-                     hitting the continue buttonat the bottom of the screen</p>
+                     hitting the continue button at the bottom of the screen</p>
         <br />
         {this.state.choice ? <> {/*conditional rendering for images. default and race specific */}
           <img alt={race.name} style={{ padding: '1px', border: '2px solid #021a40', backgroundColor: 'darkgray', borderRadius: '4px' }} src={race[x].image_male || race[x].image_female} /></>

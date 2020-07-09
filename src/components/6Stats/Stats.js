@@ -39,13 +39,11 @@ class Stats extends Component {
                 and will wiat for all to be filled until user can proceed */}
                 <h1>Ability Scores</h1>
                 <p>
-                    Based on your class choice: {this.props.char.class.class_name},
-                    and your race: {this.props.char.race.name}-- good stats to put higher scores in are:
-                    {this.props.char.class.saving_throw_1}, and {this.props.char.class.saving_throw_2}
+                    Based on your class: {this.props.char.class.class_name} , and your race: {this.props.char.race.name} <br/>
+                    good stats to put higher scores in are: {this.props.char.class.saving_throw_1}, and {this.props.char.class.saving_throw_2}
                 </p>
                 <p>
-                    Because you are a {this.props.char.race.name}, add these bonuses on top of what you
-                    assign to your scores: {this.props.char.race.stat_bonuses}
+                    **{this.props.char.race.name} add these bonuses to their respective totals {this.props.char.race.stat_bonuses}**
                 </p>
                 <div className="scores">
                     <Grid columns={3} divided>

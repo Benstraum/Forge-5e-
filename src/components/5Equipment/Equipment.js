@@ -60,8 +60,8 @@ class Equipment extends Component {
           <select value={this.state.four} onChange={(event) => this.handleChange(event, 'four')}>
             {choice.choice_4a === choice.choice_4b ?
               <>
-                <option >This class has an automatic choice</option>
-                <option value={choice.choice_4a}>{choice.choice_4a}</option>
+                <option value=''>See Default</option>
+                <option value={choice.choice_4b}>{choice.choice_4a}</option>
               </>
               :
               <>
