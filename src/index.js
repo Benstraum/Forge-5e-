@@ -7,8 +7,6 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
 
-import { CookiesProvider } from 'react-cookie'; //trying to implement global cookie
-
 import App from './components/App/App';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -33,10 +31,10 @@ const store = createStore(
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-  <CookiesProvider>
+
   <Provider store={store}>
     <App />
-  </Provider>
-  </CookiesProvider>,
+  </Provider>,
+
   document.getElementById('react-root'),
 );
