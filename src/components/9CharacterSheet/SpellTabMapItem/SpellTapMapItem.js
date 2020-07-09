@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Accordion, Icon } from 'semantic-ui-react'
-import image from './scroll.jpg'
+
 class SpellTabMapItem extends Component {
     secondClick = this.props.secondClick
     render() {

@@ -42,7 +42,7 @@ class Home extends Component {
         </div>
     }
 }
-const mapStateToProps = state => ({
-    characters: state.characterReducer
+const mapStateToProps = (state) => ({
+    characters: state.characterReducer,
 });
 export default connect(mapStateToProps)(Home);
