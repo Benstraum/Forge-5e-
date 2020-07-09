@@ -25,6 +25,7 @@ class Class extends Component {
     this.props.dispatch({ type: 'NEW_CHARACTER_CLASS', payload: this.props.classes[this.state.choice] })
     this.props.dispatch({ type: 'GET_EQUIP_CHOICES', payload: this.props.classes[this.state.choice].id })
     this.props.dispatch({ type: 'NEW_CHARACTER_SAVES', payload: saves })
+    localStorage.setItem('equip', this.props.classes[this.state.choice].id)
     this.props.history.push('/Equipment')
   }
   handleClick = (e, titleProps) => {

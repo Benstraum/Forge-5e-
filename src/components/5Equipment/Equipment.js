@@ -13,6 +13,10 @@ class Equipment extends Component {
     four: '',
     choice:''
   }
+  componentWillReceiveProps(){
+    this.props.dispatch({ type: 'GET_EQUIP_CHOICES', payload: localStorage.getItem('equip') })
+  }
+
   handleChange = (event, type) => {
     console.log(event.target.text)
     this.setState({
