@@ -26,8 +26,6 @@ import Skills from '../7Skills/Skills';
 import ReviewAndName from '../8ReviewAndName/ReviewAndName';
 import CharacterSheet from '../9CharacterSheet/CharacterSheet';
 
-import { withCookies } from 'react-cookie' //creating instance of cookies to pass to all components
-
 class App extends Component {
   componentDidMount () {
    this.getInfo()
