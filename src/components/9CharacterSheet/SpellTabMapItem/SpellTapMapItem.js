@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Accordion, Icon } from 'semantic-ui-react'
+import image from './scroll.jpg'
 class SpellTabMapItem extends Component {
     secondClick = this.props.secondClick
     render() {
@@ -15,9 +16,9 @@ class SpellTabMapItem extends Component {
                 onClick={this.secondClick}
             >
                 <Icon name='dropdown' />
-                <b>{item.spell_name}</b>
+                <b style={{color:'black'}}>{item.spell_name}</b>
             </Accordion.Title>
-            <Accordion.Content active={secondaryIndex === i} style={{border:'1px black'}}>
+            <Accordion.Content active={secondaryIndex === i} style={{border:'1px black', marginLeft:'5px'}}>
                 <b>Classes that can use the spell:</b><br/> {item.classes.join(', ')}<br/>
                 <b>components:</b> {item.Component|| 'none'}<br />
                 <b>duration:</b> {item.duration}<br />

@@ -9,9 +9,7 @@ class ReviewAndName extends Component {
     bio:'',
     portrait:''
   }
-  componentDidMount() {
-    localStorage.setItem('char', this.props.char)
-  }
+
   handleChange = (event, type) => {
     console.log(event.target.value)
     this.setState({

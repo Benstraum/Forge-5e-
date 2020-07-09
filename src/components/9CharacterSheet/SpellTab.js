@@ -30,30 +30,30 @@ class SpellTab extends Component {
         return (
             <div >
                 <div className="spells">
-                    <h3><u>SpellBook</u></h3>
+                    <h3 style={{textAlign:'center'}}><u>SpellBook</u></h3>
                     <Accordion styled >
                         {
-                            level.map((Lv,index)=>(<div key={index} className="mappedLevels">
+                            level.map((Lv,index)=>(<div style={{ borderRadius:'5px'}} key={index} className="mappedLevels">
                                 <Accordion.Title
                                 active={activeIndex === Lv}
                                 index={Lv}
                                 onClick={this.handleClick}
                             >
                                 <Icon name='dropdown' />
-                                <h3 style={{color:'black'}}><b>Level {Lv} Spells</b></h3>
+                                <b style={{color:'black', verticalAlign:'middle', fontSize:'18px'}}><b>Level {Lv} Spells</b></b>
                             </Accordion.Title>
                             <Accordion.Content active={activeIndex === Lv}>
-                                <Accordion>
+                                <Accordion  style={{backgroundImage: 'url('+image+')'}}>
                                     {
                                         spells.filter(item => item.spell_level === Lv).map((item, i) => (
                                             <div key={i}>
                                                 <SpellTabMapItem item={item} index={i} secondClick={this.secondClick} secondaryIndex={secondaryIndex} />
                                                 <Divider />
+                                                <br/>
                                             </div>
                                         ))
                                     }
                                 </Accordion>
-                                <Divider />
                             </Accordion.Content>
                             </div>
                             ))
