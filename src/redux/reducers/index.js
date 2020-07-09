@@ -9,9 +9,9 @@ import newCharacterReducer from './newCharacterReducer' //holds information for 
 import racesRouter from './racesRouter' // provides list of all races
 import classRouter from './classRouter' // provides list of all classes
 import equipmentChoiceRouter from './equipmentChoiceReducer' // holds equipment choices for class
-import skillDefinition from './skillDefRouter'
+import skillDefinition from './skillDefRouter' // holds skill definitions for character builder 
 import characterSheetReducer from './characterSheetReducer' //sets object for character sheep page
-import allSkills from './allSkillReducer' //contais all skills and definitions
+import allSkills from './allSkillReducer' //contais all skills and definitions for cSheet
 import allSpells from './allSpellReducer' //contains all spells and classes assigned to them
 
 
