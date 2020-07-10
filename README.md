@@ -1,6 +1,8 @@
 
 ## Prerequisites
 
+Using Chrom Browser. Preffered using chrome dev tools with a mobile view.
+
 Before you get started, make sure you have the following software installed on your computer:
 
 - [Node.js](https://nodejs.org/en/)

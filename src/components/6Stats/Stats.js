@@ -39,11 +39,12 @@ class Stats extends Component {
                 and will wiat for all to be filled until user can proceed */}
                 <h1>Ability Scores</h1>
                 <p>
-                    Based on your class: {this.props.char.class.class_name} , and your race: {this.props.char.race.name} <br/>
-                    good stats to put higher scores in are: {this.props.char.class.saving_throw_1}, and {this.props.char.class.saving_throw_2}
+                   Common practice to finding your stats is to roll four six-sided dice, ignore the lowest number, and add together
+                   to use for one ability!
                 </p>
                 <p>
-                    **{this.props.char.race.name} add these bonuses to their respective totals {this.props.char.race.stat_bonuses}**
+                    **{this.props.char.race.name} add these bonuses to their respective totals:**<br/>
+                     {this.props.char.race.stat_bonuses}
                 </p>
                 <div className="scores">
                     <Grid columns={3} divided>

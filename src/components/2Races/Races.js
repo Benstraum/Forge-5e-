@@ -4,10 +4,6 @@ import { Icon, Accordion, Button } from 'semantic-ui-react'
 import './Races.css'
 import Progress from '../Progress/Progress'
 
-
-
-
-
 class Races extends Component {
 
   state = {

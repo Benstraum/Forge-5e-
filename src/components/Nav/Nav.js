@@ -53,7 +53,6 @@ class Nav extends Component {
                 about
                 </Link>
               </>
-
             }
           </Menu.Item>
           <Menu.Item style={{ textAlign: 'center', minHeight: '40px' }} onClick={() => this.setState({ ...this.state, visible: !this.state.visible })}>
