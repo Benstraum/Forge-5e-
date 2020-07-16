@@ -13,7 +13,7 @@ const AboutPage = () => (
       </h3>
       <p>
         Forge is a passion project of mine to help D&D become a more accessible hobby. My app will walk you through the character 
-        creation process and provide explinations for most of the tricky parts of creating a character. Good luck in your adventures!
+        creation process and provide explanations for most of the tricky parts of creating a character. Good luck in your adventures!
       </p>
       <p ><i>Games give you a chance to excel, and if you're playing in good company you don't 
         even mind if you lose because you had the enjoyment of the company 
